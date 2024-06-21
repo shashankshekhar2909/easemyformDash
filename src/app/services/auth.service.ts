@@ -56,6 +56,48 @@ export class AuthService {
     return this.http.post(`${this.baseUrl}/cv/cv-form`, cvData);
   }
 
+  postJob = (jobData:any) => {
+    jobData = {
+      designation: "Data Scientist",
+    company: "Facebook",
+    company_website: "https://www.facebook.com",
+    company_description: "Facebook, Inc. is an American technology conglomerate based in Menlo Park, California. It was founded by Mark Zuckerberg, along with his roommates and fellow Harvard University students.",
+    location: "San Francisco",
+    salary: "15LPA",
+    experience: "3 years",
+    skills: [
+        "Python, R, SQL"
+    ],
+    qualification: [
+        "Proficiency in Python, R, and SQL. Strong analytical skills."
+    ],
+    responsibilities: [
+        "Analyze user data and create data-driven solutions to improve Facebook's user experience."
+    ],
+    job_type: "Full Time",
+    job_description_text: "Facebook is hiring Data Scientist for San Francisco location with 3 years of experience. The candidate should have good knowledge of Python, R, SQL and should have a relevant degree.",
+    job_description_file: "https://www.facebook.com/job_description.pdf",
+    date_of_posting: "2024-06-01",
+    last_date_to_apply: "2024-07-15",
+    contact_info: {
+        email: "john.doe@facebook.com",
+        phone: "1234567890",
+        linkedin: "https://www.linkedin.com/in/john-doe"
+    },
+    keywords: [
+        "Data Scientist, Facebook, San Francisco, Python, R, SQL, Full Time"
+    ],
+    why_work_here: [
+        "Facebook offers a dynamic work environment with a lot of opportunities for growth and learning."
+    ],
+    work_mode: "On-site",
+    extra: "Competitive salary and benefits package",
+    active: true
+    }
+    console.log(jobData);
+    return this.http.post(`${this.baseUrl}/job/job-feeds`, jobData);
+  }
+
   formSubmitted = false;
 
   // signUp(userForm: any): Observable<any> {

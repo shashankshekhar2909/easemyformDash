@@ -20,7 +20,7 @@ const routes: Routes = [
   {
     path: 'admin', component: AdmindashboardComponent, children: [
       { path: '', component: AdminhomeComponent},  // Placeholder for admin routes
-      { path: 'add-job-post', component: AddJobsComponent, canActivate: [AuthGuard]},
+      { path: 'add-job-post', component: AddJobsComponent},
     ]
   },
   {

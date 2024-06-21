@@ -66,7 +66,7 @@
                           </div>
                           <div class="col-1">
                             <button type="button" class="btn btn-danger mt-2" (click)="removeAcademic(i)" *ngIf="academics.controls.length > 1">
-                              <i class="fa fa-trash"></i>
+                              <i class="fa fa-trash" aria-hidden="true"></i>
                             </button>
                           </div>
                         </div>
@@ -103,7 +103,7 @@
                       </div>
                       <div class="col-1">
                         <button type="button" class="btn btn-danger mt-2" (click)="removeWorkExperience(i)" *ngIf="work_experience.controls.length > 1">
-                          <i class="fa fa-trash"></i>
+                          <i class="fa fa-trash" aria-hidden="true"></i>
                         </button>
                       </div>
                     </div>
@@ -140,7 +140,7 @@
                           </div>
                           <div class="col-1">
                             <button type="button" class="btn btn-danger mt-2" (click)="removeProject(i)" *ngIf="projects.controls.length > 1">
-                              <i class="fa fa-trash"></i>
+                              <i class="fa fa-trash" aria-hidden="true"></i>
                             </button>
                           </div>
                         </div>
@@ -168,7 +168,7 @@
                           </div>
                           <div class="col-1">
                             <button type="button" class="btn btn-danger mt-2" (click)="removeCertification(i)" *ngIf="certifications.controls.length > 1">
-                              <i class="fa fa-trash"></i>
+                              <i class="fa fa-trash" aria-hidden="true"></i>
                             </button>
                           </div>
                         </div>
@@ -193,7 +193,7 @@
                           </div>
                           <div class="col-1">
                             <button type="button" class="btn btn-danger mt-2" (click)="removeLanguage(i)" *ngIf="languages.controls.length > 1">
-                              <i class="fa fa-trash"></i>
+                              <i class="fa fa-trash" aria-hidden="true"></i>
                             </button>
                           </div>
                         </div>
@@ -205,14 +205,14 @@
 
                 <!-- Interests -->
                 <div class="col-12">
-                  <div class="form-group mb-4">
+                  <div class="form-group mb-4 row">
                     <label class="mb-2">Interests</label>
                     <div formArrayName="interests">
                       <div *ngFor="let interest of interests.controls; let i = index">
                         <input type="text" class="form-control mb-2" [formControlName]="i" placeholder="Interest" />
                         <div class="col-1">
                             <button type="button" class="btn btn-danger mt-2" (click)="removeInterest(i)" *ngIf="interests.controls.length > 1">
-                              <i class="fa fa-trash"></i>
+                              <i class="fa fa-trash" aria-hidden="true"></i>
                             </button>
                           </div>
                       </div>
@@ -230,7 +230,7 @@
                         <input type="text" class="form-control mb-2" [formControlName]="i" placeholder="Achievement" />
                         <div class="col-1">
                             <button type="button" class="btn btn-danger mt-2" (click)="removeAchievement(i)" *ngIf="achievements.controls.length > 1">
-                              <i class="fa fa-trash"></i>
+                              <i class="fa fa-trash" aria-hidden="true"></i>
                             </button>
                           </div>
                       </div>

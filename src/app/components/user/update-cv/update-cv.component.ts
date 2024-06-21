@@ -149,7 +149,7 @@ export class UpdateCVComponent implements OnInit {
       joining_date: [experience.joining_date],
       leaving_date: [experience.leaving_date],
       description: [experience.description],
-      tasks_achievements: [experience.task]
+      tasks_achievements: [experience.tasks_achievements]
     });
   }
 

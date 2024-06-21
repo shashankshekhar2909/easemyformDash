@@ -1,1 +1,97 @@
-<p>add-jobs works!</p>
+<section class="ezy__signup1_PQS26JGS d-flex align-items-center">
+  <div class="container">
+    <div class="row py-4 justify-content-center">
+      <div class="col-lg-12">
+        <div class="card ezy__signup1_PQS26JGS-form-card">
+          <div class="card-body p-md-5">
+            <h2 class="ezy__signup1_PQS26JGS-heading mb-4 mb-md-5">Add Job Post</h2>
+
+            <form [formGroup]="jobForm">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group mb-4">
+                    <label for="designation" class="mb-2">Designation</label>
+                    <input type="text" class="form-control" id="designation" formControlName="designation" placeholder="Designation" />
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group mb-4">
+                    <label for="company" class="mb-2">Company</label>
+                    <input type="text" class="form-control" id="company" formControlName="company" placeholder="Company" />
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group mb-4">
+                    <label for="companyWebsite" class="mb-2">Company Website</label>
+                    <input type="url" class="form-control" id="companyWebsite" formControlName="companyWebsite" placeholder="Company Website" />
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group mb-4">
+                    <label for="companyDescription" class="mb-2">Company Description</label>
+                    <textarea class="form-control" id="companyDescription" formControlName="companyDescription" placeholder="Company Description"></textarea>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group mb-4">
+                    <label for="location" class="mb-2">Location</label>
+                    <textarea class="form-control" id="location" formControlName="location" placeholder="Location"></textarea>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group mb-4">
+                    <label for="salary" class="mb-2">Salary</label>
+                    <textarea class="form-control" id="salary" formControlName="salary" placeholder="Salary"></textarea>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group mb-4">
+                    <label for="jobType" class="mb-2">Job Type</label>
+                    <textarea class="form-control" id="jobType" formControlName="jobType" placeholder="Job Type"></textarea>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group mb-4">
+                    <label for="experience" class="mb-2">Experience</label>
+                    <textarea class="form-control" id="experience" formControlName="experience" placeholder="Experience"></textarea>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group mb-4">
+                    <label for="jobDescription" class="mb-2">Job Description</label>
+                    <textarea class="form-control" id="jobDescription" formControlName="jobDescription" placeholder="Job Description"></textarea>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group mb-4">
+                    <label for="dateOfPosting" class="mb-2">Date of Posting</label>
+                    <textarea class="form-control" id="dateOfPosting" formControlName="dateOfPosting" placeholder="Date of Posting"></textarea>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group mb-4">
+                    <label for="lastDateToApply" class="mb-2">Last date to apply</label>
+                    <textarea class="form-control" id="lastDateToApply" formControlName="lastDateToApply" placeholder="Last date to apply"></textarea>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group mb-4">
+                    <label for="workMode" class="mb-2">Work Mode</label>
+                    <textarea class="form-control" id="workMode" formControlName="workMode" placeholder="Work Mode"></textarea>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group mb-4">
+                    <label for="active" class="mb-2">Active</label>
+                    <textarea class="form-control" id="active" formControlName="active" placeholder="Active"></textarea>
+                  </div>
+                </div>
+              </div>
+              <button (click)="onSubmit()" type="submit" class="btn ezy__signup1_PQS26JGS-btn-submit w-100">Add Job Post</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

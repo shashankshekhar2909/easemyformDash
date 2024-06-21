@@ -28,6 +28,7 @@ import { UserCVComponent } from './components/user/user-cv/user-cv.component';
 import { JobsComponent } from './components/user/jobs/jobs.component';
 import { JobComponent } from './components/user/job/job.component';
 import { UpdateCVComponent } from './components/user/update-cv/update-cv.component';
+import { PostSliderComponent } from './components/partials/post-slider/post-slider.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { UpdateCVComponent } from './components/user/update-cv/update-cv.compone
     JobsComponent,
     JobComponent,
     UpdateCVComponent,
+    PostSliderComponent,
   ],
   imports: [
     BrowserModule,
