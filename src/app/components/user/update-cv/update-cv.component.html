@@ -1,0 +1,279 @@
+<section class="ezy__signup1_PQS26JGS d-flex align-items-center">
+  <div class="container">
+    <div class="row py-4 justify-content-center">
+      <div class="col-lg-12">
+        <div class="card ezy__signup1_PQS26JGS-form-card">
+          <div class="card-body p-md-5">
+            <h2 class="ezy__signup1_PQS26JGS-heading mb-4 mb-md-5">Update CV</h2>
+            <form [formGroup]="cvForm" (ngSubmit)="onSubmit()">
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group mb-4">
+                    <label for="full-name" class="mb-2">Full Name</label>
+                    <input type="text" class="form-control" id="full-name" formControlName="full_name" placeholder="Your Full Name" required />
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group mb-4">
+                    <label for="email-id" class="mb-2">Email</label>
+                    <input type="email" class="form-control" id="email-id" formControlName="email_id" placeholder="Your Email Address" required />
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group mb-4">
+                    <label for="phone-number" class="mb-2">Phone Number</label>
+                    <input type="text" class="form-control" id="phone-number" formControlName="phone_number" placeholder="Your Phone Number" required />
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group mb-4">
+                    <label for="linkedin-id" class="mb-2">LinkedIn ID</label>
+                    <input type="text" class="form-control" id="linkedin-id" formControlName="linkedin_id" placeholder="Your LinkedIn Profile (Optional)" />
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group mb-4">
+                    <label for="photo" class="mb-2">Photo</label>
+                    <input type="file" class="form-control" id="photo" formControlName="photo" placeholder="Upload your photo (Optional)" />
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group mb-4">
+                    <label class="mb-2">Academics</label>
+                    <div formArrayName="academics">
+                      <div *ngFor="let academic of academics.controls; let i = index" [formGroupName]="i">
+                        <div class="row">
+                          <div class="col-2">
+                            <input type="text" class="form-control mb-2" formControlName="degree" placeholder="Degree" />
+                          </div>
+                          <div class="col-2">
+                            <input type="text" class="form-control mb-2" formControlName="branch" placeholder="Branch" />
+                          </div>
+                          <div class="col-2">
+                            <input type="text" class="form-control mb-2" formControlName="college" placeholder="College" />
+                          </div>
+                          <div class="col-2">
+                            <input type="text" class="form-control mb-2" formControlName="university" placeholder="University" />
+                          </div>
+                          <div class="col-1">
+                            <input type="text" class="form-control mb-2" formControlName="joining_date" placeholder="Joining" />
+                          </div>
+                          <div class="col-1">
+                            <input type="text" class="form-control mb-2" formControlName="passing_date" placeholder="Passing" />
+                          </div>
+                          <div class="col-1">
+                            <input type="text" class="form-control mb-2" formControlName="cgpa" placeholder="CGPA" />
+                          </div>
+                          <div class="col-1">
+                            <button type="button" class="btn btn-danger mt-2" (click)="removeAcademic(i)" *ngIf="academics.controls.length > 1">
+                              <i class="fa fa-trash"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <button type="button" class="btn btn-link" (click)="addAcademic()">Add Academic</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Work Experience -->
+                <div formArrayName="work_experience">
+                  <div *ngFor="let experience of work_experience.controls; let i = index" [formGroupName]="i">
+                    <div class="row">
+                      <div class="col-2">
+                        <input type="text" class="form-control mb-2" formControlName="company" placeholder="Company" />
+                      </div>
+                      <div class="col-2">
+                        <input type="text" class="form-control mb-2" formControlName="role" placeholder="Role" />
+                      </div>
+                      <div class="col-2">
+                        <input type="text" class="form-control mb-2" formControlName="location" placeholder="Location" />
+                      </div>
+                      <div class="col-2">
+                        <input type="text" class="form-control mb-2" formControlName="joining_date" placeholder="Joining" />
+                      </div>
+                      <div class="col-2">
+                        <input type="text" class="form-control mb-2" formControlName="leaving_date" placeholder="Leaving" />
+                      </div>
+                      <div class="col-12">
+                        <textarea class="form-control mb-2" formControlName="description" placeholder="Description"></textarea>
+                      </div>
+                      <div class="col-12">
+                        <textarea class="form-control mb-2" formControlName="tasks_achievements" placeholder="Roles"></textarea>
+                      </div>
+                      <div class="col-1">
+                        <button type="button" class="btn btn-danger mt-2" (click)="removeWorkExperience(i)" *ngIf="work_experience.controls.length > 1">
+                          <i class="fa fa-trash"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <button type="button" class="btn btn-link" (click)="addWorkExperience()">Add Work Experience</button>
+                </div>
+
+
+                <!-- Skills -->
+                <div class="col-12">
+                  <div class="form-group mb-4">
+                    <label class="mb-2">Skills</label>
+                    <div formArrayName="skills">
+                      <div *ngFor="let skill of skills.controls; let i = index">
+                        <input type="text" class="form-control mb-2" [formControlName]="i" placeholder="Skill" />
+                      </div>
+                      <button type="button" class="btn btn-link" (click)="addSkill()">Add Skill</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Projects -->
+                <div class="col-12">
+                  <div class="form-group mb-4">
+                    <label class="mb-2">Projects</label>
+                    <div formArrayName="projects">
+                      <div *ngFor="let project of projects.controls; let i = index" [formGroupName]="i">
+                        <div class="row">
+                          <div class="col-6">
+                            <input type="text" class="form-control mb-2" formControlName="title" placeholder="Project Title" />
+                          </div>
+                          <div class="col-6">
+                            <input type="text" class="form-control mb-2" formControlName="description" placeholder="Project Description" />
+                          </div>
+                          <div class="col-1">
+                            <button type="button" class="btn btn-danger mt-2" (click)="removeProject(i)" *ngIf="projects.controls.length > 1">
+                              <i class="fa fa-trash"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <button type="button" class="btn btn-link" (click)="addProject()">Add Project</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Certifications -->
+                <div class="col-12">
+                  <div class="form-group mb-4">
+                    <label class="mb-2">Certifications</label>
+                    <div formArrayName="certifications">
+                      <div *ngFor="let certification of certifications.controls; let i = index" [formGroupName]="i">
+                        <div class="row">
+                          <div class="col-4">
+                            <input type="text" class="form-control mb-2" formControlName="title" placeholder="Title" />
+                          </div>
+                          <div class="col-4">
+                            <input type="text" class="form-control mb-2" formControlName="organization" placeholder="Organization" />
+                          </div>
+                          <div class="col-4">
+                            <input type="text" class="form-control mb-2" formControlName="date" placeholder="Date" />
+                          </div>
+                          <div class="col-1">
+                            <button type="button" class="btn btn-danger mt-2" (click)="removeCertification(i)" *ngIf="certifications.controls.length > 1">
+                              <i class="fa fa-trash"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <button type="button" class="btn btn-link" (click)="addCertification()">Add Certification</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Languages -->
+                <div class="col-12">
+                  <div class="form-group mb-4">
+                    <label class="mb-2">Languages</label>
+                    <div formArrayName="languages">
+                      <div *ngFor="let language of languages.controls; let i = index" [formGroupName]="i">
+                        <div class="row">
+                          <div class="col-6">
+                            <input type="text" class="form-control mb-2" formControlName="language" placeholder="Language" />
+                          </div>
+                          <div class="col-6">
+                            <input type="text" class="form-control mb-2" formControlName="proficiency" placeholder="Proficiency" />
+                          </div>
+                          <div class="col-1">
+                            <button type="button" class="btn btn-danger mt-2" (click)="removeLanguage(i)" *ngIf="languages.controls.length > 1">
+                              <i class="fa fa-trash"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <button type="button" class="btn btn-link" (click)="addLanguage()">Add Language</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Interests -->
+                <div class="col-12">
+                  <div class="form-group mb-4">
+                    <label class="mb-2">Interests</label>
+                    <div formArrayName="interests">
+                      <div *ngFor="let interest of interests.controls; let i = index">
+                        <input type="text" class="form-control mb-2" [formControlName]="i" placeholder="Interest" />
+                        <div class="col-1">
+                            <button type="button" class="btn btn-danger mt-2" (click)="removeInterest(i)" *ngIf="interests.controls.length > 1">
+                              <i class="fa fa-trash"></i>
+                            </button>
+                          </div>
+                      </div>
+                      <button type="button" class="btn btn-link" (click)="addInterest()">Add Interest</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Achievements -->
+                <div class="col-12">
+                  <div class="form-group mb-4">
+                    <label class="mb-2">Achievements</label>
+                    <div formArrayName="achievements">
+                      <div *ngFor="let achievement of achievements.controls; let i = index">
+                        <input type="text" class="form-control mb-2" [formControlName]="i" placeholder="Achievement" />
+                        <div class="col-1">
+                            <button type="button" class="btn btn-danger mt-2" (click)="removeAchievement(i)" *ngIf="achievements.controls.length > 1">
+                              <i class="fa fa-trash"></i>
+                            </button>
+                          </div>
+                      </div>
+                      <button type="button" class="btn btn-link" (click)="addAchievement()">Add Achievement</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Personal Details -->
+                <div class="col-12">
+                  <div class="form-group mb-4">
+                    <label for="personal-details" class="mb-2">Personal Details</label>
+                    <div [formGroupName]="'personal_details'">
+                      <input type="text" class="form-control mb-2" formControlName="date_of_birth" placeholder="Date of Birth" />
+                      <input type="text" class="form-control mb-2" formControlName="address" placeholder="Address" />
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Other Details -->
+                <div class="col-12">
+                  <div class="form-group mb-4">
+                    <label for="other-details" class="mb-2">Other Details</label>
+                    <textarea class="form-control" id="other-details" formControlName="other_details" placeholder="Any other relevant details (Optional)"></textarea>
+                  </div>
+                </div>
+
+              </div>
+              <div class="form-group mb-4">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="agree" formControlName="agree" required />
+                  <label class="form-check-label" for="agree">
+                    I accept the <a href="#">terms & conditions</a>, <a href="#">privacy policy</a>
+                  </label>
+                </div>
+              </div>
+              <div class="form-group mb-4 col-lg-4" style="text-align: right; display: flex;">
+                <button type="submit" class="btn ezy__signup1_PQS26JGS-btn-submit w-100" style="flex-basis: max-content;">Update CV</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
