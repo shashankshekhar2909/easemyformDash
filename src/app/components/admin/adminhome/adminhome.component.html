@@ -1,1 +1,53 @@
-<p>adminhome works!</p>
+<!-- Job Posts -->
+<section>
+  <h2>Job Posts</h2>
+  <table class="table">
+    <!-- <caption>List of users</caption> -->
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Company</th>
+        <th scope="col">Designation</th>
+        <th scope="col">Posted On</th>
+        <th scope="col">Last Date</th>
+        <th scope="col">Options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let job of jobPostList; let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{job.company}}</td>
+        <td>{{job.designation}}</td>
+        <td>{{job.date_of_posting}}</td>
+        <td>{{job.last_date_to_apply}}</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<!-- User Data -->
+<!-- <section>
+  <h2>User List</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Company</th>
+        <th scope="col">Designation</th>
+        <th scope="col">Posted On</th>
+        <th scope="col">Last Date</th>
+        <th scope="col">Options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let job of jobPostList; let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{job.company}}</td>
+        <td>{{job.designation}}</td>
+        <td>{{job.date_of_posting}}</td>
+        <td>{{job.last_date_to_apply}}</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</section> -->

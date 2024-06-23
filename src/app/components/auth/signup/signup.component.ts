@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AlertService } from '../../../services/alert.service';
 
 @Component({
   selector: 'app-signup',
@@ -14,7 +15,8 @@ export class SignupComponent {
   constructor(
     private fb: FormBuilder,
     private router:Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private alertService: AlertService
   ) {
     this.signUpForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -33,8 +35,10 @@ export class SignupComponent {
         console.log(resp);
         this.submitting = false;
         this.signUpForm.reset();
+        this.alertService.showAlert('success', 'Sign-up successful!');
       },
       error: (HttpResponse: HttpErrorResponse) => {
+        this.alertService.showAlert('danger', 'Failed to signup');
         // this._snackBar.open(`${HttpResponse.error.detail}`, 'OK', {
         //   duration: 3000,
         //   panelClass: ['error-snackbar']

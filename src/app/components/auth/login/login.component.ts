@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AlertService } from '../../../services/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,7 @@ export class LoginComponent implements OnInit{
   constructor(
     private authService: AuthService,
     private fb: FormBuilder,
+    private alertService: AlertService,
     private router:Router) {
       this.loginForm = this.fb.group({
         email: ['', [Validators.required, Validators.minLength(6)]],
@@ -89,6 +91,8 @@ export class LoginComponent implements OnInit{
         }
       },
       error: (HttpResponse: HttpErrorResponse) => {
+        this.alertService.showAlert('danger', 'Login failed');
+
         console.log(HttpResponse);
 
       }
