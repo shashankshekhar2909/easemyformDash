@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { map, catchError, throwError, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Globals } from '../_globals/endpoints.global';
+import { environment } from '../../environments/env';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class AuthService {
       'Content-Type': 'application/json',
     });
   }
-  private baseUrl = '/api';
+  private baseUrl = environment.baseUrl;
 
 
   login(userForm: { email: string; password: string }): Observable<any> {

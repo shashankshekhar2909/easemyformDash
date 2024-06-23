@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { env } from '../../environment/env';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from 'express';
 import { map, catchError, throwError } from 'rxjs';
 import { Globals } from '../_globals/endpoints.global';
+import { environment } from '../../environments/env';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   httpOptions: any;
-  private baseUrl = '/api';
+  private baseUrl = environment.baseUrl;
   constructor(
     private http: HttpClient,
     private router: Router,
