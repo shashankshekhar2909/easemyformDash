@@ -1,17 +1,21 @@
+// src/app/alert.service.ts
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
+export interface Alert {
+    type: 'success' | 'info' | 'warning' | 'danger';
+    message: string;
+}
+
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class AlertService {
-  private alertSubject = new Subject<{ type: string, message: string }>();
+    private alertSubject = new Subject<Alert>();
+    alerts$ = this.alertSubject.asObservable();
 
-  getAlert() {
-    return this.alertSubject.asObservable();
-  }
-
-  showAlert(type: 'success' | 'danger' | 'warning' | 'info', message: string) {
-    this.alertSubject.next({ type, message });
-  }
+    showAlert(type: 'success' | 'info' | 'warning' | 'danger', message: string) {
+      console.log('calling this');
+      this.alertSubject.next({ type, message });
+    }
 }

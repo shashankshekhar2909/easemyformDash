@@ -1,31 +1,25 @@
+// src/app/alert/alert.component.ts
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { AlertService } from '../services/alert.service';
+import { Alert, AlertService } from '../services/alert.service';
 
 @Component({
-  selector: 'app-alert',
-  templateUrl: './alert.component.html',
-  styleUrls: ['./alert.component.scss']
+    selector: 'app-alert',
+    templateUrl: './alert.component.html',
+    styleUrls: ['./alert.component.scss']
 })
 export class AlertComponent implements OnInit {
-  message!: string;
-  type:any = "success";
-  private subscription: Subscription = new Subscription;
+    alerts: Alert[] = [];
 
-  constructor(private alertService: AlertService) {}
+    constructor(private alertService: AlertService) {}
 
-  ngOnInit() {
-    this.subscription = this.alertService.getAlert().subscribe(alert => {
-      this.type = alert.type;
-      this.message = alert.message;
-    });
-  }
+    ngOnInit() {
+        this.alertService.alerts$.subscribe(alert => {
+            this.alerts.push(alert);
+            setTimeout(() => this.removeAlert(alert), 5000);
+        });
+    }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
-
-  closeAlert() {
-    this.message = '';
-  }
+    removeAlert(alert: Alert) {
+        this.alerts = this.alerts.filter(a => a !== alert);
+    }
 }

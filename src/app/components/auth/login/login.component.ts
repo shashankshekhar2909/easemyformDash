@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit{
     private alertService: AlertService,
     private router:Router) {
       this.loginForm = this.fb.group({
-        email: ['', [Validators.required, Validators.minLength(6)]],
+        email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(6)]]
       });
   }
@@ -72,9 +72,11 @@ export class LoginComponent implements OnInit{
         },
         error: (HttpResponse: HttpErrorResponse) => {
           console.log(HttpResponse);
-
+          this.alertService.showAlert('danger', 'Login failed');
         }
       });
+    }else{
+      this.displayValidationErrors();
     }
   }
 
@@ -91,15 +93,28 @@ export class LoginComponent implements OnInit{
         }
       },
       error: (HttpResponse: HttpErrorResponse) => {
-        this.alertService.showAlert('danger', 'Login failed');
-
         console.log(HttpResponse);
-
       }
     });
   }
   gotoUserDash() {
     this.router.navigate(['user']);
+  }
+
+  displayValidationErrors() {
+    for (const control in this.loginForm.controls) {
+      if (this.loginForm.controls.hasOwnProperty(control)) {
+        this.loginForm.controls[control].markAsTouched();
+      }
+    }
+  }
+
+  get email() {
+    return this.loginForm.get('email');
+  }
+
+  get password() {
+    return this.loginForm.get('password');
   }
 
 }

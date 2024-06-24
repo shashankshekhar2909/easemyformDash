@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
+import { AlertService } from '../../../services/alert.service';
 
 @Component({
   selector: 'app-adminhome',
@@ -11,7 +12,10 @@ export class AdminhomeComponent implements OnInit{
   page = 1;
   pageSize = 10;
   jobPostList:any = [];
-  constructor(private authService: AuthService){}
+  constructor(
+    private authService: AuthService,
+    private alertService: AlertService
+  ){}
 
   ngOnInit(): void {
     this.getJobs(this.page, this.pageSize);
