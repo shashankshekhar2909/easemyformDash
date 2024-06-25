@@ -21,7 +21,7 @@ export class AuthService {
       'Content-Type': 'application/json',
     });
   }
-  private baseUrl = '/api';
+  private baseUrl = environment.baseUrl;
 
 
   login(userForm: { email: string; password: string }): Observable<any> {
