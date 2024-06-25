@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { UserService } from '../../../services/user.service';
 import { AuthService } from '../../../services/auth.service';
+import { AlertService } from '../../../services/alert.service';
 
 @Component({
   selector: 'app-update-cv',
@@ -14,7 +15,8 @@ export class UpdateCVComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private alertService: AlertService
   ) {
     this.cvForm = this.fb.group({
       full_name: ['', Validators.required],
@@ -247,18 +249,22 @@ export class UpdateCVComponent implements OnInit {
         this.authService.puttCV(this.cvForm.value).subscribe({
           next: (resp: any) => {
             console.log(resp);
+            this.alertService.showAlert('success', 'CV update successful!');
           },
           error: (HttpResponse: HttpErrorResponse) => {
             console.log(HttpResponse);
+            this.alertService.showAlert('danger', 'CV update failed!');
           }
         });
       } else {
         this.authService.postCV(this.cvForm.value).subscribe({
           next: (resp: any) => {
             console.log(resp);
+            this.alertService.showAlert('success', 'CV update successful!');
           },
           error: (HttpResponse: HttpErrorResponse) => {
             console.log(HttpResponse);
+            this.alertService.showAlert('danger', 'CV update failed!');
           }
         });
 
