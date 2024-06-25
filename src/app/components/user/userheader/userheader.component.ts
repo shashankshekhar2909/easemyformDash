@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-userheader',
@@ -12,10 +12,16 @@ export class UserheaderComponent implements OnInit{
   constructor(
     private authService: AuthService,
     private router: Router
-  ){}
+  ){
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.activeRoute = event.urlAfterRedirects;
+      }
+    });
+  }
 
   userProfile:any = null;
-
+  activeRoute: string = '';
   ngOnInit(): void {
     this.getUserDetails();
   }

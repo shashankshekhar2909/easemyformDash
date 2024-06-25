@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { UserService } from '../../../services/user.service';
 import { AuthService } from '../../../services/auth.service';
@@ -37,56 +37,47 @@ export class UpdateCVComponent implements OnInit {
       achievements: this.fb.array([]),
       agree: [false, Validators.requiredTrue]
     });
-
   }
 
   ngOnInit(): void {
-    this.cvForm = this.fb.group({
-      full_name: ['', Validators.required],
-      email_id: ['', [Validators.required, Validators.email]],
-      phone_number: ['', Validators.required],
-      linkedin_id: [''],
-      photo: [''],
-      personal_details: this.fb.group({
-        date_of_birth: [''],
-        address: ['']
-      }),
-      other_details: [''],
-      academics: this.fb.array([]),
-      work_experience: this.fb.array([]),
-      skills: this.fb.array([]),
-      projects: this.fb.array([]),
-      certifications: this.fb.array([]),
-      languages: this.fb.array([]),
-      interests: this.fb.array([]),
-      achievements: this.fb.array([]),
-      agree: [false, Validators.requiredTrue]
-    });
+    this.getUserCV();
+  }
 
-    this.populateForm();
+  userCV: any = null;
+
+  getUserCV() {
+    this.authService.userCV().subscribe({
+      next: (resp: any) => {
+        this.userCV = resp.results[0];
+        this.populateForm();
+      },
+      error: (HttpResponse: HttpErrorResponse) => {
+        console.log(HttpResponse);
+      }
+    });
   }
 
   populateForm(): void {
-    const data: any = {};
+    if (this.userCV) {
+      this.cvForm.patchValue({
+        full_name: this.userCV.full_name,
+        email_id: this.userCV.email_id,
+        phone_number: this.userCV.phone_number,
+        linkedin_id: this.userCV.linkedin_id,
+        personal_details: this.userCV.personal_details,
+        other_details: this.userCV.other_details,
+        agree: this.userCV.agree
+      });
 
-    this.cvForm.patchValue({
-      full_name: data.full_name,
-      email_id: data.email_id,
-      phone_number: data.phone_number,
-      linkedin_id: data.linkedin_id,
-      personal_details: data.personal_details,
-      other_details: data.other_details,
-      agree: data.agree
-    });
-
-    // data.academics.forEach((academic: any) => this.addAcademic(academic));
-    // data.work_experience.forEach((experience: any) => this.addWorkExperience(experience));
-    // data.skills.forEach((skill: any) => this.addSkill(skill));
-    // data.projects.forEach((project: any) => this.addProject(project));
-    // data.certifications.forEach((certification: any) => this.addCertification(certification));
-    // data.languages.forEach((language: any) => this.addLanguage(language));
-    // data.interests.forEach((interest: any) => this.addInterest(interest));
-    // data.achievements.forEach((achievement: any) => this.addAchievement(achievement));
+      this.userCV.academics.forEach((academic: any) => this.addAcademic(academic));
+      this.userCV.work_experience.forEach((experience: any) => this.addWorkExperience(experience));
+      this.userCV.skills.forEach((skill: any) => this.addSkill(skill));
+      this.userCV.projects.forEach((project: any) => this.addProject(project));
+      this.userCV.certifications.forEach((certification: any) => this.addCertification(certification));
+      this.userCV.languages.forEach((language: any) => this.addLanguage(language));
+      this.userCV.interests.forEach((interest: any) => this.addInterest(interest));
+      this.userCV.achievements.forEach((achievement: any) => this.addAchievement(achievement));
+    }
   }
 
   get academics(): FormArray {
@@ -252,13 +243,26 @@ export class UpdateCVComponent implements OnInit {
 
   onSubmit(): void {
     if (this.cvForm.valid) {
-      this.authService.postCV(this.cvForm.value).subscribe({
-        next: (resp:any) => {
-          console.log(resp);
-        },
-        error: (HttpResponse: HttpErrorResponse) => {
-        }
-      });
+      if(this.userCV){
+        this.authService.puttCV(this.cvForm.value).subscribe({
+          next: (resp: any) => {
+            console.log(resp);
+          },
+          error: (HttpResponse: HttpErrorResponse) => {
+            console.log(HttpResponse);
+          }
+        });
+      } else {
+        this.authService.postCV(this.cvForm.value).subscribe({
+          next: (resp: any) => {
+            console.log(resp);
+          },
+          error: (HttpResponse: HttpErrorResponse) => {
+            console.log(HttpResponse);
+          }
+        });
+
+      }
     } else {
       console.log('Form is not valid');
     }

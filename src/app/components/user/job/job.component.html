@@ -1,1 +1,139 @@
-<p>job works!</p>
+<section class="ezy__blogdetails5 light" *ngIf="jobDetail">
+  <div class="container">
+    <div>
+      <a href="user/"><i class="fa fa-arrow-left"></i> &nbsp;Back to List</a>
+    </div>
+    <hr>
+    <div class="row">
+      <!-- sidebar -->
+      <div class="col-12 col-md-4 col-lg-3 order-2 order-md-1">
+        <div>
+          <div>
+            <h4 class="ezy__blogdetails5-title">About {{jobDetail.company}}</h4>
+            <p class="opacity-75" style="text-align: justify;">
+              {{jobDetail.company_description}}
+            </p>
+            <p class="opacity-75" style="text-align: justify;">
+              <i class="fa fa-map-marker" aria-hidden="true"></i> {{jobDetail.location}}
+            </p>
+            <ng-container *ngIf="jobDetail.company_website">
+              <a href="{{jobDetail.company_website}}" target="_blank">Visit Company Site</a>
+            </ng-container>
+
+          </div>
+
+          <!-- <div class="mt-5">
+            <h4 class="ezy__blogdetails5-title mb-4"></h4>
+            <div class="ezy__blogdetails5-comments p-4">
+              <ul class="nav">
+                <li class="py-2">
+                  <i class="fas fa-map"></i>George Codex on
+                  <a href="#">Blue Seduction</a>
+                </li>
+              </ul>
+            </div>
+          </div> -->
+        </div>
+      </div>
+      <!-- main contents -->
+      <div class="col-12 col-md-8 col-lg-9 order-1 order-md-2">
+        <div class="ezy__blogdetails5-contents">
+          <!-- <img
+            src="https://cdn.easyfrontend.com/pictures/blog/blog_13_3.jpg"
+            alt=""
+            class="ezy__blogdetails5-banner img-fluid"
+          /> -->
+          <div class="row">
+            <h2>{{jobDetail.designation}}</h2>
+          </div>
+          <div class="jobChipContainer">
+            <div class="jobChip" *ngFor="let item of jobChips">
+              {{item}}
+            </div>
+          </div>
+          <p>Posted on {{jobDetail.date_of_posting}}</p>
+          <p>Last Date to apply {{jobDetail.last_date_to_apply}}</p>
+          <h5 class="ezy__blogdetails5-title">Job Description</h5>
+          <p class="opacity-75 mt-1">
+            {{jobDetail.job_description_text}}
+          </p>
+          <h5 class="ezy__blogdetails5-title">Job Type</h5>
+          <p class="opacity-75 mt-1">
+            {{jobDetail.job_type}} , {{jobDetail.work_mode}}
+          </p>
+          <h5 class="ezy__blogdetails5-title">Salary</h5>
+          <p class="opacity-75 mt-1">
+            {{jobDetail.salary}}
+          </p>
+          <hr>
+          <h5 class="ezy__blogdetails5-title">Required Experience</h5>
+          <p class="opacity-75 mt-1">
+            {{jobDetail.experience}}
+          </p>
+          <h5 class="ezy__blogdetails5-title">Required Qualifications</h5>
+          <p class="opacity-75 mt-1">
+            {{jobDetail.qualification}}
+          </p>
+          <h5 class="ezy__blogdetails5-title">Roles & Responsibilities</h5>
+          <p class="opacity-75 mt-1">
+            {{jobDetail.responsibilities}}
+          </p>
+          <h5 class="ezy__blogdetails5-title">Required Skills</h5>
+          <div class="opacity-75 mt-1">
+            <ul style="list-style: square;">
+              <li *ngFor="let item of jobDetail.skills">
+                {{item}}
+              </li>
+            </ul>
+          </div>
+          <hr>
+          <h5 class="ezy__blogdetails5-title">Why work here</h5>
+          <div class="opacity-75 mt-1">
+            <ul style="list-style: square;">
+              <li *ngFor="let item of jobDetail.why_work_here">
+                {{item}}
+              </li>
+            </ul>
+          </div>
+
+
+          <!-- <h4 class="mt-4 opacity-75">7 Steps to Master Adobe Illustrator</h4>
+          <p class="opacity-75 mt-2">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus deleniti doloremque dignissimos nemo
+            accusamus, fuga enim velit nesciunt debitis, sint rerum! Inventore, vero. Numquam voluptatum at
+            accusamus quisquam iste omnis harum voluptatem temporibus obcaecati, ipsa provident architecto illo ea
+            illum, exercitationem totam, ratione consectetur laborum! Beatae, non aspernatur officia architecto
+            perspiciatis odio adipisci ducimus consectetur? Facilis soluta enim molestiae ratione numquam fugit,
+            dicta mollitia atque cupiditate eos debitis esse commodi, eveniet perferendis alias! Ab molestias
+            blanditiis, voluptatem quisquam ratione quibusdam in pariatur fugiat veritatis consequatur, harum alias
+            eos deleniti dicta! Qui necessitatibus, facilis voluptate inventore quod similique voluptates eum,
+            repudiandae aliquid ea eveniet itaque et molestias temporibus debitis consectetur sit quae modi non
+            minima distinctio hic quasi aspernatur! Quas, odit maiores nam veritatis repellat tenetur laboriosam sed
+            incidunt accusantium temporibus sequi reiciendis atque qui dolor alias. Recusandae unde nostrum nobis
+            laudantium, adipisci incidunt? Ex, praesentium exercitationem laudantium consectetur obcaecati illo!
+            Totam nesciunt quos, molestias earum aut ea voluptatum non officiis iure! Eaque necessitatibus aperiam
+            praesentium animi magnam, quo totam tempore quod impedit cupiditate deserunt eveniet unde suscipit, vel
+            consectetur, itaque natus. Asperiores eos cupiditate optio quae aut molestiae fugiat alias id, tempora,
+            dolorem velit, aliquid assumenda aspernatur veniam rerum quisquam!
+          </p> -->
+          <!-- comment -->
+          <div class="ezy__blogdetails5-comment d-flex align-items-start p-4 p-md-5 mt-4 mt-md-5">
+            <!-- <img
+              src="https://cdn.easyfrontend.com/pictures/users/user13.jpg"
+              alt=""
+              class="img-fluid rounded-circle"
+              width="70"
+            /> -->
+            <div class="ms-2">
+              <p>Contact Person</p>
+              <!-- <h5 class="ezy__blogdetails5-user mb-1"></h5> -->
+              <p class="opacity-75">Email : {{jobDetail.contact_info.email}}</p>
+              <p class="opacity-75">Contact Number : {{jobDetail.contact_info.phone}}</p>
+              <p class="opacity-75">LinkedIn : <a href="{{jobDetail.contact_info.linkedin}}" target="_blank">{{jobDetail.contact_info.linkedin}}</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

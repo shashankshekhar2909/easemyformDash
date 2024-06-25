@@ -1,1 +1,236 @@
-<p>user-profile works!</p>
+<section class="ezy__epprofile5 light">
+  <div class="container">
+    <div class="row">
+      <!-- content -->
+      <div class="col-12 col-md-12 col-lg-12 mt-5 mt-md-0" *ngIf="userProfile">
+        <div class="ezy__epprofile5-card p-4">
+          <!-- <div class="ezy__epprofile5-header position-relative">
+            <img src="https://cdn.easyfrontend.com/pictures/profile1-user.png" class="ezy__epprofile5-user" />
+          </div> -->
+          <div class="px-lg-5">
+            <h1 class="ezy__epprofile5-heading text-center">{{userProfile.first_name}}</h1>
+            <div class="row justify-content-between mt-4 mt-md-5">
+                <div class="col-6">
+                    <p class="ezy__epprofile5-data mb-2">FIRST NAME:</p>
+                </div>
+                <div class="col-6 col-lg-auto">
+                    <p class="ezy__epprofile5-value mb-2">{{userProfile.first_name}}</p>
+                </div>
+                <div class="col-6">
+                    <p class="ezy__epprofile5-data mb-2">LAST NAME:</p>
+                </div>
+                <div class="col-6 col-lg-auto">
+                    <p class="ezy__epprofile5-value mb-2">{{userProfile.last_name || '-' }}</p>
+                </div>
+                <div class="col-6">
+                    <p class="ezy__epprofile5-data mb-2">PHONE NUMBER:</p>
+                </div>
+                <div class="col-6 col-lg-auto">
+                    <p class="ezy__epprofile5-value mb-2">{{userProfile.phone_number || '-' }}</p>
+                </div>
+                <div class="col-6">
+                    <p class="ezy__epprofile5-data mb-2">DATE OF BIRTH:</p>
+                </div>
+                <div class="col-6 col-lg-auto">
+                    <p class="ezy__epprofile5-value mb-2">{{userProfile.date_of_birth}}</p>
+                </div>
+                <div class="col-6">
+                    <p class="ezy__epprofile5-data mb-2">STREET ADDRESS AND NUMBER:</p>
+                </div>
+                <div class="col-6 col-lg-auto">
+                    <p class="ezy__epprofile5-value mb-2">{{userProfile.address || '-' }}</p>
+                </div>
+                <div class="col-6">
+                    <p class="ezy__epprofile5-data mb-2">TOWN / CITY:</p>
+                </div>
+                <div class="col-6 col-lg-auto">
+                    <p class="ezy__epprofile5-value mb-2">{{userProfile.city}} {{userProfile.state}}</p>
+                </div>
+                <div class="col-6">
+                    <p class="ezy__epprofile5-data mb-2">ZIP CODE:</p>
+                </div>
+                <div class="col-6 col-lg-auto">
+                    <p class="ezy__epprofile5-value mb-2">{{userProfile.zip_code || '-' }}</p>
+                </div>
+                <div class="col-6">
+                    <p class="ezy__epprofile5-data mb-0">COUNTRY:</p>
+                </div>
+                <div class="col-6 col-lg-auto">
+                    <p class="ezy__epprofile5-value mb-2">{{userProfile.country || '-' }}</p>
+                </div>
+            </div>
+        </div>
+          <!-- <div class="my-5 px-lg-5">
+            <h6 class="fs-2 fw-bold mb-4">About Me</h6>
+            <p class="mb-0 opacity-75">
+              Vestibulum tristique, justo eu sollicitudin sagittis, metus dolor eleifend urna, quis scelerisque
+              purus quam nec ligula. Suspendisse iaculis odio odio, ac vehicula nisi faucibus eu. Lorem ipsum dolor
+              sit amet, consectetur adipiscing elit. Suspendisse posuere semper sem ac aliquet. Duis vel bibendum
+              tellus, eu hendrerit sapien. Proin fringilla, enim vel lobortis viverra, augue orci fringilla diam,
+              sed cursus elit mi vel lacus. Nulla facilisi. Fusce sagittis, magna non vehicula gravida ac rhoncus
+              vestibulum.
+            </p>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="container">
+    <div class="row">
+      <!-- content -->
+      <div class="col-12 col-md-12 col-lg-12 mt-5 mt-md-0" *ngIf="userCV">
+        <div class="ezy__epprofile5-card p-4">
+          <!-- <div class="ezy__epprofile5-header position-relative">
+            <img src="https://cdn.easyfrontend.com/pictures/profile1-user.png" class="ezy__epprofile5-user" />
+          </div> -->
+          <div class="px-lg-5">
+            <div class="row">
+              <div style="text-align: right;">
+                <button type="button" class="btn btn-primary" (click)="editCV()">Edit</button>
+              </div>
+            </div>
+            <h1 class="ezy__epprofile5-heading text-center">CV Details</h1>
+            <div class="px-lg-5">
+              <h1 class="ezy__epprofile5-heading text-center">{{userCV.full_name}}</h1>
+              <div class="row justify-content-between mt-4 mt-md-5">
+                  <div class="col-6">
+                      <p class="ezy__epprofile5-data mb-2">FULL NAME:</p>
+                  </div>
+                  <div>
+                      <p class="ezy__epprofile5-value mb-2">{{userCV.full_name}}</p>
+                  </div>
+                  <div class="col-6">
+                      <p class="ezy__epprofile5-data mb-2">EMAIL ID:</p>
+                  </div>
+                  <div>
+                      <p class="ezy__epprofile5-value mb-2">{{userCV.email_id}}</p>
+                  </div>
+                  <div class="col-6">
+                      <p class="ezy__epprofile5-data mb-2">PHONE NUMBER:</p>
+                  </div>
+                  <div>
+                      <p class="ezy__epprofile5-value mb-2">{{userCV.phone_number}}</p>
+                  </div>
+                  <div class="col-6">
+                      <p class="ezy__epprofile5-data mb-2">LINKEDIN ID:</p>
+                  </div>
+                  <div>
+                      <p class="ezy__epprofile5-value mb-2"><a href="{{userCV.linkedin_id}}">{{userCV.linkedin_id}}</a></p>
+                  </div>
+                  <div class="col-6">
+                      <p class="ezy__epprofile5-data mb-2">DATE OF BIRTH:</p>
+                  </div>
+                  <div>
+                      <p class="ezy__epprofile5-value mb-2">{{userCV.personal_details.date_of_birth}}</p>
+                  </div>
+                  <div class="col-6">
+                      <p class="ezy__epprofile5-data mb-2">ADDRESS:</p>
+                  </div>
+                  <div>
+                      <p class="ezy__epprofile5-value mb-2">{{userCV.personal_details.address}}</p>
+                  </div>
+                  <div class="col-6">
+                    <p class="ezy__epprofile5-data mb-2">Academics:</p>
+                  </div>
+                  <div>
+                      <div class="ezy__epprofile5-value mb-2">
+                        <ul>
+                          <li *ngFor="let academic of userCV.academics">
+                              <p>{{academic.degree}} in {{academic.branch}} from {{academic.college}}, {{academic.university}} ({{academic.joining_date}} - {{academic.passing_date}}) with CGPA: {{academic.cgpa || academic.percentage}}</p>
+                          </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <p class="ezy__epprofile5-data mb-2">Academics:</p>
+                  </div>
+                  <div>
+                      <div class="ezy__epprofile5-value mb-2">
+                        <ul>
+                          <li *ngFor="let academic of userCV.academics">
+                              <p>{{academic.degree}} in {{academic.branch}} from {{academic.college}}, {{academic.university}} ({{academic.joining_date}} - {{academic.passing_date}}) with CGPA: {{academic.cgpa || academic.percentage}}</p>
+                          </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <p class="ezy__epprofile5-data mb-2">Work Experience</p>
+                    <ul>
+                        <li *ngFor="let work of userCV.work_experience">
+                            <p>{{work.role}} at {{work.company}}, {{work.location}} ({{work.joining_date}} - {{work.leaving_date}})</p>
+                            <p>{{work.description}}</p>
+                            <ul>
+                                <li *ngFor="let task of work.tasks_achievements">{{task}}</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-12">
+                  <p class="ezy__epprofile5-data mb-2">Skills</p>
+                    <ul>
+                        <li *ngFor="let skill of userCV.skills">{{skill}}</li>
+                    </ul>
+                </div>
+                <div class="col-12">
+                  <p class="ezy__epprofile5-data mb-2">Projects</p>
+                    <ul>
+                        <li *ngFor="let project of userCV.projects">
+                            <p><strong>{{project.title}}</strong> ({{project.duration}})</p>
+                            <p>{{project.description}}</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-12">
+                  <p class="ezy__epprofile5-data mb-2">Certifications</p>
+                    <ul>
+                        <li *ngFor="let cert of userCV.certifications">
+                            <p>{{cert.title}} from {{cert.organization}} on {{cert.date}}</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-12">
+                  <p class="ezy__epprofile5-data mb-2">Languages</p>
+                    <ul>
+                        <li *ngFor="let lang of userCV.languages">
+                            <p>{{lang.language}} ({{lang.proficiency}})</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-12">
+                  <p class="ezy__epprofile5-data mb-2">Interests</p>
+                    <ul>
+                        <li *ngFor="let interest of userCV.interests">{{interest}}</li>
+                    </ul>
+                </div>
+                <div class="col-12">
+                  <p class="ezy__epprofile5-data mb-2">Achievements</p>
+                    <ul>
+                        <li *ngFor="let achievement of userCV.achievements">{{achievement}}</li>
+                    </ul>
+                </div>
+                <div class="col-12">
+                  <p class="ezy__epprofile5-data mb-2">Other Details</p>
+                    <p>{{userProfile.other_details || 'N/A'}}</p>
+                </div>
+              </div>
+          </div>
+        </div>
+          <!-- <div class="my-5 px-lg-5">
+            <h6 class="fs-2 fw-bold mb-4">About Me</h6>
+            <p class="mb-0 opacity-75">
+              Vestibulum tristique, justo eu sollicitudin sagittis, metus dolor eleifend urna, quis scelerisque
+              purus quam nec ligula. Suspendisse iaculis odio odio, ac vehicula nisi faucibus eu. Lorem ipsum dolor
+              sit amet, consectetur adipiscing elit. Suspendisse posuere semper sem ac aliquet. Duis vel bibendum
+              tellus, eu hendrerit sapien. Proin fringilla, enim vel lobortis viverra, augue orci fringilla diam,
+              sed cursus elit mi vel lacus. Nulla facilisi. Fusce sagittis, magna non vehicula gravida ac rhoncus
+              vestibulum.
+            </p>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

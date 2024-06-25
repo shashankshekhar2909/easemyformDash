@@ -99,6 +99,7 @@
 }
 
 .ezy__blog15 .card-text {
+  text-align: justify;
   color: var(--bs-body-color);
   font-size: 15px;
   opacity: 0.8;
@@ -183,4 +184,8 @@
 
 .ezy__blog15 a {
   text-decoration: none;
+}
+
+.card-img-top{
+  padding: 20px;
 }

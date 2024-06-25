@@ -10,258 +10,46 @@
             <div class="carousel-item active">
               <div class="row">
                 <!-- card starts -->
-                <div class="col-12 col-lg-4 mt-4 mt-lg-5">
-                  <div class="card">
-                    <div class="position-relative">
-                      <div class="ezy__blog15-play-btn"><i class="fa fa-play ms-1"></i></div>
-                      <img
-                        src="https://cdn.easyfrontend.com/pictures/courses/courses_1_1.png"
-                        class="card-img-top"
-                        alt="..."
-                      />
-                    </div>
-                    <div class="card-body">
-                      <a>
-                        <p class="card-text mb-2">Marketing</p>
-                      </a>
-                      <a>
-                        <h5 class="card-title mb-2">The Complete Digital Marketing Guide Course</h5>
-                      </a>
-                      <p class="card-text">Some quick example text to build on the card the bulk content...</p>
-                      <div class="d-flex justify-content-between mb-2">
-                        <div class="d-flex align-items-center">
-                          <div class="me-2">
-                            <img
-                              src="https://cdn.easyfrontend.com/pictures/users/user5.jpg"
-                              alt=""
-                              class="img-fluid rounded-circle border"
-                              width="40"
-                            />
+                <ng-container *ngFor="let job of jobPostGrid[0]">
+                  <div class="col-12 col-lg-4 mt-4 mt-lg-5">
+                    <div class="card">
+                      <div class="card-body">
+                        <a>
+                          <p class="card-text mb-2">
+                            <i class="fa  fa-map-marker"></i>
+                            {{job.location}}</p>
+                        </a>
+                        <a style="cursor: pointer;" (click)="openJob(job)">
+                          <h5 class="card-title mb-2">{{job.designation}}</h5>
+                        </a>
+                        <p class="card-text">{{job.job_description_text}}</p>
+                        <div class="d-flex justify-content-between mb-2">
+                          <div class="d-flex align-items-center">
+                            <!-- <div class="me-2">
+                              <img
+                                src="https://cdn.easyfrontend.com/pictures/users/user5.jpg"
+                                alt=""
+                                class="img-fluid rounded-circle border"
+                                width="40"
+                              />
+                            </div> -->
+                            <div class="row">
+                              <h4 class="mb-0">{{job.company}}</h4>
+                            </div>
                           </div>
-                          <div>
-                            <h4 class="mb-0">John Smith</h4>
-                          </div>
+                          <!-- <a href="#" class="btn btn-outline-primary ezy__blog15-card-btn d-flex align-items-center"
+                            ></a
+                          > -->
                         </div>
-                        <a href="#" class="btn btn-outline-primary ezy__blog15-card-btn d-flex align-items-center"
-                          >Add To Cart</a
-                        >
                       </div>
                     </div>
                   </div>
-                </div>
-                <!-- card ends -->
-                <!-- card starts -->
-                <div class="col-12 col-lg-4 mt-4 mt-lg-5">
-                  <div class="card">
-                    <div class="position-relative">
-                      <div class="ezy__blog15-play-btn"><i class="fa fa-play ms-1"></i></div>
-                      <img
-                        src="https://cdn.easyfrontend.com/pictures/courses/courses_1_2.png"
-                        class="card-img-top"
-                        alt="..."
-                      />
-                    </div>
-                    <div class="card-body">
-                      <a>
-                        <p class="card-text mb-2">SEO</p>
-                      </a>
-                      <a>
-                        <h5 class="card-title mb-2">How I’m Styling Everyday Black Outfits with leather jeans</h5>
-                      </a>
-                      <p class="card-text">
-                        Viverra tellus in hac habitasse platea dictumst. Sollicitudin tempor id eu nisl.
-                      </p>
-                      <div class="d-flex justify-content-between mb-2">
-                        <div class="d-flex align-items-center">
-                          <div class="me-2">
-                            <img
-                              src="https://cdn.easyfrontend.com/pictures/users/user28.jpg"
-                              alt=""
-                              class="img-fluid rounded-circle border"
-                              width="40"
-                            />
-                          </div>
-                          <div>
-                            <h4 class="mb-0">Jos Smith</h4>
-                          </div>
-                        </div>
-                        <a href="#" class="btn btn-outline-primary ezy__blog15-card-btn">Add To Cart</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- card ends -->
-                <!-- card starts -->
-                <div class="col-12 col-lg-4 mt-4 mt-lg-5">
-                  <div class="card">
-                    <div class="position-relative">
-                      <div class="ezy__blog15-play-btn"><i class="fa fa-play ms-1"></i></div>
-                      <img
-                        src="https://cdn.easyfrontend.com/pictures/courses/courses_1_3.png"
-                        class="card-img-top"
-                        alt="..."
-                      />
-                    </div>
-                    <div class="card-body">
-                      <a>
-                        <p class="card-text mb-2">Agency</p>
-                      </a>
-                      <a>
-                        <h5 class="card-title mb-2">
-                          Long lasting fall scent for women sale offer only in this week!
-                        </h5>
-                      </a>
-                      <p class="card-text">
-                        More off this less hello salamander lied porpoise much over tightly circa horse taped.
-                      </p>
-                      <div class="d-flex justify-content-between mb-2">
-                        <div class="d-flex align-items-center">
-                          <div class="me-2">
-                            <img
-                              src="https://cdn.easyfrontend.com/pictures/users/user2.jpg"
-                              alt=""
-                              class="img-fluid rounded-circle border"
-                              width="40"
-                            />
-                          </div>
-                          <div>
-                            <h4 class="mb-0">Alex Hales</h4>
-                          </div>
-                        </div>
-                        <a href="#" class="btn btn-outline-primary ezy__blog15-card-btn">Add To Cart</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- card ends -->
-              </div>
-            </div>
-
-            <div class="carousel-item">
-              <div class="row">
-                <!-- card starts -->
-                <div class="col-12 col-lg-4 mt-4 mt-lg-5">
-                  <div class="card">
-                    <div class="position-relative">
-                      <div class="ezy__blog15-play-btn"><i class="fa fa-play ms-1"></i></div>
-                      <img
-                        src="https://cdn.easyfrontend.com/pictures/courses/courses_1_3.png"
-                        class="card-img-top"
-                        alt="..."
-                      />
-                    </div>
-                    <div class="card-body">
-                      <a>
-                        <p class="card-text mb-2">Marketing</p>
-                      </a>
-                      <a>
-                        <h5 class="card-title mb-2">The Complete Digital Marketing Guide Course</h5>
-                      </a>
-                      <p class="card-text">Some quick example text to build on the card the bulk content...</p>
-                      <div class="d-flex justify-content-between mb-2">
-                        <div class="d-flex align-items-center">
-                          <div class="me-2">
-                            <img
-                              src="https://cdn.easyfrontend.com/pictures/testimonial/testimonial_square_1.jpeg"
-                              alt=""
-                              class="img-fluid rounded-circle border"
-                              width="40"
-                            />
-                          </div>
-                          <div>
-                            <h4 class="mb-0">John Smith</h4>
-                          </div>
-                        </div>
-                        <a href="#" class="btn btn-outline-primary ezy__blog15-card-btn d-flex align-items-center"
-                          >Add To Cart</a
-                        >
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- card ends -->
-                <!-- card starts -->
-                <div class="col-12 col-lg-4 mt-4 mt-lg-5">
-                  <div class="card">
-                    <div class="position-relative">
-                      <div class="ezy__blog15-play-btn"><i class="fa fa-play ms-1"></i></div>
-                      <img
-                        src="https://cdn.easyfrontend.com/pictures/courses/courses_1_1.png"
-                        class="card-img-top"
-                        alt="..."
-                      />
-                    </div>
-                    <div class="card-body">
-                      <a>
-                        <p class="card-text mb-2">Marketing</p>
-                      </a>
-                      <a>
-                        <h5 class="card-title mb-2">The Complete Digital Marketing Guide Course</h5>
-                      </a>
-                      <p class="card-text">Some quick example text to build on the card the bulk content...</p>
-                      <div class="d-flex justify-content-between mb-2">
-                        <div class="d-flex align-items-center">
-                          <div class="me-2">
-                            <img
-                              src="https://cdn.easyfrontend.com/pictures/testimonial/testimonial_square_2.jpeg"
-                              alt=""
-                              class="img-fluid rounded-circle border"
-                              width="40"
-                            />
-                          </div>
-                          <div>
-                            <h4 class="mb-0">John Smith</h4>
-                          </div>
-                        </div>
-                        <a href="#" class="btn btn-outline-primary ezy__blog15-card-btn">Add To Cart</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- card ends -->
-                <!-- card starts -->
-                <div class="col-12 col-lg-4 mt-4 mt-lg-5">
-                  <div class="card">
-                    <div class="position-relative">
-                      <div class="ezy__blog15-play-btn"><i class="fa fa-play ms-1"></i></div>
-                      <img
-                        src="https://cdn.easyfrontend.com/pictures/courses/courses_1_2.png"
-                        class="card-img-top"
-                        alt="..."
-                      />
-                    </div>
-                    <div class="card-body">
-                      <a>
-                        <p class="card-text mb-2">Marketing</p>
-                      </a>
-                      <a>
-                        <h5 class="card-title mb-2">The Complete Digital Marketing Guide Course</h5>
-                      </a>
-                      <p class="card-text">Some quick example text to build on the card the bulk content...</p>
-                      <div class="d-flex justify-content-between mb-2">
-                        <div class="d-flex align-items-center">
-                          <div class="me-2">
-                            <img
-                              src="https://cdn.easyfrontend.com/pictures/testimonial/testimonial_square_3.jpeg"
-                              alt=""
-                              class="img-fluid rounded-circle border"
-                              width="40"
-                            />
-                          </div>
-                          <div>
-                            <h4 class="mb-0">John Smith</h4>
-                          </div>
-                        </div>
-                        <a href="#" class="btn btn-outline-primary ezy__blog15-card-btn">Add To Cart</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                </ng-container>
                 <!-- card ends -->
               </div>
             </div>
           </div>
-          <button
+          <!-- <button
             class="carousel-control-prev"
             type="button"
             data-bs-target="#ezy__blog15-controls"
@@ -276,7 +64,7 @@
             data-bs-slide="next"
           >
             <i class="fa fa-angle-right"></i>
-          </button>
+          </button> -->
         </div>
       </div>
     </div>

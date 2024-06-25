@@ -19,32 +19,40 @@ export class SignupComponent {
     private alertService: AlertService
   ) {
     this.signUpForm = this.fb.group({
+      first_name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password1: ['', [Validators.required, Validators.minLength(6)]],
       password2: ['', [Validators.required, Validators.minLength(6)]],
-      first_name: ['', [Validators.required]],
-      date_of_birth:['1997-09-23'],
-    });
+      agree: [false, Validators.requiredTrue]
+    }, { validator: this.passwordMatchValidator });
+
+  }
+
+  passwordMatchValidator(form: FormGroup) {
+    return form.get('password1')?.value === form.get('password2')?.value
+      ? null : { 'mismatch': true };
   }
 
   submitting = false;
 
   postSignUp = () => {
-    this.authService.signUp(this.signUpForm.value).subscribe({
-      next: (resp:any) => {
-        console.log(resp);
-        this.submitting = false;
-        this.signUpForm.reset();
-        this.alertService.showAlert('success', 'Sign-up successful!');
-      },
-      error: (HttpResponse: HttpErrorResponse) => {
-        this.alertService.showAlert('danger', 'Failed to signup');
-        // this._snackBar.open(`${HttpResponse.error.detail}`, 'OK', {
-        //   duration: 3000,
-        //   panelClass: ['error-snackbar']
-        // });
-      }
-    });
+    if(!this.signUpForm.invalid){
+      this.authService.signUp(this.signUpForm.value).subscribe({
+        next: (resp:any) => {
+          console.log(resp);
+          this.submitting = false;
+          this.signUpForm.reset();
+          this.alertService.showAlert('success', 'Sign-up successful!');
+        },
+        error: (HttpResponse: HttpErrorResponse) => {
+          this.alertService.showAlert('danger', 'Failed to signup');
+          // this._snackBar.open(`${HttpResponse.error.detail}`, 'OK', {
+          //   duration: 3000,
+          //   panelClass: ['error-snackbar']
+          // });
+        }
+      });
+    }
   }
 
   gotoAdminDash() {

@@ -35,6 +35,8 @@ export class LoginComponent implements OnInit{
       console.log(this.loginForm.value);
       this.login();
       // Handle login logic here
+    } else {
+      this.alertService.showAlert('warning', 'Please fill the details');
     }
   }
   submitting = false;

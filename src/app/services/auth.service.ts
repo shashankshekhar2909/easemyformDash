@@ -44,6 +44,10 @@ export class AuthService {
     );
   }
 
+  userCV(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/cv/cv-form`);
+  }
+
   getUserInfo(): Observable<any> {
     return this.http.get(`${this.baseUrl}/user/user-info`);
   }
@@ -55,6 +59,11 @@ export class AuthService {
   postCV = (cvData:any) => {
     console.log(cvData);
     return this.http.post(`${this.baseUrl}/cv/cv-form`, cvData);
+  }
+
+  puttCV = (cvData:any) => {
+    console.log(cvData);
+    return this.http.put(`${this.baseUrl}/cv/cv-form`, cvData);
   }
 
   postJob = (jobData:any) => {
@@ -74,9 +83,9 @@ export class AuthService {
     formData.append('password2', userForm.password2);
     formData.append('first_name', userForm.first_name);
     formData.append('last_name', userForm.last_name || '');
-    formData.append('is_staff','true');
+    formData.append('is_staff','false');
     formData.append('gender', userForm.gender || '');
-    formData.append('date_of_birth', userForm.date_of_birth || '');
+    formData.append('date_of_birth', userForm.date_of_birth || '2000-01-01');
     formData.append('phone_number', userForm.phone_number || '');
     formData.append('address', userForm.address || '');
     formData.append('city', userForm.city || '');

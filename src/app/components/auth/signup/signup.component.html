@@ -6,48 +6,59 @@
           <div class="card-body p-md-5">
             <h2 class="ezy__signup1_PQS26JGS-heading mb-4 mb-md-5">Sign Up</h2>
 
-            <form [formGroup]="signUpForm">
+            <form [formGroup]="signUpForm" (ngSubmit)="postSignUp()">
               <div class="row">
                 <div class="col-lg-12">
                   <div class="form-group mb-4">
                     <label for="first-name" class="mb-2">Full Name</label>
                     <input type="text" class="form-control" formControlName="first_name" id="first-name" placeholder="Your Full Name" />
+                    <div *ngIf="signUpForm.get('first_name').invalid && (signUpForm.get('first_name').dirty || signUpForm.get('first_name').touched)" class="text-danger">
+                      <div *ngIf="signUpForm.get('first_name').errors?.required">Full Name is required.</div>
+                    </div>
                   </div>
                 </div>
                 <div class="col-12">
                   <div class="form-group mb-4">
                     <label for="email" class="mb-2">Email</label>
                     <input type="email" class="form-control" id="email" formControlName="email" placeholder="Your Email Address" />
+                    <div *ngIf="signUpForm.get('email').invalid && (signUpForm.get('email').dirty || signUpForm.get('email').touched)" class="text-danger">
+                      <div *ngIf="signUpForm.get('email').errors?.required">Email is required.</div>
+                      <div *ngIf="signUpForm.get('email').errors?.email">Invalid email address.</div>
+                    </div>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group mb-4">
                     <label for="password" class="mb-2">Password</label>
                     <input type="password" class="form-control" formControlName="password1" id="password" placeholder="Enter Password" />
+                    <div *ngIf="signUpForm.get('password1').invalid && (signUpForm.get('password1').dirty || signUpForm.get('password1').touched)" class="text-danger">
+                      <div *ngIf="signUpForm.get('password1').errors?.required">Password is required.</div>
+                      <div *ngIf="signUpForm.get('password1').errors?.minlength">Password must be at least 6 characters long.</div>
+                    </div>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group mb-4">
                     <label for="confirm-password" class="mb-2">Confirm Password</label>
-                    <input
-                      type="password"
-                      class="form-control"
-                      id="confirm-password"
-                      placeholder="Confirm Password"
-                      formControlName="password2"
-                    />
+                    <input type="password" class="form-control" id="confirm-password" placeholder="Confirm Password" formControlName="password2" />
+                    <div *ngIf="signUpForm.errors?.mismatch && (signUpForm.get('password2').dirty || signUpForm.get('password2').touched)" class="text-danger">
+                      Passwords must match.
+                    </div>
                   </div>
                 </div>
               </div>
               <div class="form-group mb-4">
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="agree" />
+                  <input class="form-check-input" type="checkbox" formControlName="agree" id="agree" />
                   <label class="form-check-label" for="agree">
                     I accept to the <a href="#">terms & condition</a>, <a href="#">privacy policy</a>
                   </label>
+                  <div *ngIf="signUpForm.get('agree').invalid && (signUpForm.get('agree').dirty || signUpForm.get('agree').touched)" class="text-danger">
+                    You must accept the terms and conditions.
+                  </div>
                 </div>
               </div>
-              <button type="submit" (click)="postSignUp()" class="btn ezy__signup1_PQS26JGS-btn-submit w-100">Sign Up</button>
+              <button type="submit" class="btn ezy__signup1_PQS26JGS-btn-submit w-100" [disabled]="signUpForm.invalid">Sign Up</button>
               <div class="text-center mt-4 mt-md-5">
                 <p class="mb-0 opacity-50 lh-1">Already have an account?</p>
                 <a href="/" class="btn btn-link py-0 text-dark text-decoration-none">Log In</a>
