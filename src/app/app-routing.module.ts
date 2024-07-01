@@ -15,8 +15,8 @@ import { JobsComponent } from './components/user/jobs/jobs.component';
 import { JobComponent } from './components/user/job/job.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
+  { path: 'login', component: LoginComponent, title:'Log In' },
+  { path: 'signup', component: SignupComponent, title:'Sign Up' },
   {
     path: 'admin', component: AdmindashboardComponent, children: [
       { path: '', component: AdminhomeComponent},  // Placeholder for admin routes
@@ -31,7 +31,8 @@ const routes: Routes = [
       { path: 'user-fill-cv-form', component: UpdateCVComponent },
       { path: 'jobs', component: JobsComponent },
       { path: 'job/:id', component: JobComponent }
-    ]
+    ],
+    canActivate: [AuthGuard]
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];

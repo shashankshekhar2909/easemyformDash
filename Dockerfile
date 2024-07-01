@@ -5,12 +5,12 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
 COPY . .
-RUN npm run build
+RUN npm run build:prod
 
 # Stage 2: Serve the app with Nginx
 FROM nginx:alpine
 
-COPY --from=build /app/dist/easemyform-dash/browser /usr/share/nginx/html
+COPY --from=build /app/dist/easemyform-dash /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 81

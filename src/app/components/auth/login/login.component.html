@@ -4,8 +4,10 @@
       <div class="col-lg-5">
         <div class="card ezy__signin1-form-card">
           <div class="card-body p-md-5">
+            <div style="text-align: center;">
+              <img src="../../../../assets/logo.png" style="max-height: 15vh;" alt="">
+            </div>
             <h2 class="ezy__signin1-heading mb-4 mb-md-5">Log In</h2>
-
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
               <div class="form-group mb-4 mt-2">
                 <label for="email" class="mb-2">Email Address</label>
@@ -29,8 +31,11 @@
                   <label class="form-check-label" for="remember-me"> Remember me </label>
                 </div>
               </div> -->
-              <button type="submit" class="btn ezy__signin1-btn-submit w-100">Log In</button>
-              <button class="btn w-100">Forget your password?</button>
+              <div style="padding: 2vh 0px;">
+                <button type="submit" class="btn ezy__signin1-btn-submit w-100">Log In</button>
+                <button class="btn w-100">Forget your password?</button>
+
+              </div>
 
               <div class="position-relative ezy__signin1-or-separator">
                 <hr class="my-4 my-md-5" />
