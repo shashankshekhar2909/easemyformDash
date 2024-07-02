@@ -21,8 +21,8 @@ export class AuthService {
       'Content-Type': 'application/json',
     });
   }
-  // private baseUrl = '/api';
-  private baseUrl = environment.baseUrl;
+  private baseUrl = '/api';
+  // private baseUrl = environment.baseUrl;
 
 
   login(userForm: { email: string; password: string }): Observable<any> {
@@ -47,6 +47,10 @@ export class AuthService {
 
   userCV(): Observable<any> {
     return this.http.get(`${this.baseUrl}/cv/cv-form`);
+  }
+
+  getUsers(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/user/user-info/all`);
   }
 
   getUserInfo(): Observable<any> {

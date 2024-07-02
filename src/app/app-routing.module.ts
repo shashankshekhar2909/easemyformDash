@@ -13,6 +13,7 @@ import { UserCVComponent } from './components/user/user-cv/user-cv.component';
 import { UpdateCVComponent } from './components/user/update-cv/update-cv.component';
 import { JobsComponent } from './components/user/jobs/jobs.component';
 import { JobComponent } from './components/user/job/job.component';
+import { UserListComponent } from './components/admin/user-list/user-list.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, title:'Log In' },
@@ -21,6 +22,7 @@ const routes: Routes = [
     path: 'admin', component: AdmindashboardComponent, children: [
       { path: '', component: AdminhomeComponent},  // Placeholder for admin routes
       { path: 'add-job-post', component: AddJobsComponent},
+      { path: 'view-users', component: UserListComponent},
     ]
   },
   {

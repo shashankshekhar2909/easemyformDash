@@ -30,6 +30,7 @@ import { JobComponent } from './components/user/job/job.component';
 import { UpdateCVComponent } from './components/user/update-cv/update-cv.component';
 import { PostSliderComponent } from './components/partials/post-slider/post-slider.component';
 import { AlertComponent } from './alert/alert.component';
+import { UserListComponent } from './components/admin/user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { AlertComponent } from './alert/alert.component';
     UpdateCVComponent,
     PostSliderComponent,
     AlertComponent,
+    UserListComponent,
   ],
   imports: [
     BrowserModule,
