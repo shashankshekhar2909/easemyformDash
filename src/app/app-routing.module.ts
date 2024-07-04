@@ -37,7 +37,7 @@ const routes: Routes = [
       { path: 'job/:id', component: JobComponent,canActivate: [UserGuard] }
     ],
   },
-  // { path: '', redirectTo: '/login', pathMatch: 'full' }
+  { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 
 @NgModule({
