@@ -1,10 +1,7 @@
 {
   "/api": {
-    "target": "https://35.154.232.84:5000",
+    "target": "http://35.154.232.84/",
     "secure": false,
-    "changeOrigin": true,
-    "pathRewrite": {
-      "^/api": ""
-    }
+    "changeOrigin": true
   }
 }

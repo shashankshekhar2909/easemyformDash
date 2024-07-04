@@ -19,8 +19,14 @@ export class AuthGuard implements CanActivate {
     return this.authService.userProfile().pipe(
       map((resp: any) => {
         console.log(resp);
-        this.router.navigate(['/admin']);
-        return true;
+        const userInfo = resp.result[0];
+        if (userInfo.is_staff) {
+          this.router.navigate(['/admin']);
+          return false;
+        } else {
+          this.router.navigate(['/user']);
+          return true;
+        }
       }),
       catchError((error: HttpErrorResponse) => {
         console.log(error);

@@ -59,10 +59,12 @@ export class LoginComponent implements OnInit{
               const userProfile = resp.result[0];
               localStorage.setItem('user',JSON.stringify(userProfile));
               this.submitting = false;
+              console.log(userProfile);
+              console.log(userProfile.is_staff);
               if(userProfile.is_staff){
-                this.router.navigate(['/admin'])
+                this.router.navigate(['/admin/'])
               } else {
-                this.router.navigate(['/user'])
+                this.router.navigate(['/user/'])
               }
               this.loginForm.reset();
             },
@@ -88,10 +90,11 @@ export class LoginComponent implements OnInit{
         console.log(resp);
         const userProfile = resp.result[0];
         this.submitting = false;
+        console.log(userProfile.is_staff);
         if(userProfile.is_staff){
-          this.router.navigate(['/admin'])
+          this.router.navigate(['/admin/'])
         } else {
-          this.router.navigate(['/user'])
+          this.router.navigate(['/user/'])
         }
       },
       error: (HttpResponse: HttpErrorResponse) => {

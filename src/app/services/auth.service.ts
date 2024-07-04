@@ -50,7 +50,7 @@ export class AuthService {
   }
 
   getUsers(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/user/user-info/all`);
+    return this.http.get(`${this.baseUrl}/user/user-info-all`);
   }
 
   getUserInfo(): Observable<any> {

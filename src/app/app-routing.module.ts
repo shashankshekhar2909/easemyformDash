@@ -14,29 +14,30 @@ import { UpdateCVComponent } from './components/user/update-cv/update-cv.compone
 import { JobsComponent } from './components/user/jobs/jobs.component';
 import { JobComponent } from './components/user/job/job.component';
 import { UserListComponent } from './components/admin/user-list/user-list.component';
+import { UserGuard } from './_guards/user.guard';
+import { AdminGuard } from './_guards/admin.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, title:'Log In' },
   { path: 'signup', component: SignupComponent, title:'Sign Up' },
   {
     path: 'admin', component: AdmindashboardComponent, children: [
-      { path: '', component: AdminhomeComponent},  // Placeholder for admin routes
-      { path: 'add-job-post', component: AddJobsComponent},
-      { path: 'view-users', component: UserListComponent},
-    ]
+      { path: '', component: AdminhomeComponent,canActivate: [AdminGuard]},  // Placeholder for admin routes
+      { path: 'add-job-post', component: AddJobsComponent,canActivate: [AdminGuard]},
+      { path: 'view-users', component: UserListComponent,canActivate: [AdminGuard]},
+    ],
   },
   {
     path: 'user', component: UserdashboardComponent, children: [
-      { path: '', component: UserhomeComponent },  // Placeholder for user routes
-      { path: 'view-profile', component: UserProfileComponent },  // Placeholder for admin routes
-      { path: 'view-cv', component: UserCVComponent },
-      { path: 'user-fill-cv-form', component: UpdateCVComponent },
-      { path: 'jobs', component: JobsComponent },
-      { path: 'job/:id', component: JobComponent }
+      { path: '', component: UserhomeComponent,canActivate: [UserGuard] },  // Placeholder for user routes
+      { path: 'view-profile', component: UserProfileComponent,canActivate: [UserGuard] },  // Placeholder for admin routes
+      { path: 'view-cv', component: UserCVComponent,canActivate: [UserGuard] },
+      { path: 'user-fill-cv-form', component: UpdateCVComponent,canActivate: [UserGuard] },
+      { path: 'jobs', component: JobsComponent,canActivate: [UserGuard] },
+      { path: 'job/:id', component: JobComponent,canActivate: [UserGuard] }
     ],
-    canActivate: [AuthGuard]
   },
-  { path: '', redirectTo: '/login', pathMatch: 'full' }
+  // { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 
 @NgModule({
