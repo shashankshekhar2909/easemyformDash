@@ -33,6 +33,7 @@ import { AlertComponent } from './alert/alert.component';
 import { UserListComponent } from './components/admin/user-list/user-list.component';
 import { AdminUserViewComponent } from './components/admin/admin-user-view/admin-user-view.component';
 import { FooterComponent } from './partials/footer/footer.component';
+import { ViewJobComponent } from './components/admin/view-job/view-job.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { FooterComponent } from './partials/footer/footer.component';
     AlertComponent,
     UserListComponent,
     AdminUserViewComponent,
-    FooterComponent
+    FooterComponent,
+    ViewJobComponent
   ],
   imports: [
     BrowserModule,

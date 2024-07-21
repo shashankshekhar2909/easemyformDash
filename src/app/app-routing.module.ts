@@ -17,6 +17,7 @@ import { UserListComponent } from './components/admin/user-list/user-list.compon
 import { UserGuard } from './_guards/user.guard';
 import { AdminGuard } from './_guards/admin.guard';
 import { AdminUserViewComponent } from './components/admin/admin-user-view/admin-user-view.component';
+import { ViewJobComponent } from './components/admin/view-job/view-job.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, title:'Log In' },
@@ -25,6 +26,7 @@ const routes: Routes = [
     path: 'admin', component: AdmindashboardComponent, children: [
       { path: '', component: AdminhomeComponent, title:'Administrator Dashboard'},  // Placeholder for admin routes
       { path: 'add-job-post', component: AddJobsComponent, title:'Add Jobs'},
+      { path: 'view-jobs', component: ViewJobComponent, title:'View Jobs'},
       { path: 'view-users', component: UserListComponent, title:'View Users'},
       { path: 'view-user-details', component: AdminUserViewComponent, title:'User Details'},
     ],
