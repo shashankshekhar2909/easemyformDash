@@ -23,20 +23,20 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent, title:'Sign Up' },
   {
     path: 'admin', component: AdmindashboardComponent, children: [
-      { path: '', component: AdminhomeComponent},  // Placeholder for admin routes
-      { path: 'add-job-post', component: AddJobsComponent},
-      { path: 'view-users', component: UserListComponent},
-      { path: 'view-user-details', component: AdminUserViewComponent},
+      { path: '', component: AdminhomeComponent, title:'Administrator Dashboard'},  // Placeholder for admin routes
+      { path: 'add-job-post', component: AddJobsComponent, title:'Add Jobs'},
+      { path: 'view-users', component: UserListComponent, title:'View Users'},
+      { path: 'view-user-details', component: AdminUserViewComponent, title:'User Details'},
     ],
   },
   {
     path: 'user', component: UserdashboardComponent, children: [
-      { path: '', component: UserhomeComponent,canActivate: [UserGuard] },  // Placeholder for user routes
-      { path: 'view-profile', component: UserProfileComponent,canActivate: [UserGuard] },  // Placeholder for admin routes
-      { path: 'view-cv', component: UserCVComponent,canActivate: [UserGuard] },
-      { path: 'user-fill-cv-form', component: UpdateCVComponent,canActivate: [UserGuard] },
-      { path: 'jobs', component: JobsComponent,canActivate: [UserGuard] },
-      { path: 'job/:id', component: JobComponent,canActivate: [UserGuard] }
+      { path: '', component: UserhomeComponent,canActivate: [UserGuard], title:'User Dashboard' },  // Placeholder for user routes
+      { path: 'view-profile', component: UserProfileComponent,canActivate: [UserGuard], title:'User Profile' },  // Placeholder for admin routes
+      { path: 'view-cv', component: UserCVComponent,canActivate: [UserGuard], title:'User CV' },
+      { path: 'user-fill-cv-form', component: UpdateCVComponent,canActivate: [UserGuard], title:'User CV Update' },
+      { path: 'jobs', component: JobsComponent,canActivate: [UserGuard] , title:'View Jobs'},
+      { path: 'job/:id', component: JobComponent,canActivate: [UserGuard], title:'Job Details' }
     ],
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' }
