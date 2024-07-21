@@ -1,6 +1,6 @@
 .ezy__signin1 {
   /* Bootstrap variables */
-  --bs-body-color: #00C2CB;
+  --bs-body-color: #000;
   --bs-body-bg: rgb(255, 255, 255);
 
   /* Easy Frontend variables */
@@ -63,10 +63,6 @@
   border-radius: 15px;
 }
 
-.ezy__signin1-form-card * {
-  color: var(--bs-body-color);
-}
-
 .ezy__signin1 .form-control {
   min-height: 48px;
   line-height: 40px;
@@ -121,4 +117,11 @@
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
   opacity: 0.8;
+}
+
+
+
+.text-danger{
+  color: red !important;
+  font-size: 12px;
 }

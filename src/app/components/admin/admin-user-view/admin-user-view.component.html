@@ -1,0 +1,291 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <button routerLink="/admin/view-users" class="btn">Back to List</button>
+    </div>
+  </div>
+  <div><h2>Resume</h2></div>
+  <div class="col-lg-12 section">
+    <h3>Personal Information</h3>
+    <div>
+      <!-- <table>
+        <tr *ngFor="let item of userCV | keyvalue">
+          <td>
+            <div>{{item.key}}</div>
+            <div>{{item.value|json}}</div>
+          </td>
+        </tr>
+      </table> -->
+      <table *ngIf="userCV" class="table">
+        <tr>
+          <td>
+            <div class="col-lg-2">Full Name</div>
+          </td>
+          <td>
+            <div>{{userCV.full_name}}</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Phone Number
+          </td>
+          <td>
+            {{userCV.phone_number}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div>Email</div>
+          </td>
+          <td>
+            <div>{{userCV.email_id}}</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div>Summary</div>
+          </td>
+          <td>
+            <div>{{userCV.other_details}}</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div>Address</div>
+          </td>
+          <td>
+            <div>{{userCV.personal_details.address}}</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div>DOB</div>
+          </td>
+          <td>
+            <div>{{userCV.personal_details.date_of_birth}}</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            LinkedIn
+          </td>
+          <td>
+            <a href="{{userCV.linkedin_id}}" target="_blank">{{userCV.linkedin_id}}</a>
+          </td>
+        </tr>
+      </table>
+      <ng-container *ngIf="userCV && userCV.work_experience">
+        <h3>Work Experience</h3>
+        <table class="table">
+          <tr *ngFor="let item of userCV.work_experience">
+            <td>
+              <div class="row">
+                <div class="col-lg-12">
+                  <b>{{item.role}}</b>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-2">
+                  Company
+                </div>
+                <div class="col-lg-10">
+                  {{item.company}}
+                </div>
+                <div class="row">
+                  <div class="col-lg-2">Location</div>
+                  <div class="col-lg-10">
+                    {{item.location}}
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6 row">
+                  <div class="col-lg-4">
+                    Joining Date
+                  </div>
+                  <div class="col-lg-8">
+                    {{item.joining_date}}
+                  </div>
+                </div>
+                <div class="col-lg-6 row">
+                  <div class="col-lg-4">
+                    Leaving Date
+                  </div>
+                  <div class="col-lg-8">
+                    {{item.leaving_date}}
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-2">
+                  Description
+                </div>
+                <div class="col-lg-10">
+                  {{item.description}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-2">
+                  Roles & Responsibilities
+                </div>
+                <div class="col-lg-10">
+                  <div *ngFor="let task of item.tasks_achievements">
+                    {{task}}
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </ng-container>
+      <ng-container *ngIf="userCV && userCV.skills">
+        <h3>Skills</h3>
+        <button style="margin: 4px 10px;" class="btn btn-secondary" *ngFor="let item of userCV.skills">
+          {{item}}
+        </button>
+      </ng-container>
+      <ng-container *ngIf="userCV && userCV.academics">
+        <h3>Academics</h3>
+        <table class="table">
+          <tr *ngFor="let item of userCV.academics">
+            <td>
+              <div class="row">
+                <div class="col-lg-12">
+                  <b>{{item.degree}}</b>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-2">
+                  College
+                </div>
+                <div class="col-lg-10">
+                  {{item.college}}
+                  <ng-container *ngIf="item.school">
+                    {{item.school}}
+                  </ng-container>
+                  <ng-container *ngIf="item.university">
+                    {{item.university}}
+                  </ng-container>
+                </div>
+                <div class="row">
+                  <div class="col-lg-2">Score</div>
+                  <div class="col-lg-10">
+                    {{item.percentage}}
+                  </div>
+                </div>
+              </div>
+              <div class="row" *ngIf="item.year_of_passing">
+                <div class="col-lg-6 row">
+                  <div class="col-lg-4">
+                    Year of Passing
+                  </div>
+                  <div class="col-lg-8">
+                    {{item.year_of_passing}}
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6 row">
+                  <div class="col-lg-4">
+                    Joining Date
+                  </div>
+                  <div class="col-lg-8">
+                    {{item.joining_date}}
+                  </div>
+                </div>
+                <div class="col-lg-6 row">
+                  <div class="col-lg-4">
+                    Passing Date
+                  </div>
+                  <div class="col-lg-8">
+                    {{item.passing_date}}
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </ng-container>
+      <ng-container *ngIf="userCV && userCV.projects">
+        <h3>Projects</h3>
+        <table class="table">
+          <tr *ngFor="let item of userCV.projects">
+            <td>
+              <div class="row">
+                <div class="col-lg-12">
+                  <b>{{item.title}}</b>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-2">
+                  Duration
+                </div>
+                <div class="col-lg-10">
+                  {{item.duration}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-2">
+                  Description
+                </div>
+                <div class="col-lg-10">
+                  {{item.description}}
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </ng-container>
+      <ng-container *ngIf="userCV && userCV.certifications">
+        <h3>Certificates</h3>
+        <table class="table">
+          <tr *ngFor="let item of userCV.certifications">
+            <td>
+              <div class="row">
+                <div class="col-lg-12">
+                  <b>{{item.title}}</b>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-2">
+                  Organization
+                </div>
+                <div class="col-lg-10">
+                  {{item.organization}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-2">
+                  Date
+                </div>
+                <div class="col-lg-10">
+                  {{item.date}}
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </ng-container>
+      <ng-container *ngIf="userCV && userCV.languages">
+        <h3>Languages</h3>
+        <div class="row" *ngFor="let item of userCV.languages">
+          {{item.language}} : {{item.proficiency}}
+        </div>
+      </ng-container>
+      <ng-container *ngIf="userCV && userCV.interests">
+        <h3>Interests</h3>
+        <div>
+          <button style="margin: 0px 10px;" *ngFor="let item of userCV.interests" class="btn btn-secondary">{{item}}</button>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="userCV && userCV.achievements">
+        <h3>Achievements</h3>
+        <ul>
+          <li *ngFor="let item of userCV.achievements">
+            {{item}}
+          </li>
+        </ul>
+      </ng-container>
+    </div>
+  </div>
+</div>

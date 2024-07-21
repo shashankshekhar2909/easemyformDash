@@ -1,0 +1,10 @@
+.footerContainer{
+  background-color: #f6f9ff;
+  min-height: 10vh;
+  .caption{
+    min-height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

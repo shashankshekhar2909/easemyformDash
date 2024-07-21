@@ -31,6 +31,8 @@ import { UpdateCVComponent } from './components/user/update-cv/update-cv.compone
 import { PostSliderComponent } from './components/partials/post-slider/post-slider.component';
 import { AlertComponent } from './alert/alert.component';
 import { UserListComponent } from './components/admin/user-list/user-list.component';
+import { AdminUserViewComponent } from './components/admin/admin-user-view/admin-user-view.component';
+import { FooterComponent } from './partials/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { UserListComponent } from './components/admin/user-list/user-list.compon
     PostSliderComponent,
     AlertComponent,
     UserListComponent,
+    AdminUserViewComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

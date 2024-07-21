@@ -64,10 +64,6 @@
   border-radius: 15px;
 }
 
-.ezy__signup1_PQS26JGS-form-card *:not(button, button *) {
-  color: var(--bs-body-color);
-}
-
 .ezy__signup1_PQS26JGS .form-control,
 .ezy__signup1_PQS26JGS .form-select {
   min-height: 48px;
@@ -123,4 +119,9 @@
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
   opacity: 0.8;
+}
+
+.text-danger{
+  color: red !important;
+  font-size: 12px;
 }

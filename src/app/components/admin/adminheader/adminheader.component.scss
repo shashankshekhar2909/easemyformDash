@@ -1,3 +1,11 @@
+.logo{
+  width: 10vw;
+  img{
+    width: 100%;
+  }
+  // border-right: 2px solid #000;
+  margin-right: 20px;
+}
 .ezy__nav1_L7f09JPi {
 	/* Bootstrap variables */
 	--bs-body-color: #000;
@@ -37,7 +45,7 @@
 
 .ezy__nav1_L7f09JPi .navbar-brand {
 	font-weight: 800;
-	font-size: 30px;
+	font-size: 20px;
 	color: var(--bs-body-color);
 }
 

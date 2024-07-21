@@ -65,13 +65,13 @@
                 <div class="col-6">
                   <div class="form-group mb-4">
                     <label for="dateOfPosting" class="mb-2">Date of Posting</label>
-                    <textarea class="form-control" id="dateOfPosting" formControlName="dateOfPosting" placeholder="Date of Posting"></textarea>
+                    <input type="date" class="form-control" id="dateOfPosting" formControlName="dateOfPosting" placeholder="Date of Posting" />
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="form-group mb-4">
-                    <label for="lastDateToApply" class="mb-2">Last date to apply</label>
-                    <textarea class="form-control" id="lastDateToApply" formControlName="lastDateToApply" placeholder="Last date to apply"></textarea>
+                    <label for="lastDateToApply" class="mb-2">Last date to apply </label>
+                    <input type="date" class="form-control" id="lastDateToApply" formControlName="lastDateToApply" placeholder="Last date to apply" />
                   </div>
                 </div>
                 <div class="col-6">
@@ -87,7 +87,11 @@
                   </div>
                 </div>
               </div>
-              <button (click)="onSubmit()" type="submit" class="btn ezy__signup1_PQS26JGS-btn-submit w-100">Add Job Post</button>
+              <div class="row">
+                <div style="text-align: right;">
+                  <button (click)="onSubmit()" type="submit" class="btn ezy__signup1_PQS26JGS-btn-submit w-30">Add Job Post</button>
+                </div>
+              </div>
             </form>
           </div>
         </div>

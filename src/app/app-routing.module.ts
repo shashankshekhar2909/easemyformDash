@@ -16,15 +16,17 @@ import { JobComponent } from './components/user/job/job.component';
 import { UserListComponent } from './components/admin/user-list/user-list.component';
 import { UserGuard } from './_guards/user.guard';
 import { AdminGuard } from './_guards/admin.guard';
+import { AdminUserViewComponent } from './components/admin/admin-user-view/admin-user-view.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, title:'Log In' },
   { path: 'signup', component: SignupComponent, title:'Sign Up' },
   {
     path: 'admin', component: AdmindashboardComponent, children: [
-      { path: '', component: AdminhomeComponent,canActivate: [AdminGuard]},  // Placeholder for admin routes
-      { path: 'add-job-post', component: AddJobsComponent,canActivate: [AdminGuard]},
-      { path: 'view-users', component: UserListComponent,canActivate: [AdminGuard]},
+      { path: '', component: AdminhomeComponent},  // Placeholder for admin routes
+      { path: 'add-job-post', component: AddJobsComponent},
+      { path: 'view-users', component: UserListComponent},
+      { path: 'view-user-details', component: AdminUserViewComponent},
     ],
   },
   {

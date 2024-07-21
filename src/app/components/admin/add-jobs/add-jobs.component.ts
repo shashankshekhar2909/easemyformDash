@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
-
+declare var $: any;
 @Component({
   selector: 'app-add-jobs',
   templateUrl: './add-jobs.component.html',
@@ -31,6 +31,8 @@ export class AddJobsComponent {
       active: ['', Validators.required]
     });
   }
+
+
 
   onSubmit() {
     this.authService.postJob(this.jobForm.value).subscribe({

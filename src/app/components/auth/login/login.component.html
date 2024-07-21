@@ -19,10 +19,23 @@
               </div>
               <div class="form-group mb-2 mt-2">
                 <label for="password" class="mb-2">Password</label>
-                <input type="password" class="form-control" formControlName="password" id="password" placeholder="Enter Password" />
-                <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="text-danger">
-                  <div *ngIf="password?.errors?.['required']">Password is required.</div>
-                  <div *ngIf="password?.errors?.['minlength']">Password must be at least 6 characters long.</div>
+                <div class="input-group">
+                  <input
+                    [type]="showPassword ? 'text' : 'password'"
+                    class="form-control"
+                    formControlName="password"
+                    id="password"
+                    placeholder="Enter Password"
+                  />
+                  <div class="input-group-append">
+                    <span
+                      class="input-group-text"
+                      (click)="togglePasswordVisibility()"
+                      style="cursor: pointer; height: 100%;border: none;"
+                    >
+                      <i [class]="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
+                    </span>
+                  </div>
                 </div>
               </div>
               <!-- <div class="form-group mb-3">
@@ -33,7 +46,7 @@
               </div> -->
               <div style="padding: 2vh 0px;">
                 <button type="submit" class="btn ezy__signin1-btn-submit w-100">Log In</button>
-                <button class="btn w-100">Forget your password?</button>
+                <!-- <button class="btn w-100">Forget your password?</button> -->
 
               </div>
 

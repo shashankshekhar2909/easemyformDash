@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, catchError, throwError, Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -21,8 +21,8 @@ export class AuthService {
       'Content-Type': 'application/json',
     });
   }
-  // private baseUrl = 'api';
-  private baseUrl = environment.baseUrl;
+  private baseUrl = 'api';
+  // private baseUrl = environment.baseUrl;
 
 
   login(userForm: { email: string; password: string }): Observable<any> {
@@ -45,12 +45,27 @@ export class AuthService {
     );
   }
 
-  userCV(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/cv/cv-form`);
+  userCV(email?:any): Observable<any> {
+    let params = new HttpParams();
+    if (email) {
+      if (email !== undefined && email !== null) {
+        params = params.append('email', email);
+      };
+    }
+
+    return this.http.get(`${this.baseUrl}/cv/cv-form`, { params });
   }
 
-  getUsers(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/user/user-info-all`);
+  getUsers(user?:any): Observable<any> {
+    user = 'all';
+    let params = new HttpParams();
+    if (user) {
+      if (user !== undefined && user !== null) {
+        params = params.append('email', user);
+      };
+    }
+
+    return this.http.get(`${this.baseUrl}/user/user-info`, { params });
   }
 
   getUserInfo(): Observable<any> {

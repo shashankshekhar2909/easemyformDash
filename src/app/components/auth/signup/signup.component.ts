@@ -54,6 +54,16 @@ export class SignupComponent {
       });
     }
   }
+  showPassword1 = false;
+  showPassword2 = false;
+
+  togglePasswordVisibility(field:any) {
+    if (field === 'password1') {
+      this.showPassword1 = !this.showPassword1;
+    } else if (field === 'password2') {
+      this.showPassword2 = !this.showPassword2;
+    }
+  }
 
   gotoAdminDash() {
     this.router.navigate(['admin']);

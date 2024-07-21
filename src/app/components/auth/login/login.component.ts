@@ -114,6 +114,12 @@ export class LoginComponent implements OnInit{
     }
   }
 
+  showPassword = false;
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
   get email() {
     return this.loginForm.get('email');
   }
