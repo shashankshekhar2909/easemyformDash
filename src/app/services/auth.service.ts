@@ -55,7 +55,7 @@ export class AuthService {
     formData.append('old_password', userForm.oldPassword);
     formData.append('new_password', userForm.password1);
     formData.append('confirm_password', userForm.password2);
-    return this.http.post(`${this.baseUrl}/user/reset-password`, formData);
+    return this.http.post(`${this.baseUrl}/user/change-password`, formData);
   }
 
   isAuthenticated(): boolean {
