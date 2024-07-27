@@ -34,6 +34,10 @@ import { UserListComponent } from './components/admin/user-list/user-list.compon
 import { AdminUserViewComponent } from './components/admin/admin-user-view/admin-user-view.component';
 import { FooterComponent } from './partials/footer/footer.component';
 import { ViewJobComponent } from './components/admin/view-job/view-job.component';
+import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
+import { ResetPasswordTokenComponent } from './components/auth/reset-password-token/reset-password-token.component';
+import { AdminChangePasswordComponent } from './components/admin/admin-change-password/admin-change-password.component';
+import { UserChangePasswordComponent } from './components/user/user-change-password/user-change-password.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +61,11 @@ import { ViewJobComponent } from './components/admin/view-job/view-job.component
     UserListComponent,
     AdminUserViewComponent,
     FooterComponent,
-    ViewJobComponent
+    ViewJobComponent,
+    ResetPasswordComponent,
+    ResetPasswordTokenComponent,
+    AdminChangePasswordComponent,
+    UserChangePasswordComponent
   ],
   imports: [
     BrowserModule,

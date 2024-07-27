@@ -19,7 +19,7 @@ export class JobsComponent implements OnInit{
   }
 
   getJobs=()=>{
-    this.authService.getJobPost().subscribe({
+    this.authService.getUserJobPost().subscribe({
       next: (resp:any) => {
         this.jobPostList = resp.results;
         console.log(resp);

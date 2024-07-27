@@ -45,11 +45,7 @@ export class SignupComponent {
           this.alertService.showAlert('success', 'Sign-up successful!');
         },
         error: (HttpResponse: HttpErrorResponse) => {
-          this.alertService.showAlert('danger', 'Failed to signup');
-          // this._snackBar.open(`${HttpResponse.error.detail}`, 'OK', {
-          //   duration: 3000,
-          //   panelClass: ['error-snackbar']
-          // });
+          this.alertService.showAlert('danger', HttpResponse.error.message);
         }
       });
     }

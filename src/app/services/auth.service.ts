@@ -33,6 +33,31 @@ export class AuthService {
     return this.http.post(`${this.baseUrl}/user/login`, formData);
   }
 
+  resetPassword(userForm: { email: string; url: string }): Observable<any> {
+    const formData = new FormData();
+    formData.append('email', userForm.email);
+    formData.append('url', userForm.url);
+    return this.http.post(`${this.baseUrl}/user/forgot-password`, formData);
+  }
+
+  resetPasswordSubmit(userForm: { email: string; token: string, password1:string, password2:string }): Observable<any> {
+    const formData = new FormData();
+    formData.append('email', userForm.email);
+    formData.append('reset_token', userForm.token);
+    formData.append('new_password', userForm.password1);
+    formData.append('confirm_password', userForm.password2);
+    return this.http.post(`${this.baseUrl}/user/reset-password`, formData);
+  }
+
+  changePasswordSubmit(userForm: { email: string; oldPassword: string, password1:string, password2:string }): Observable<any> {
+    const formData = new FormData();
+    formData.append('email', userForm.email);
+    formData.append('old_password', userForm.oldPassword);
+    formData.append('new_password', userForm.password1);
+    formData.append('confirm_password', userForm.password2);
+    return this.http.post(`${this.baseUrl}/user/reset-password`, formData);
+  }
+
   isAuthenticated(): boolean {
     return !!localStorage.getItem('user');
   }
@@ -116,21 +141,13 @@ export class AuthService {
   }
 
   getJobPost = (filters?:any) => {
-    // const endPoint = this.baseUrl + this.globals.urlJoin('jobs', 'jobFeeds');
-    // return this.http.get(`${this.baseUrl}/job/job-feeds`);
     const params = new URLSearchParams();
-
-    // if (filters) {
-    //   Object.keys(filters).forEach(key => {
-    //     if (filters[key] !== undefined && filters[key] !== null) {
-    //       params.append(key, filters[key]);
-    //     }
-    //   });
-    // }
-
     if(filters){
       if (filters.page !== undefined && filters.page !== null) {
         params.append('page', filters.page.toString());
+      }
+      if (filters.page !== undefined && filters.page !== null) {
+        params.append('id', filters.page.toString());
       }
 
       if (filters.pageSize !== undefined && filters.pageSize !== null) {
@@ -139,6 +156,36 @@ export class AuthService {
     }
     // const endPoint = this.baseUrl + this.globals.urlJoin('jobs', 'jobFeeds');
     return this.http.get(`${this.baseUrl}/job/job-feeds?${params.toString()}`);
+  }
+
+  getJobDetails = (filters?:any) => {
+    console.log(filters);
+    const params = new URLSearchParams();
+    if(filters){
+      if (filters._id) {
+        params.append('_id', filters._id.toString());
+      }
+    }
+    // const endPoint = this.baseUrl + this.globals.urlJoin('jobs', 'jobFeeds');
+    return this.http.get(`${this.baseUrl}/job/job-feeds?${params.toString()}`);
+  }
+
+  getUserJobPost = (filters?:any) => {
+    const params = new URLSearchParams();
+    if(filters){
+      if (filters.page !== undefined && filters.page !== null) {
+        params.append('page', filters.page.toString());
+      }
+      if (filters.page !== undefined && filters.page !== null) {
+        params.append('id', filters.page.toString());
+      }
+      if (filters.pageSize !== undefined && filters.pageSize !== null) {
+        params.append('size', filters.pageSize.toString());
+      }
+    }
+    params.append('type', 'all');
+    // const endPoint = this.baseUrl + this.globals.urlJoin('jobs', 'jobFeeds');
+    return this.http.get(`${this.baseUrl}/job/job-feeds-user?${params.toString()}`);
   }
 
   getUserList = (filters?:any) => {

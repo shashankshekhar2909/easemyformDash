@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { AlertService } from '../../../services/alert.service';
 import { AuthService } from '../../../services/auth.service';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-job',
@@ -14,7 +15,8 @@ export class ViewJobComponent {
   jobPostList:any = [];
   constructor(
     private authService: AuthService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private router: Router
   ){}
 
   selectedJob:any = null;
@@ -61,5 +63,12 @@ export class ViewJobComponent {
     console.log(id);
     console.log(this.jobPostList[id]);
     this.selectedJob = this.jobPostList[id];
+    const queryParams: any = {
+      jobId: this.selectedJob._id
+    };
+    const navigationExtras: NavigationExtras = {
+      queryParams:queryParams
+    };
+    this.router.navigate(['admin/add-job-post'],navigationExtras)
   }
 }

@@ -24,7 +24,7 @@ export class PostSliderComponent implements OnInit{
 
   getJobPosts() {
     const filters = {}; // Define your filters here
-    this.authService.getJobPost(filters).subscribe({
+    this.authService.getUserJobPost().subscribe({
       next: (resp: any) => {
         this.jobPostList = resp.results;
         this.jobPostGrid = this.groupJobsIntoGrid(this.jobPostList, 3);

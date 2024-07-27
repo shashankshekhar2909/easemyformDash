@@ -18,9 +18,15 @@ import { UserGuard } from './_guards/user.guard';
 import { AdminGuard } from './_guards/admin.guard';
 import { AdminUserViewComponent } from './components/admin/admin-user-view/admin-user-view.component';
 import { ViewJobComponent } from './components/admin/view-job/view-job.component';
+import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
+import { ResetPasswordTokenComponent } from './components/auth/reset-password-token/reset-password-token.component';
+import { AdminChangePasswordComponent } from './components/admin/admin-change-password/admin-change-password.component';
+import { UserChangePasswordComponent } from './components/user/user-change-password/user-change-password.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, title:'Log In' },
+  { path: 'reset-password-token', component: ResetPasswordTokenComponent, title:'Reset Password' },
+  { path: 'reset-password', component: ResetPasswordComponent, title:'Reset Password' },
   { path: 'signup', component: SignupComponent, title:'Sign Up' },
   {
     path: 'admin', component: AdmindashboardComponent, children: [
@@ -28,6 +34,7 @@ const routes: Routes = [
       { path: 'add-job-post', component: AddJobsComponent, title:'Add Jobs'},
       { path: 'view-jobs', component: ViewJobComponent, title:'View Jobs'},
       { path: 'view-users', component: UserListComponent, title:'View Users'},
+      { path: 'change-password-admin', component: AdminChangePasswordComponent, title:'Change Password'},
       { path: 'view-user-details', component: AdminUserViewComponent, title:'User Details'},
     ],
   },
@@ -38,6 +45,7 @@ const routes: Routes = [
       { path: 'view-cv', component: UserCVComponent,canActivate: [UserGuard], title:'User CV' },
       { path: 'user-fill-cv-form', component: UpdateCVComponent,canActivate: [UserGuard], title:'User CV Update' },
       { path: 'jobs', component: JobsComponent,canActivate: [UserGuard] , title:'View Jobs'},
+      { path: 'change-password-user', component: UserChangePasswordComponent,canActivate: [UserGuard] , title:'Change Password'},
       { path: 'job/:id', component: JobComponent,canActivate: [UserGuard], title:'Job Details' }
     ],
   },
