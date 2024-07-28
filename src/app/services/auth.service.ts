@@ -21,8 +21,8 @@ export class AuthService {
       'Content-Type': 'application/json',
     });
   }
-  // private baseUrl = 'api';
-  private baseUrl = environment.baseUrl;
+  private baseUrl = 'api';
+  // private baseUrl = environment.baseUrl;
 
 
   login(userForm: { email: string; password: string }): Observable<any> {
@@ -68,6 +68,11 @@ export class AuthService {
       map((response: any) => response),
       catchError((error) => throwError(error))
     );
+  }
+
+  uploadCV(data:any){
+    console.log(data);
+    return this.http.post(`${this.baseUrl}/misc/upload`, data);
   }
 
   userCV(email?:any): Observable<any> {
@@ -117,6 +122,12 @@ export class AuthService {
     return this.http.post(`${this.baseUrl}/job/job-feeds`, jobData);
   }
 
+  updateJob = (jobData:any) => {
+    console.log(jobData);
+    return this.http.put(`${this.baseUrl}/job/job-feeds`, jobData);
+  }
+
+
   formSubmitted = false;
 
   signUp(userForm: any): Observable<any> {
@@ -158,13 +169,43 @@ export class AuthService {
     return this.http.get(`${this.baseUrl}/job/job-feeds?${params.toString()}`);
   }
 
-  getJobDetails = (filters?:any) => {
+  getUserJobDetails = (filters?:any) => {
     console.log(filters);
     const params = new URLSearchParams();
     if(filters){
       if (filters._id) {
         params.append('_id', filters._id.toString());
       }
+    }
+    // const endPoint = this.baseUrl + this.globals.urlJoin('jobs', 'jobFeeds');
+    return this.http.get(`${this.baseUrl}/job/job-feeds?${params.toString()}`);
+  }
+
+  getJobDetails = (filters?:any) => {
+    console.log(filters);
+    const params = new URLSearchParams();
+    if(filters){
+      if (filters._id) {
+        params.append('_id', filters._id.toString());
+        params.append('type', 'filter');
+      }
+    } else {
+      params.append('type', 'all');
+    }
+    // const endPoint = this.baseUrl + this.globals.urlJoin('jobs', 'jobFeeds');
+    return this.http.get(`${this.baseUrl}/job/job-feeds-user?${params.toString()}`);
+  }
+
+  getJobDetailsAdmin = (filters?:any) => {
+    console.log(filters);
+    const params = new URLSearchParams();
+    if(filters){
+      if (filters._id) {
+        params.append('_id', filters._id.toString());
+        params.append('type', 'filter');
+      }
+    } else {
+      params.append('type', 'all');
     }
     // const endPoint = this.baseUrl + this.globals.urlJoin('jobs', 'jobFeeds');
     return this.http.get(`${this.baseUrl}/job/job-feeds?${params.toString()}`);

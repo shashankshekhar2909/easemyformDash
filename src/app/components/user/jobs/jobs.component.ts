@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-jobs',
@@ -9,7 +10,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class JobsComponent implements OnInit{
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ){
   }
   jobPostList:any = [];
@@ -29,5 +31,18 @@ export class JobsComponent implements OnInit{
 
       }
     });
+  }
+
+  viewJob = (job:any) => {
+    console.log(job);
+    const queryParams: any = {
+      jobId: job._id
+    };
+    const navigationExtras: NavigationExtras = {
+      queryParams:queryParams
+    };
+    console.log(navigationExtras);
+
+    this.router.navigate(['user/jobDetails'],navigationExtras);
   }
 }

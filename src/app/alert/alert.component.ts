@@ -8,15 +8,19 @@ import { Alert, AlertService } from '../services/alert.service';
     styleUrls: ['./alert.component.scss']
 })
 export class AlertComponent implements OnInit {
+    sampleAlert:Alert = {
+      type: 'success',
+      message: 'Hello'
+    }
     alerts: Alert[] = [];
 
     constructor(private alertService: AlertService) {}
 
     ngOnInit() {
-        this.alertService.alerts$.subscribe(alert => {
-            this.alerts.push(alert);
-            setTimeout(() => this.removeAlert(alert), 5000);
-        });
+      this.alertService.alerts$.subscribe(alert => {
+          this.alerts.push(alert);
+          setTimeout(() => this.removeAlert(alert), 5000);
+      });
     }
 
     removeAlert(alert: Alert) {

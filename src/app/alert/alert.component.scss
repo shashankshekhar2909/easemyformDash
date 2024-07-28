@@ -1,7 +1,11 @@
 .alert{
   display: block;
-  position: absolute;
-  right: 10px;
-  top: 70px;
-  min-width: 240px;
+  position: fixed;
+  right: 2vw;
+  top: 10vh;
+  min-width: 20vw;
+  -webkit-box-shadow: 5px 5px 10px 0px rgba(186,186,186,1);
+  -moz-box-shadow: 5px 5px 10px 0px rgba(186,186,186,1);
+  box-shadow: 5px 5px 10px 0px rgba(186,186,186,1);
+
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-slider',
@@ -47,9 +47,14 @@ export class PostSliderComponent implements OnInit{
     }, []);
   }
 
-  openJob(id:any){
-    console.log(id);
-    this.router.navigate(['user/job', id._id]);
-
+  viewJob = (job:any) => {
+    console.log(job);
+    const queryParams: any = {
+      jobId: job._id
+    };
+    const navigationExtras: NavigationExtras = {
+      queryParams:queryParams
+    };
+    this.router.navigate(['user/jobDetails'],navigationExtras);
   }
 }

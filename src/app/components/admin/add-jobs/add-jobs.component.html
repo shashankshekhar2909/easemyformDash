@@ -8,6 +8,7 @@
 
             <form [formGroup]="jobForm">
               <div class="row">
+                <!-- Existing form fields -->
                 <div class="col-lg-6">
                   <div class="form-group mb-4">
                     <label for="designation" class="mb-2">Designation</label>
@@ -23,13 +24,13 @@
                 <div class="col-12">
                   <div class="form-group mb-4">
                     <label for="companyWebsite" class="mb-2">Company Website</label>
-                    <input type="url" class="form-control" id="companyWebsite" formControlName="companyWebsite" placeholder="Company Website" />
+                    <input type="url" class="form-control" id="companyWebsite" formControlName="company_website" placeholder="Company Website" />
                   </div>
                 </div>
                 <div class="col-12">
                   <div class="form-group mb-4">
                     <label for="companyDescription" class="mb-2">Company Description</label>
-                    <textarea class="form-control" id="companyDescription" formControlName="companyDescription" placeholder="Company Description"></textarea>
+                    <textarea class="form-control" id="companyDescription" formControlName="company_description" placeholder="Company Description"></textarea>
                   </div>
                 </div>
                 <div class="col-6">
@@ -47,7 +48,7 @@
                 <div class="col-6">
                   <div class="form-group mb-4">
                     <label for="jobType" class="mb-2">Job Type</label>
-                    <textarea class="form-control" id="jobType" formControlName="jobType" placeholder="Job Type"></textarea>
+                    <textarea class="form-control" id="jobType" formControlName="job_type" placeholder="Job Type"></textarea>
                   </div>
                 </div>
                 <div class="col-6">
@@ -59,37 +60,148 @@
                 <div class="col-12">
                   <div class="form-group mb-4">
                     <label for="jobDescription" class="mb-2">Job Description</label>
-                    <textarea class="form-control" id="jobDescription" formControlName="jobDescription" placeholder="Job Description"></textarea>
+                    <textarea class="form-control" id="jobDescription" formControlName="job_description_text" placeholder="Job Description"></textarea>
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="form-group mb-4">
                     <label for="dateOfPosting" class="mb-2">Date of Posting</label>
-                    <input type="date" class="form-control" id="dateOfPosting" formControlName="dateOfPosting" placeholder="Date of Posting" />
+                    <input type="date" class="form-control" id="dateOfPosting" formControlName="date_of_posting" placeholder="Date of Posting" />
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="form-group mb-4">
-                    <label for="lastDateToApply" class="mb-2">Last date to apply </label>
-                    <input type="date" class="form-control" id="lastDateToApply" formControlName="lastDateToApply" placeholder="Last date to apply" />
+                    <label for="lastDateToApply" class="mb-2">Last date to apply</label>
+                    <input type="date" class="form-control" id="lastDateToApply" formControlName="last_date_to_apply" placeholder="Last date to apply" />
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="form-group mb-4">
                     <label for="workMode" class="mb-2">Work Mode</label>
-                    <textarea class="form-control" id="workMode" formControlName="workMode" placeholder="Work Mode"></textarea>
+                    <textarea class="form-control" id="workMode" formControlName="work_mode" placeholder="Work Mode"></textarea>
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="form-group mb-4">
                     <label for="active" class="mb-2">Active</label>
-                    <textarea class="form-control" id="active" formControlName="active" placeholder="Active"></textarea>
+                    <select class="form-control" id="active" formControlName="active">
+                      <option [value]="true">Active</option>
+                      <option [value]="false">Inactive</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group mb-4">
+                    <label for="skills" class="mb-2">Skills</label>
+                    <div formArrayName="skills">
+                      <div *ngFor="let skill of skills.controls; let i = index" class="d-flex align-items-center">
+                        <input type="text" class="form-control mb-2 mr-2" [formControlName]="i" placeholder="Skill" />
+                        <button *ngIf="i>0" (click)="removeSkill(i)" type="button" class="btn btn-danger btn-sm">
+                          <i class="fa fa-trash-o"></i>
+                        </button>
+                      </div>
+                      <button (click)="addSkill()" type="button" class="btn btn-secondary">Add Skill</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group mb-4">
+                    <label for="qualification" class="mb-2">Qualification</label>
+                    <div formArrayName="qualification">
+                      <div *ngFor="let qual of qualification.controls; let i = index" class="d-flex align-items-center">
+                        <input type="text" class="form-control mb-2 mr-2" [formControlName]="i" placeholder="Qualification" />
+                        <button *ngIf="i>0" (click)="removeQualification(i)" type="button" class="btn btn-danger btn-sm">
+                          <i class="fa fa-trash-o"></i>
+                        </button>
+                      </div>
+                      <button (click)="addQualification()" type="button" class="btn btn-secondary">Add Qualification</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group mb-4">
+                    <label for="responsibilities" class="mb-2">Responsibilities</label>
+                    <div formArrayName="responsibilities">
+                      <div *ngFor="let responsibility of responsibilities.controls; let i = index" class="d-flex align-items-center">
+                        <input type="text" class="form-control mb-2 mr-2" [formControlName]="i" placeholder="Responsibility" />
+                        <button *ngIf="i>0" (click)="removeResponsibility(i)" type="button" class="btn btn-danger btn-sm">
+                          <i class="fa fa-trash-o"></i>
+                        </button>
+                      </div>
+                      <button (click)="addResponsibility()" type="button" class="btn btn-secondary">Add Responsibility</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group mb-4">
+                    <label for="contactInfo" class="mb-2">Contact Info</label>
+                    <div formGroupName="contact_info">
+                      <label for="responsibilities" class="mb-2">Email</label>
+                      <input type="text" class="form-control mb-2" formControlName="email" placeholder="Email" />
+                      <label for="responsibilities" class="mb-2">Contact Number</label>
+                      <input type="text" class="form-control mb-2" formControlName="phone" placeholder="Phone" />
+                      <label for="responsibilities" class="mb-2">LinkedIn</label>
+                      <input type="text" class="form-control mb-2" formControlName="linkedin" placeholder="LinkedIn" />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group mb-4">
+                    <label for="keywords" class="mb-2">Keywords</label>
+                    <div formArrayName="keywords">
+                      <div *ngFor="let keyword of keywords.controls; let i = index" class="d-flex align-items-center">
+                        <input type="text" class="form-control mb-2 mr-2" [formControlName]="i" placeholder="Keyword" />
+                        <button *ngIf="i>0" (click)="removeKeyword(i)" type="button" class="btn btn-danger btn-sm">
+                          <i class="fa fa-trash-o"></i>
+                        </button>
+                      </div>
+                      <button (click)="addKeyword()" type="button" class="btn btn-secondary">Add Keyword</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group mb-4">
+                    <label for="whyWorkHere" class="mb-2">Why Work Here</label>
+                    <div formArrayName="why_work_here">
+                      <div *ngFor="let reason of whyWorkHere.controls; let i = index" class="d-flex align-items-center">
+                        <input type="text" class="form-control mb-2 mr-2" [formControlName]="i" placeholder="Reason" />
+                        <button *ngIf="i>0" (click)="removeWhyWorkHere(i)" type="button" class="btn btn-danger btn-sm">
+                          <i class="fa fa-trash-o"></i>
+                        </button>
+                      </div>
+                      <button (click)="addWhyWorkHere()" type="button" class="btn btn-secondary">Add Reason</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group mb-4">
+                    <label for="extra" class="mb-2">Extra</label>
+                    <textarea class="form-control" id="extra" formControlName="extra" placeholder="Extra"></textarea>
                   </div>
                 </div>
               </div>
+              <!-- <div class="row">
+                <div class="col-lg-12">
+                  <label class="mb-2" for="fileJD">Choose Job Description File</label>
+                  <input id="fileJD" class="form-control" type="file" (change)="onFileChangeJD($event)" required>
+                  <button class="btn btn-primary mb-2" type="button" (click)="uploadJD()">Upload</button>
+                  <br>
+                </div>
+              </div>
               <div class="row">
-                <div style="text-align: right;">
+                <div class="col-lg-12">
+                  <label class="mb-2" for="fileImage">Choose Job Image</label>
+                  <input id="fileImage" class="form-control" type="file" (change)="onFileChangeImage($event)" required>
+                  <button class="btn btn-primary" type="button" (click)="uploadJobImage()">Upload</button>
+                  <br>
+                </div>
+              </div> -->
+              <div class="row">
+                <div style="text-align: right;" *ngIf="!updateMode">
                   <button (click)="onSubmit()" type="submit" class="btn ezy__signup1_PQS26JGS-btn-submit w-30">Add Job Post</button>
+                </div>
+                <div style="text-align: right;" *ngIf="updateMode">
+                  <button (click)="update()" type="submit" class="btn ezy__signup1_PQS26JGS-btn-submit w-30">Update Job Post</button>
                 </div>
               </div>
             </form>

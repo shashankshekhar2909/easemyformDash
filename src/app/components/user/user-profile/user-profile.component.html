@@ -75,9 +75,37 @@
       </div>
     </div>
   </div>
-
   <hr>
-
+  <div class="container">
+    <div class="row">
+      <!-- content -->
+      <div class="col-12 col-md-12 col-lg-12 mt-5 mt-md-0" *ngIf="userCV">
+        <div class="ezy__epprofile5-card p-4">
+          <!-- <div class="ezy__epprofile5-header position-relative">
+            <img src="https://cdn.easyfrontend.com/pictures/profile1-user.png" class="ezy__epprofile5-user" />
+          </div> -->
+          <div class="px-lg-5">
+            <div class="row">
+              <div *ngIf="userCV.cv_file_url" class="mb-2">
+                {{userCV.cv_file_url.file_url}}
+                <a target="_blank" href="{{userCV.cv_file_url.file_url}}"><button class="btn btn-secondary">Download CV</button></a>
+              </div>
+              <hr>
+              <form class="column">
+                <div class="col-lg-12">
+                  <label for="file">Choose File:</label>
+                  <input id="file" class="form-control" type="file" (change)="onFileChange($event)" required>
+                </div>
+                <br>
+                <button class="btn btn-primary" type="button" (click)="uploadCV()">Upload</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
   <div class="container">
     <div class="row">
       <!-- content -->

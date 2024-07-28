@@ -273,4 +273,5 @@ export class UpdateCVComponent implements OnInit {
       console.log('Form is not valid');
     }
   }
+
 }

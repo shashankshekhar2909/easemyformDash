@@ -46,7 +46,7 @@ const routes: Routes = [
       { path: 'user-fill-cv-form', component: UpdateCVComponent,canActivate: [UserGuard], title:'User CV Update' },
       { path: 'jobs', component: JobsComponent,canActivate: [UserGuard] , title:'View Jobs'},
       { path: 'change-password-user', component: UserChangePasswordComponent,canActivate: [UserGuard] , title:'Change Password'},
-      { path: 'job/:id', component: JobComponent,canActivate: [UserGuard], title:'Job Details' }
+      { path: 'jobDetails', component: JobComponent,canActivate: [UserGuard], title:'Job Details' }
     ],
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' }

@@ -19,16 +19,24 @@ export class JobComponent  implements OnInit{
   ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params:any) => {
-      this.jobId = params.get('id');
-      this.loadJobDetails(this.jobId);
+    this.route.queryParams.subscribe((params:any) => {
+      console.log(params);
+      if(params){
+        this.jobId = params.jobId;
+        this.loadJobDetails(this.jobId);
+        }
     });
   }
 
   loadJobDetails(id: string): void {
+    console.log(id);
     // Fetch job details using the id
-    this.authService.getJobPost().subscribe({
+    const jobId = {
+      _id:id
+    }
+    this.authService.getJobDetails(jobId).subscribe({
       next: (resp:any) => {
+        console.log(resp);
         this.jobPostList = resp.results;
         this.jobDetail = this.jobPostList.find((job:any) => job._id === id);
         this.jobChips = this.jobDetail.keywords[0].split(',').map((chip:any) => chip.trim());
