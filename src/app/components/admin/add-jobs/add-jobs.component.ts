@@ -13,8 +13,6 @@ import { AlertService } from '../../../services/alert.service';
 export class AddJobsComponent implements OnInit {
   jobForm: FormGroup;
   jobId: string | null = null;
-  selectedFile: File | null = null;
-  selectedImageFile: File | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -46,8 +44,7 @@ export class AddJobsComponent implements OnInit {
       }),
       keywords: this.fb.array([]),
       why_work_here: this.fb.array([]),
-      extra: [''],
-      type: ['job', Validators.required]
+      extra: ['']
     });
   }
 
@@ -72,7 +69,7 @@ export class AddJobsComponent implements OnInit {
   }
 
   addSkill() {
-    this.skills.push(this.fb.control(''));
+    this.skills.push(this.fb.control('', Validators.required));
   }
 
   removeSkill(index: number) {
@@ -80,7 +77,7 @@ export class AddJobsComponent implements OnInit {
   }
 
   addQualification() {
-    this.qualification.push(this.fb.control(''));
+    this.qualification.push(this.fb.control('', Validators.required));
   }
 
   removeQualification(index: number) {
@@ -88,7 +85,7 @@ export class AddJobsComponent implements OnInit {
   }
 
   addResponsibility() {
-    this.responsibilities.push(this.fb.control(''));
+    this.responsibilities.push(this.fb.control('', Validators.required));
   }
 
   removeResponsibility(index: number) {
@@ -96,7 +93,7 @@ export class AddJobsComponent implements OnInit {
   }
 
   addKeyword() {
-    this.keywords.push(this.fb.control(''));
+    this.keywords.push(this.fb.control('', Validators.required));
   }
 
   removeKeyword(index: number) {
@@ -104,7 +101,7 @@ export class AddJobsComponent implements OnInit {
   }
 
   addWhyWorkHere() {
-    this.whyWorkHere.push(this.fb.control(''));
+    this.whyWorkHere.push(this.fb.control('', Validators.required));
   }
 
   removeWhyWorkHere(index: number) {
@@ -144,18 +141,6 @@ export class AddJobsComponent implements OnInit {
   }
 
   fillFormWithData(rawData: any): void {
-    console.log(rawData);
-    if (!rawData.contact_info) {
-      rawData.contact_info = {
-        email: 'abc@abc.com',
-        phone: '0000000000',
-        linkedin: 'linkedin'
-      };
-    } else {
-      rawData.contact_info.email = rawData.contact_info.email || 'abc@abc.com';
-      rawData.contact_info.phone = rawData.contact_info.phone || '0000000000';
-      rawData.contact_info.linkedin = rawData.contact_info.linkedin || 'linkedin';
-    }
     this.jobForm.patchValue({
       designation: rawData.designation,
       company: rawData.company,
@@ -178,19 +163,17 @@ export class AddJobsComponent implements OnInit {
       extra: rawData.extra
     });
 
-    // Clear existing FormArray controls
     this.clearFormArray(this.skills);
     this.clearFormArray(this.qualification);
     this.clearFormArray(this.responsibilities);
     this.clearFormArray(this.keywords);
     this.clearFormArray(this.whyWorkHere);
 
-    // Add new FormArray controls with data
-    rawData.skills.forEach((skill: string) => this.skills.push(this.fb.control(skill)));
-    rawData.qualification.forEach((qual: string) => this.qualification.push(this.fb.control(qual)));
-    rawData.responsibilities.forEach((responsibility: string) => this.responsibilities.push(this.fb.control(responsibility)));
-    rawData.keywords.forEach((keyword: string) => this.keywords.push(this.fb.control(keyword)));
-    rawData.why_work_here.forEach((reason: string) => this.whyWorkHere.push(this.fb.control(reason)));
+    rawData.skills.forEach((skill: string) => this.skills.push(this.fb.control(skill, Validators.required)));
+    rawData.qualification.forEach((qual: string) => this.qualification.push(this.fb.control(qual, Validators.required)));
+    rawData.responsibilities.forEach((responsibility: string) => this.responsibilities.push(this.fb.control(responsibility, Validators.required)));
+    rawData.keywords.forEach((keyword: string) => this.keywords.push(this.fb.control(keyword, Validators.required)));
+    rawData.why_work_here.forEach((reason: string) => this.whyWorkHere.push(this.fb.control(reason, Validators.required)));
   }
 
   clearFormArray(formArray: FormArray) {
@@ -203,96 +186,32 @@ export class AddJobsComponent implements OnInit {
     if (this.jobForm.valid) {
       this.authService.postJob(this.jobForm.value).subscribe({
         next: (resp: any) => {
-          console.log(resp);
-          this.alertService.showAlert('success','Job post Created.');
-          // Handle success
+          this.alertService.showAlert('success', 'Job post Created.');
         },
         error: (HttpResponse: HttpErrorResponse) => {
-          console.log(HttpResponse);
           this.alertService.showAlert('danger', HttpResponse.error.message);
-          // Handle error
         }
       });
     } else {
       console.error('Form is invalid');
+      this.jobForm.markAllAsTouched(); // Mark all fields as touched to trigger validation
     }
   }
 
   update(): void {
-    console.log(this.jobForm.value);
-
     if (this.jobForm.valid) {
       this.jobForm.addControl('_id', this.fb.control(this.jobId, Validators.required));
       this.authService.updateJob(this.jobForm.value).subscribe({
         next: (resp: any) => {
-          console.log(resp);
-          this.alertService.showAlert('success','Job post Updated.');
-          // Handle success
+          this.alertService.showAlert('success', 'Job post Updated.');
         },
         error: (HttpResponse: HttpErrorResponse) => {
-          console.log(HttpResponse);
           this.alertService.showAlert('danger', HttpResponse.error.message);
-          // Handle error
         }
       });
     } else {
       console.error('Form is invalid');
-    }
-  }
-
-  onFileChangeJD(event: any) {
-    if (event.target.files.length > 0) {
-      this.selectedFile = event.target.files[0];
-    }
-  }
-
-  onFileChangeImage(event: any) {
-    if (event.target.files.length > 0) {
-      this.selectedImageFile = event.target.files[0];
-    }
-  }
-
-  uploadJD() {
-    if (this.selectedFile) {
-      const formData = new FormData();
-      formData.append('category', 'job_description');
-      formData.append('userProfile', 'admin');
-      formData.append('file', this.selectedFile);
-
-      this.authService.uploadCV(formData).subscribe({
-        next: (resp: any) => {
-          console.log(resp);
-          // Handle success
-        },
-        error: (HttpResponse: HttpErrorResponse) => {
-          console.log(HttpResponse);
-          this.alertService.showAlert('danger', HttpResponse.error.message);
-        }
-      });
-    } else {
-      this.alertService.showAlert('danger', 'Please select one file');
-    }
-  }
-
-  uploadJobImage() {
-    if (this.selectedImageFile) {
-      const formData = new FormData();
-      formData.append('category', 'job_image');
-      formData.append('userProfile', 'admin');
-      formData.append('file', this.selectedImageFile);
-
-      this.authService.uploadCV(formData).subscribe({
-        next: (resp: any) => {
-          console.log(resp);
-          // Handle success
-        },
-        error: (HttpResponse: HttpErrorResponse) => {
-          console.log(HttpResponse);
-          this.alertService.showAlert('danger', HttpResponse.error.message);
-        }
-      });
-    } else {
-      this.alertService.showAlert('danger', 'Please select one file');
+      this.jobForm.markAllAsTouched(); // Mark all fields as touched to trigger validation
     }
   }
 }
