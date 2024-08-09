@@ -5,6 +5,36 @@
         <div class="card ezy__signup1_PQS26JGS-form-card">
           <div class="card-body p-md-5">
             <h2 class="ezy__signup1_PQS26JGS-heading mb-4 mb-md-5">Update CV</h2>
+            <div class="container">
+              <div class="row">
+                <!-- content -->
+                <div class="col-12 col-md-12 col-lg-12 mt-5 mt-md-0" *ngIf="userCV">
+                  <div class="ezy__epprofile5-card p-4">
+                    <!-- <div class="ezy__epprofile5-header position-relative">
+                      <img src="https://cdn.easyfrontend.com/pictures/profile1-user.png" class="ezy__epprofile5-user" />
+                    </div> -->
+                    <div class="px-lg-5">
+                      <div class="row">
+                        <div *ngIf="userCV.cv_file_url" class="mb-2">
+                          {{userCV.cv_file_url.file_url}}
+                          <a target="_blank" href="{{userCV.cv_file_url.file_url}}"><button class="btn btn-secondary">Download CV</button></a>
+                        </div>
+                        <hr>
+                        <form class="column">
+                          <div class="col-lg-12">
+                            <label for="file">Choose File:</label>
+                            <input id="file" class="form-control" type="file" (change)="onFileChange($event)" required>
+                          </div>
+                          <br>
+                          <button class="btn btn-primary" type="button" (click)="uploadCV()">Upload</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr>
             <form [formGroup]="cvForm" (ngSubmit)="onSubmit()">
               <div class="row">
                 <div class="col-12">
@@ -16,7 +46,7 @@
                 <div class="col-12">
                   <div class="form-group mb-4">
                     <label for="email-id" class="mb-2">Email</label>
-                    <input type="email" class="form-control" id="email-id" formControlName="email_id" placeholder="Your Email Address" required />
+                    <input type="email" readonly class="form-control" id="email-id" formControlName="email_id" placeholder="Your Email Address" required />
                   </div>
                 </div>
                 <div class="col-12">
