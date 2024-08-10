@@ -1,27 +1,60 @@
-<!-- Job Posts -->
 <section>
   <h2>Job Posts</h2>
   <div class="container text-center">
-    <div class="row table">
-      <div class="col">#</div>
-      <div class="col">Company</div>
-      <div class="col">Designation</div>
-      <div class="col">Posted On</div>
-      <div class="col">Last Date</div>
-      <div class="col">Options</div>
-    </div>
-  </div>
-  <div class="container text-center">
-    <div class="row table" *ngFor="let job of jobPostList; let i = index">
-      <div class="col">{{i+1}}</div>
-      <div class="col">{{job.company}}</div>
-      <div class="col">{{job.designation}}</div>
-      <div class="col">{{job.date_of_posting}}</div>
-      <div class="col">{{job.last_date_to_apply}}</div>
-      <div class="col">
-        <button class="btn btn-secondary" (click)="selectJob(i)">View</button>
-      </div>
-      <ng-container *ngIf="selectedJob"></ng-container>
-    </div>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Status</th>
+          <th>Company</th>
+          <th>Designation</th>
+          <th>Posted On</th>
+          <th>Last Date</th>
+          <th>Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let job of paginatedJobPosts; let i = index">
+          <td>{{(page - 1) * pageSize + i + 1}}</td>
+          <td>
+            <div *ngIf="job.active">
+              <div style="border-radius: 50%; height: 20px; width: 20px; background-color: green;"></div>
+            </div>
+            <div *ngIf="!job.active">
+              <div style="border-radius: 50%; height: 20px; width: 20px; background-color: red;"></div>
+            </div>
+          </td>
+          <td>{{job.company}}</td>
+          <td>{{job.designation}}</td>
+          <td>{{job.date_of_posting}}</td>
+          <td>{{job.last_date_to_apply}}</td>
+          <td>
+            <button class="btn btn-outline-warning" (click)="hideJob(i)">
+              <ng-container *ngIf="job.active"><i class="fa fa-eye-slash"></i></ng-container>
+              <ng-container *ngIf="!job.active" ><i class="fa fa-eye"></i></ng-container>
+            </button>
+            <button class="btn btn-secondary" (click)="selectJob(i)">View</button>
+          </td>
+        </tr>
+        <tr *ngIf="paginatedJobPosts.length === 0">
+          <td colspan="7" class="text-center">No job posts available.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Pagination Controls -->
+    <nav aria-label="Page navigation">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [class.disabled]="page === 1">
+          <a class="page-link" (click)="changePage(page - 1)">Previous</a>
+        </li>
+        <li class="page-item" *ngFor="let pageNum of totalPages" [class.active]="pageNum === page">
+          <a class="page-link" (click)="changePage(pageNum)">{{pageNum}}</a>
+        </li>
+        <li class="page-item" [class.disabled]="page === totalPages.length">
+          <a class="page-link" (click)="changePage(page + 1)">Next</a>
+        </li>
+      </ul>
+    </nav>
   </div>
 </section>

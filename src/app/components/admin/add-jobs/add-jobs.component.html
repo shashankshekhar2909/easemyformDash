@@ -403,14 +403,16 @@
                   </div>
                 </div>
 
-                <div class="col-12">
-                  <div style="text-align: right;" *ngIf="!updateMode">
-                    <button type="submit" class="btn ezy__signup1_PQS26JGS-btn-submit w-30">Add Job Post</button>
-                  </div>
-                  <div style="text-align: right;" *ngIf="updateMode">
-                    <button (click)="update()" type="submit" class="btn ezy__signup1_PQS26JGS-btn-submit w-30">Update Job Post</button>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div style="text-align: right; display: flex; justify-content: flex-end; gap: 10px;">
+                      <button type="button" class="btn btn-warning" (click)="resetForm()">Reset</button>
+                      <button *ngIf="!updateMode" type="submit" class="btn ezy__signup1_PQS26JGS-btn-submit">Add Job Post</button>
+                      <button *ngIf="updateMode" (click)="update()" type="submit" class="btn btn-submit">Update Job Post</button>
+                    </div>
                   </div>
                 </div>
+
 
                 <div class="col-12" *ngIf="jobForm.invalid && jobForm.touched">
                   <div class="alert alert-danger mt-3" role="alert">

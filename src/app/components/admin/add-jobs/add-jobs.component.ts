@@ -214,4 +214,34 @@ export class AddJobsComponent implements OnInit {
       this.jobForm.markAllAsTouched(); // Mark all fields as touched to trigger validation
     }
   }
+  resetForm(): void {
+    this.jobForm.reset({
+      designation: '',
+      company: '',
+      company_website: '',
+      company_description: '',
+      location: '',
+      salary: '',
+      job_type: '',
+      experience: '',
+      job_description_text: '',
+      date_of_posting: '',
+      last_date_to_apply: '',
+      work_mode: '',
+      active: true,
+      contact_info: {
+        email: '',
+        phone: '',
+        linkedin: ''
+      },
+      extra: ''
+    });
+
+    // Clear all FormArrays
+    this.clearFormArray(this.skills);
+    this.clearFormArray(this.qualification);
+    this.clearFormArray(this.responsibilities);
+    this.clearFormArray(this.keywords);
+    this.clearFormArray(this.whyWorkHere);
+  }
 }
