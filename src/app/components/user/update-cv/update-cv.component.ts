@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
-import { UserService } from '../../../services/user.service';
 import { AuthService } from '../../../services/auth.service';
 import { AlertService } from '../../../services/alert.service';
 
@@ -12,6 +11,9 @@ import { AlertService } from '../../../services/alert.service';
 })
 export class UpdateCVComponent implements OnInit {
   cvForm: FormGroup;
+  userCV: any = null;
+  selectedFile: File | null = null;
+  submitted = false;
 
   constructor(
     private fb: FormBuilder,
@@ -23,10 +25,9 @@ export class UpdateCVComponent implements OnInit {
       email_id: ['', [Validators.required, Validators.email]],
       phone_number: ['', Validators.required],
       linkedin_id: [''],
-      photo: [''],
       personal_details: this.fb.group({
-        date_of_birth: [''],
-        address: ['']
+        date_of_birth: ['', Validators.required],
+        address: ['', Validators.required]
       }),
       other_details: [''],
       academics: this.fb.array([]),
@@ -44,8 +45,6 @@ export class UpdateCVComponent implements OnInit {
   ngOnInit(): void {
     this.getUserCV();
   }
-
-  userCV: any = null;
 
   getUserCV() {
     this.authService.userCV().subscribe({
@@ -114,129 +113,90 @@ export class UpdateCVComponent implements OnInit {
     return this.cvForm.get('achievements') as FormArray;
   }
 
-  createAcademic(academic: any = { degree: '', branch: '', college: '', university: '', joining_date: '', passing_date: '', cgpa: '' }): FormGroup {
-    return this.fb.group({
-      degree: [academic.degree],
-      branch: [academic.branch],
-      college: [academic.college],
-      university: [academic.university],
-      joining_date: [academic.joining_date],
-      passing_date: [academic.passing_date],
-      cgpa: [academic.cgpa]
-    });
-  }
-
   addAcademic(academic?: any): void {
-    this.academics.push(this.createAcademic(academic));
+    this.academics.push(this.fb.group({
+      degree: [academic?.degree || '', Validators.required],
+      branch: [academic?.branch || '', Validators.required],
+      college: [academic?.college || '', Validators.required],
+      university: [academic?.university || '', Validators.required],
+      joining_date: [academic?.joining_date || '', Validators.required],
+      passing_date: [academic?.passing_date || '', Validators.required],
+      cgpa: [academic?.cgpa || '', Validators.required]
+    }));
   }
 
   removeAcademic(index: number): void {
     this.academics.removeAt(index);
   }
 
-  createWorkExperience(experience: any = { company: '', role: '', location: '', joining_date: '', leaving_date: '', description: '', tasks_achievements: '' }): FormGroup {
-    return this.fb.group({
-      company: [experience.company],
-      role: [experience.role],
-      location: [experience.location],
-      joining_date: [experience.joining_date],
-      leaving_date: [experience.leaving_date],
-      description: [experience.description],
-      tasks_achievements: [experience.tasks_achievements]
-    });
-  }
-
   addWorkExperience(experience?: any): void {
-    this.work_experience.push(this.createWorkExperience(experience));
+    this.work_experience.push(this.fb.group({
+      company: [experience?.company || '', Validators.required],
+      role: [experience?.role || '', Validators.required],
+      location: [experience?.location || '', Validators.required],
+      joining_date: [experience?.joining_date || '', Validators.required],
+      leaving_date: [experience?.leaving_date || '', Validators.required],
+      description: [experience?.description || '', Validators.required],
+      tasks_achievements: [experience?.tasks_achievements || '', Validators.required]
+    }));
   }
 
   removeWorkExperience(index: number): void {
     this.work_experience.removeAt(index);
   }
 
-  createSkill(skill: string = ''): FormGroup {
-    return this.fb.group({
-      skill: [skill]
-    });
-  }
-
   addSkill(skill?: string): void {
-    this.skills.push(this.fb.control(skill));
+    this.skills.push(this.fb.control(skill || '', Validators.required));
   }
 
   removeSkill(index: number): void {
     this.skills.removeAt(index);
   }
 
-  createProject(project: any = { title: '', description: '', duration: '' }): FormGroup {
-    return this.fb.group({
-      title: [project.title],
-      description: [project.description],
-      duration: [project.duration]
-    });
-  }
-
   addProject(project?: any): void {
-    this.projects.push(this.createProject(project));
+    this.projects.push(this.fb.group({
+      title: [project?.title || '', Validators.required],
+      description: [project?.description || '', Validators.required]
+    }));
   }
 
   removeProject(index: number): void {
     this.projects.removeAt(index);
   }
 
-  createCertification(certification: any = { title: '', organization: '', date: '' }): FormGroup {
-    return this.fb.group({
-      title: [certification.title],
-      organization: [certification.organization],
-      date: [certification.date]
-    });
-  }
-
   addCertification(certification?: any): void {
-    this.certifications.push(this.createCertification(certification));
+    this.certifications.push(this.fb.group({
+      title: [certification?.title || '', Validators.required],
+      organization: [certification?.organization || '', Validators.required],
+      date: [certification?.date || '', Validators.required]
+    }));
   }
 
   removeCertification(index: number): void {
     this.certifications.removeAt(index);
   }
 
-  createLanguage(language: any = { language: '', proficiency: '' }): FormGroup {
-    return this.fb.group({
-      language: [language.language],
-      proficiency: [language.proficiency]
-    });
-  }
-
   addLanguage(language?: any): void {
-    this.languages.push(this.createLanguage(language));
+    this.languages.push(this.fb.group({
+      language: [language?.language || '', Validators.required],
+      proficiency: [language?.proficiency || '', Validators.required]
+    }));
   }
 
   removeLanguage(index: number): void {
     this.languages.removeAt(index);
   }
 
-  createInterest(interest: string = ''): FormGroup {
-    return this.fb.group({
-      interest: [interest]
-    });
-  }
-
   addInterest(interest?: string): void {
-    this.interests.push(this.fb.control(interest));
+    this.interests.push(this.fb.control(interest || '', Validators.required));
   }
 
   removeInterest(index: number): void {
     this.interests.removeAt(index);
   }
 
-  createAchievement(achievement: string = ''): FormGroup {
-    return this.fb.group({
-      achievement: [achievement]
-    });
-  }
-
   addAchievement(achievement?: string): void {
-    this.achievements.push(this.fb.control(achievement));
+    this.achievements.push(this.fb.control(achievement || '', Validators.required));
   }
 
   removeAchievement(index: number): void {
@@ -244,37 +204,40 @@ export class UpdateCVComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.submitted = true;
+
     if (this.cvForm.valid) {
-      if(this.userCV){
+      // Perform form submission logic here
+      if (this.userCV) {
         this.authService.puttCV(this.cvForm.value).subscribe({
           next: (resp: any) => {
-            console.log(resp);
             this.alertService.showAlert('success', 'CV update successful!');
           },
           error: (HttpResponse: HttpErrorResponse) => {
             console.log(HttpResponse);
-            this.alertService.showAlert('danger', 'CV update failed!');
+            this.alertService.showAlert('danger', HttpResponse.error.message);
           }
         });
       } else {
         this.authService.postCV(this.cvForm.value).subscribe({
           next: (resp: any) => {
-            console.log(resp);
             this.alertService.showAlert('success', 'CV update successful!');
           },
           error: (HttpResponse: HttpErrorResponse) => {
             console.log(HttpResponse);
-            this.alertService.showAlert('danger', 'CV update failed!');
+            this.alertService.showAlert('danger', HttpResponse.error.message);
           }
         });
-
       }
-    } else {
-      console.log('Form is not valid');
     }
   }
 
-  selectedFile: File | null = null;
+  onReset(): void {
+    this.cvForm.reset();
+    this.submitted = false;
+    // If you want to re-populate the form with initial user data
+    this.populateForm();
+  }
 
   onFileChange(event: any) {
     if (event.target.files.length > 0) {
@@ -282,25 +245,18 @@ export class UpdateCVComponent implements OnInit {
     }
   }
 
-
-  uploadCV(){
-    console.log('Upload');
-    if (this.selectedFile) {
+  uploadCV() {
+    if (this.selectedFile && this.userCV?.email_id) {
       const formData = new FormData();
       formData.append('category', 'user_cv');
       formData.append('userProfile', this.userCV.email_id);
       formData.append('file', this.selectedFile);
       this.authService.uploadCV(formData).subscribe({
         next: (resp: any) => {
-          console.log(resp);
-          if(resp){
-            const cvLink = resp;
-            const data = {
-              cv_file_url : resp
-            }
+          if (resp) {
+            const data = { cv_file_url: resp };
             this.authService.puttCV(data).subscribe({
               next: (resp: any) => {
-                console.log(resp);
                 this.alertService.showAlert('success', 'CV update successful!');
               },
               error: (HttpResponse: HttpErrorResponse) => {
@@ -311,11 +267,9 @@ export class UpdateCVComponent implements OnInit {
           }
         },
         error: (HttpResponse: HttpErrorResponse) => {
-          console.log(HttpResponse);
           this.alertService.showAlert('danger', HttpResponse.error.message);
         }
       });
     }
   }
-
 }

@@ -5,6 +5,22 @@
     </div>
   </div>
   <div><h2>Resume</h2></div>
+  <hr>
+  <div class="col-lg-12 section" *ngIf="userCV.cv_file_url">
+    <div class="column">
+      <div class="row">
+        <div class="col-lg-8">
+          {{userCV.cv_file_url.file_url}}
+        </div>
+        <div class="col-lg-4">
+          <a href="{{userCV.cv_file_url.file_url}}" target="_blank">
+            <button class="btn btn-secondary">Download CV</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
   <div class="col-lg-12 section">
     <h3>Personal Information</h3>
     <div>

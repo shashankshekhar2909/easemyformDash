@@ -10,14 +10,13 @@
                 <!-- content -->
                 <div class="col-12 col-md-12 col-lg-12 mt-5 mt-md-0" *ngIf="userCV">
                   <div class="ezy__epprofile5-card p-4">
-                    <!-- <div class="ezy__epprofile5-header position-relative">
-                      <img src="https://cdn.easyfrontend.com/pictures/profile1-user.png" class="ezy__epprofile5-user" />
-                    </div> -->
                     <div class="px-lg-5">
                       <div class="row">
-                        <div *ngIf="userCV.cv_file_url" class="mb-2">
-                          {{userCV.cv_file_url.file_url}}
-                          <a target="_blank" href="{{userCV.cv_file_url.file_url}}"><button class="btn btn-secondary">Download CV</button></a>
+                        <div *ngIf="userCV?.cv_file_url" class="mb-2">
+                          {{userCV?.cv_file_url.file_url}}
+                          <a target="_blank" href="{{userCV?.cv_file_url.file_url}}">
+                            <button class="btn btn-secondary">Download CV</button>
+                          </a>
                         </div>
                         <hr>
                         <form class="column">
@@ -40,19 +39,29 @@
                 <div class="col-12">
                   <div class="form-group mb-4">
                     <label for="full-name" class="mb-2">Full Name</label>
-                    <input type="text" class="form-control" id="full-name" formControlName="full_name" placeholder="Your Full Name" required />
+                    <input type="text" class="form-control" id="full-name" formControlName="full_name" placeholder="Your Full Name" />
+                    <div *ngIf="cvForm.get('full_name')?.invalid && (cvForm.get('full_name')?.touched || submitted)" class="text-danger">
+                      <small *ngIf="cvForm.get('full_name')?.hasError('required')">Full Name is required.</small>
+                    </div>
                   </div>
                 </div>
                 <div class="col-12">
                   <div class="form-group mb-4">
                     <label for="email-id" class="mb-2">Email</label>
-                    <input type="email" readonly class="form-control" id="email-id" formControlName="email_id" placeholder="Your Email Address" required />
+                    <input type="email" readonly class="form-control" id="email-id" formControlName="email_id" placeholder="Your Email Address" />
+                    <div *ngIf="cvForm.get('email_id')?.invalid && (cvForm.get('email_id')?.touched || submitted)" class="text-danger">
+                      <small *ngIf="cvForm.get('email_id')?.hasError('required')">Email is required.</small>
+                      <small *ngIf="cvForm.get('email_id')?.hasError('email')">Invalid email address.</small>
+                    </div>
                   </div>
                 </div>
                 <div class="col-12">
                   <div class="form-group mb-4">
                     <label for="phone-number" class="mb-2">Phone Number</label>
-                    <input type="text" class="form-control" id="phone-number" formControlName="phone_number" placeholder="Your Phone Number" required />
+                    <input type="text" class="form-control" id="phone-number" formControlName="phone_number" placeholder="Your Phone Number" />
+                    <div *ngIf="cvForm.get('phone_number')?.invalid && (cvForm.get('phone_number')?.touched || submitted)" class="text-danger">
+                      <small *ngIf="cvForm.get('phone_number')?.hasError('required')">Phone Number is required.</small>
+                    </div>
                   </div>
                 </div>
                 <div class="col-12">
@@ -61,12 +70,6 @@
                     <input type="text" class="form-control" id="linkedin-id" formControlName="linkedin_id" placeholder="Your LinkedIn Profile (Optional)" />
                   </div>
                 </div>
-                <!-- <div class="col-12">
-                  <div class="form-group mb-4">
-                    <label for="photo" class="mb-2">Photo</label>
-                    <input type="file" class="form-control" id="photo" formControlName="photo" placeholder="Upload your photo (Optional)" />
-                  </div>
-                </div> -->
                 <div class="col-12">
                   <div class="form-group mb-4">
                     <label class="mb-2">Academics</label>
@@ -75,24 +78,45 @@
                         <div class="row">
                           <div class="col-2">
                             <input type="text" class="form-control mb-2" formControlName="degree" placeholder="Degree" />
+                            <div *ngIf="academic.get('degree')?.invalid && (academic.get('degree')?.touched || submitted)" class="text-danger">
+                              <small *ngIf="academic.get('degree')?.hasError('required')">Degree is required.</small>
+                            </div>
                           </div>
                           <div class="col-2">
                             <input type="text" class="form-control mb-2" formControlName="branch" placeholder="Branch" />
+                            <div *ngIf="academic.get('branch')?.invalid && (academic.get('branch')?.touched || submitted)" class="text-danger">
+                              <small *ngIf="academic.get('branch')?.hasError('required')">Branch is required.</small>
+                            </div>
                           </div>
                           <div class="col-2">
                             <input type="text" class="form-control mb-2" formControlName="college" placeholder="College" />
+                            <div *ngIf="academic.get('college')?.invalid && (academic.get('college')?.touched || submitted)" class="text-danger">
+                              <small *ngIf="academic.get('college')?.hasError('required')">College is required.</small>
+                            </div>
                           </div>
                           <div class="col-2">
                             <input type="text" class="form-control mb-2" formControlName="university" placeholder="University" />
+                            <div *ngIf="academic.get('university')?.invalid && (academic.get('university')?.touched || submitted)" class="text-danger">
+                              <small *ngIf="academic.get('university')?.hasError('required')">University is required.</small>
+                            </div>
                           </div>
                           <div class="col-1">
                             <input type="text" class="form-control mb-2" formControlName="joining_date" placeholder="Joining" />
+                            <div *ngIf="academic.get('joining_date')?.invalid && (academic.get('joining_date')?.touched || submitted)" class="text-danger">
+                              <small *ngIf="academic.get('joining_date')?.hasError('required')">Joining date is required.</small>
+                            </div>
                           </div>
                           <div class="col-1">
                             <input type="text" class="form-control mb-2" formControlName="passing_date" placeholder="Passing" />
+                            <div *ngIf="academic.get('passing_date')?.invalid && (academic.get('passing_date')?.touched || submitted)" class="text-danger">
+                              <small *ngIf="academic.get('passing_date')?.hasError('required')">Passing date is required.</small>
+                            </div>
                           </div>
                           <div class="col-1">
                             <input type="text" class="form-control mb-2" formControlName="cgpa" placeholder="CGPA" />
+                            <div *ngIf="academic.get('cgpa')?.invalid && (academic.get('cgpa')?.touched || submitted)" class="text-danger">
+                              <small *ngIf="academic.get('cgpa')?.hasError('required')">CGPA is required.</small>
+                            </div>
                           </div>
                           <div class="col-1">
                             <button type="button" class="btn btn-danger mt-2" (click)="removeAcademic(i)" *ngIf="academics.controls.length > 1">
@@ -112,24 +136,45 @@
                     <div class="row">
                       <div class="col-2">
                         <input type="text" class="form-control mb-2" formControlName="company" placeholder="Company" />
+                        <div *ngIf="experience.get('company')?.invalid && (experience.get('company')?.touched || submitted)" class="text-danger">
+                          <small *ngIf="experience.get('company')?.hasError('required')">Company is required.</small>
+                        </div>
                       </div>
                       <div class="col-2">
                         <input type="text" class="form-control mb-2" formControlName="role" placeholder="Role" />
+                        <div *ngIf="experience.get('role')?.invalid && (experience.get('role')?.touched || submitted)" class="text-danger">
+                          <small *ngIf="experience.get('role')?.hasError('required')">Role is required.</small>
+                        </div>
                       </div>
                       <div class="col-2">
                         <input type="text" class="form-control mb-2" formControlName="location" placeholder="Location" />
+                        <div *ngIf="experience.get('location')?.invalid && (experience.get('location')?.touched || submitted)" class="text-danger">
+                          <small *ngIf="experience.get('location')?.hasError('required')">Location is required.</small>
+                        </div>
                       </div>
                       <div class="col-2">
                         <input type="text" class="form-control mb-2" formControlName="joining_date" placeholder="Joining" />
+                        <div *ngIf="experience.get('joining_date')?.invalid && (experience.get('joining_date')?.touched || submitted)" class="text-danger">
+                          <small *ngIf="experience.get('joining_date')?.hasError('required')">Joining date is required.</small>
+                        </div>
                       </div>
                       <div class="col-2">
                         <input type="text" class="form-control mb-2" formControlName="leaving_date" placeholder="Leaving" />
+                        <div *ngIf="experience.get('leaving_date')?.invalid && (experience.get('leaving_date')?.touched || submitted)" class="text-danger">
+                          <small *ngIf="experience.get('leaving_date')?.hasError('required')">Leaving date is required.</small>
+                        </div>
                       </div>
                       <div class="col-12">
                         <textarea class="form-control mb-2" formControlName="description" placeholder="Description"></textarea>
+                        <div *ngIf="experience.get('description')?.invalid && (experience.get('description')?.touched || submitted)" class="text-danger">
+                          <small *ngIf="experience.get('description')?.hasError('required')">Description is required.</small>
+                        </div>
                       </div>
                       <div class="col-12">
                         <textarea class="form-control mb-2" formControlName="tasks_achievements" placeholder="Roles"></textarea>
+                        <div *ngIf="experience.get('tasks_achievements')?.invalid && (experience.get('tasks_achievements')?.touched || submitted)" class="text-danger">
+                          <small *ngIf="experience.get('tasks_achievements')?.hasError('required')">Roles and achievements are required.</small>
+                        </div>
                       </div>
                       <div class="col-1">
                         <button type="button" class="btn btn-danger mt-2" (click)="removeWorkExperience(i)" *ngIf="work_experience.controls.length > 1">
@@ -141,7 +186,6 @@
                   <button type="button" class="btn btn-link" (click)="addWorkExperience()">Add Work Experience</button>
                 </div>
 
-
                 <!-- Skills -->
                 <div class="col-12">
                   <div class="form-group mb-4">
@@ -149,6 +193,9 @@
                     <div formArrayName="skills">
                       <div *ngFor="let skill of skills.controls; let i = index">
                         <input type="text" class="form-control mb-2" [formControlName]="i" placeholder="Skill" />
+                        <div *ngIf="skill.invalid && (skill.touched || submitted)" class="text-danger">
+                          <small *ngIf="skill.hasError('required')">Skill is required.</small>
+                        </div>
                       </div>
                       <button type="button" class="btn btn-link" (click)="addSkill()">Add Skill</button>
                     </div>
@@ -164,9 +211,15 @@
                         <div class="row">
                           <div class="col-6">
                             <input type="text" class="form-control mb-2" formControlName="title" placeholder="Project Title" />
+                            <div *ngIf="project.get('title')?.invalid && (project.get('title')?.touched || submitted)" class="text-danger">
+                              <small *ngIf="project.get('title')?.hasError('required')">Project Title is required.</small>
+                            </div>
                           </div>
                           <div class="col-6">
                             <input type="text" class="form-control mb-2" formControlName="description" placeholder="Project Description" />
+                            <div *ngIf="project.get('description')?.invalid && (project.get('description')?.touched || submitted)" class="text-danger">
+                              <small *ngIf="project.get('description')?.hasError('required')">Project Description is required.</small>
+                            </div>
                           </div>
                           <div class="col-1">
                             <button type="button" class="btn btn-danger mt-2" (click)="removeProject(i)" *ngIf="projects.controls.length > 1">
@@ -189,12 +242,21 @@
                         <div class="row">
                           <div class="col-4">
                             <input type="text" class="form-control mb-2" formControlName="title" placeholder="Title" />
+                            <div *ngIf="certification.get('title')?.invalid && (certification.get('title')?.touched || submitted)" class="text-danger">
+                              <small *ngIf="certification.get('title')?.hasError('required')">Certification Title is required.</small>
+                            </div>
                           </div>
                           <div class="col-4">
                             <input type="text" class="form-control mb-2" formControlName="organization" placeholder="Organization" />
+                            <div *ngIf="certification.get('organization')?.invalid && (certification.get('organization')?.touched || submitted)" class="text-danger">
+                              <small *ngIf="certification.get('organization')?.hasError('required')">Organization is required.</small>
+                            </div>
                           </div>
                           <div class="col-3">
                             <input type="text" class="form-control mb-2" formControlName="date" placeholder="Date" />
+                            <div *ngIf="certification.get('date')?.invalid && (certification.get('date')?.touched || submitted)" class="text-danger">
+                              <small *ngIf="certification.get('date')?.hasError('required')">Date is required.</small>
+                            </div>
                           </div>
                           <div class="col-1">
                             <button type="button" class="btn btn-danger mt-2" (click)="removeCertification(i)" *ngIf="certifications.controls.length > 1">
@@ -217,9 +279,15 @@
                         <div class="row">
                           <div class="col-6">
                             <input type="text" class="form-control mb-2" formControlName="language" placeholder="Language" />
+                            <div *ngIf="language.get('language')?.invalid && (language.get('language')?.touched || submitted)" class="text-danger">
+                              <small *ngIf="language.get('language')?.hasError('required')">Language is required.</small>
+                            </div>
                           </div>
                           <div class="col-5">
                             <input type="text" class="form-control mb-2" formControlName="proficiency" placeholder="Proficiency" />
+                            <div *ngIf="language.get('proficiency')?.invalid && (language.get('proficiency')?.touched || submitted)" class="text-danger">
+                              <small *ngIf="language.get('proficiency')?.hasError('required')">Proficiency is required.</small>
+                            </div>
                           </div>
                           <div class="col-1">
                             <button type="button" class="btn btn-danger mt-2" (click)="removeLanguage(i)" *ngIf="languages.controls.length > 1">
@@ -242,11 +310,14 @@
                         <div class="row">
                           <div class="col-11">
                             <input type="text" class="form-control mb-2" [formControlName]="i" placeholder="Interest" />
+                            <div *ngIf="interest.invalid && (interest.touched || submitted)" class="text-danger">
+                              <small *ngIf="interest.hasError('required')">Interest is required.</small>
+                            </div>
                           </div>
                           <div class="col-1">
-                              <button type="button" class="btn btn-danger mt-2" (click)="removeInterest(i)" *ngIf="interests.controls.length > 1">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
-                              </button>
+                            <button type="button" class="btn btn-danger mt-2" (click)="removeInterest(i)" *ngIf="interests.controls.length > 1">
+                              <i class="fa fa-trash" aria-hidden="true"></i>
+                            </button>
                           </div>
                         </div>
                       </div>
@@ -264,11 +335,14 @@
                         <div class="row">
                           <div class="col-11">
                             <input type="text" class="form-control mb-2" [formControlName]="i" placeholder="Achievement" />
+                            <div *ngIf="achievement.invalid && (achievement.touched || submitted)" class="text-danger">
+                              <small *ngIf="achievement.hasError('required')">Achievement is required.</small>
+                            </div>
                           </div>
                           <div class="col-1">
-                              <button type="button" class="btn btn-danger mt-2" (click)="removeAchievement(i)" *ngIf="achievements.controls.length > 1">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
-                              </button>
+                            <button type="button" class="btn btn-danger mt-2" (click)="removeAchievement(i)" *ngIf="achievements.controls.length > 1">
+                              <i class="fa fa-trash" aria-hidden="true"></i>
+                            </button>
                           </div>
                         </div>
                       </div>
@@ -283,7 +357,13 @@
                     <label for="personal-details" class="mb-2">Personal Details</label>
                     <div [formGroupName]="'personal_details'">
                       <input type="text" class="form-control mb-2" formControlName="date_of_birth" placeholder="Date of Birth" />
+                      <div *ngIf="cvForm.get('personal_details.date_of_birth')?.invalid && (cvForm.get('personal_details.date_of_birth')?.touched || submitted)" class="text-danger">
+                        <small *ngIf="cvForm.get('personal_details.date_of_birth')?.hasError('required')">Date of Birth is required.</small>
+                      </div>
                       <input type="text" class="form-control mb-2" formControlName="address" placeholder="Address" />
+                      <div *ngIf="cvForm.get('personal_details.address')?.invalid && (cvForm.get('personal_details.address')?.touched || submitted)" class="text-danger">
+                        <small *ngIf="cvForm.get('personal_details.address')?.hasError('required')">Address is required.</small>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -299,14 +379,18 @@
               </div>
               <div class="form-group mb-4">
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="agree" formControlName="agree" required />
+                  <input class="form-check-input" type="checkbox" id="agree" formControlName="agree" />
                   <label class="form-check-label" for="agree">
                     I accept the <a href="#">terms & conditions</a>, <a href="#">privacy policy</a>
                   </label>
+                  <div *ngIf="cvForm.get('agree')?.invalid && (cvForm.get('agree')?.touched || submitted)" class="text-danger">
+                    <small>You must accept the terms and conditions.</small>
+                  </div>
                 </div>
               </div>
               <div class="form-group mb-4 col-lg-4" style="text-align: right; display: flex;">
                 <button type="submit" class="btn ezy__signup1_PQS26JGS-btn-submit w-100" style="flex-basis: max-content;">Update CV</button>
+                <button type="button" class="btn btn-secondary ms-3" (click)="onReset()">Reset</button>
               </div>
             </form>
           </div>

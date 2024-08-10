@@ -39,42 +39,19 @@ export class ViewJobComponent implements OnInit {
         console.log('API Response:', resp);
         this.jobPostList = resp.results;
         this.totalJobs = resp.total; // Assuming the API response includes total number of jobs
-        this.calculatePagination();
-        this.updatePaginatedJobPosts();
       },
       error: (HttpResponse: HttpErrorResponse) => {
         console.error('Error fetching job posts:', HttpResponse.message);
       }
     });
   }
-
-  calculatePagination(): void {
-    if (this.totalJobs <= 0 || isNaN(this.totalJobs)) {
-      this.totalPages = [];
-    } else {
-      const pageCount = Math.ceil(this.totalJobs / this.pageSize);
-      this.totalPages = Array(pageCount).fill(0).map((_, i) => i + 1);
-      console.log('Total Pages:', this.totalPages);
-    }
-  }
-
-  updatePaginatedJobPosts(): void {
-    console.log(this.jobPostList);
-
-    if (this.jobPostList && this.jobPostList.length > 0) {
-      const startIndex = (this.page - 1) * this.pageSize;
-      const endIndex = startIndex + this.pageSize;
-      this.paginatedJobPosts = this.jobPostList.slice(startIndex, endIndex);
-      console.log('Paginated Job Posts:', this.paginatedJobPosts);
-    } else {
-      this.paginatedJobPosts = [];
-    }
-  }
-
   changePage(page: number): void {
-    if (page < 1 || page > this.totalPages.length) return;
-    this.page = page;
-    this.getJobs(this.page, this.pageSize);
+    console.log(page);
+    if(page>0 && page > this.totalPages.length-1){
+      this.page = page;
+      this.getJobs(this.page, this.pageSize);
+    }
+
   }
 
   selectJob(id: number): void {

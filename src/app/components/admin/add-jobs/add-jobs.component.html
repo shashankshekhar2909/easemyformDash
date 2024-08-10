@@ -54,7 +54,6 @@
                       [ngClass]="{'is-invalid': jobForm.get('company_website')?.invalid && jobForm.get('company_website')?.touched}"
                     />
                     <div *ngIf="jobForm.get('company_website')?.invalid && jobForm.get('company_website')?.touched" class="invalid-feedback">
-                      <div *ngIf="jobForm.get('company_website')?.errors?.['required']">Company Website is required.</div>
                       <div *ngIf="jobForm.get('company_website')?.errors?.['pattern']">Please enter a valid URL.</div>
                     </div>
                   </div>
@@ -70,9 +69,6 @@
                       placeholder="Company Description"
                       [ngClass]="{'is-invalid': jobForm.get('company_description')?.invalid && jobForm.get('company_description')?.touched}"
                     ></textarea>
-                    <div *ngIf="jobForm.get('company_description')?.invalid && jobForm.get('company_description')?.touched" class="invalid-feedback">
-                      <div *ngIf="jobForm.get('company_description')?.errors?.['required']">Company Description is required.</div>
-                    </div>
                   </div>
                 </div>
 
@@ -86,9 +82,6 @@
                       placeholder="Location"
                       [ngClass]="{'is-invalid': jobForm.get('location')?.invalid && jobForm.get('location')?.touched}"
                     ></textarea>
-                    <div *ngIf="jobForm.get('location')?.invalid && jobForm.get('location')?.touched" class="invalid-feedback">
-                      <div *ngIf="jobForm.get('location')?.errors?.['required']">Location is required.</div>
-                    </div>
                   </div>
                 </div>
 
@@ -102,9 +95,6 @@
                       placeholder="Salary"
                       [ngClass]="{'is-invalid': jobForm.get('salary')?.invalid && jobForm.get('salary')?.touched}"
                     ></textarea>
-                    <div *ngIf="jobForm.get('salary')?.invalid && jobForm.get('salary')?.touched" class="invalid-feedback">
-                      <div *ngIf="jobForm.get('salary')?.errors?.['required']">Salary is required.</div>
-                    </div>
                   </div>
                 </div>
 
@@ -118,9 +108,6 @@
                       placeholder="Job Type"
                       [ngClass]="{'is-invalid': jobForm.get('job_type')?.invalid && jobForm.get('job_type')?.touched}"
                     ></textarea>
-                    <div *ngIf="jobForm.get('job_type')?.invalid && jobForm.get('job_type')?.touched" class="invalid-feedback">
-                      <div *ngIf="jobForm.get('job_type')?.errors?.['required']">Job Type is required.</div>
-                    </div>
                   </div>
                 </div>
 
@@ -134,9 +121,6 @@
                       placeholder="Experience"
                       [ngClass]="{'is-invalid': jobForm.get('experience')?.invalid && jobForm.get('experience')?.touched}"
                     ></textarea>
-                    <div *ngIf="jobForm.get('experience')?.invalid && jobForm.get('experience')?.touched" class="invalid-feedback">
-                      <div *ngIf="jobForm.get('experience')?.errors?.['required']">Experience is required.</div>
-                    </div>
                   </div>
                 </div>
 
@@ -150,9 +134,6 @@
                       placeholder="Job Description"
                       [ngClass]="{'is-invalid': jobForm.get('job_description_text')?.invalid && jobForm.get('job_description_text')?.touched}"
                     ></textarea>
-                    <div *ngIf="jobForm.get('job_description_text')?.invalid && jobForm.get('job_description_text')?.touched" class="invalid-feedback">
-                      <div *ngIf="jobForm.get('job_description_text')?.errors?.['required']">Job Description is required.</div>
-                    </div>
                   </div>
                 </div>
 
@@ -167,9 +148,6 @@
                       placeholder="Date of Posting"
                       [ngClass]="{'is-invalid': jobForm.get('date_of_posting')?.invalid && jobForm.get('date_of_posting')?.touched}"
                     />
-                    <div *ngIf="jobForm.get('date_of_posting')?.invalid && jobForm.get('date_of_posting')?.touched" class="invalid-feedback">
-                      <div *ngIf="jobForm.get('date_of_posting')?.errors?.['required']">Date of Posting is required.</div>
-                    </div>
                   </div>
                 </div>
 
@@ -184,9 +162,6 @@
                       placeholder="Last date to apply"
                       [ngClass]="{'is-invalid': jobForm.get('last_date_to_apply')?.invalid && jobForm.get('last_date_to_apply')?.touched}"
                     />
-                    <div *ngIf="jobForm.get('last_date_to_apply')?.invalid && jobForm.get('last_date_to_apply')?.touched" class="invalid-feedback">
-                      <div *ngIf="jobForm.get('last_date_to_apply')?.errors?.['required']">Last date to apply is required.</div>
-                    </div>
                   </div>
                 </div>
 
@@ -200,9 +175,6 @@
                       placeholder="Work Mode"
                       [ngClass]="{'is-invalid': jobForm.get('work_mode')?.invalid && jobForm.get('work_mode')?.touched}"
                     ></textarea>
-                    <div *ngIf="jobForm.get('work_mode')?.invalid && jobForm.get('work_mode')?.touched" class="invalid-feedback">
-                      <div *ngIf="jobForm.get('work_mode')?.errors?.['required']">Work Mode is required.</div>
-                    </div>
                   </div>
                 </div>
 
@@ -218,9 +190,6 @@
                       <option [value]="true">Active</option>
                       <option [value]="false">Inactive</option>
                     </select>
-                    <div *ngIf="jobForm.get('active')?.invalid && jobForm.get('active')?.touched" class="invalid-feedback">
-                      <div *ngIf="jobForm.get('active')?.errors?.['required']">Please select the active status.</div>
-                    </div>
                   </div>
                 </div>
 
@@ -236,9 +205,6 @@
                           placeholder="Skill"
                           [ngClass]="{'is-invalid': skill.invalid && skill.touched}"
                         />
-                        <div *ngIf="skill.invalid && skill.touched" class="invalid-feedback">
-                          <div *ngIf="skill.errors?.['required']">Skill is required.</div>
-                        </div>
                         <button *ngIf="i>0" (click)="removeSkill(i)" type="button" class="btn btn-danger btn-sm">
                           <i class="fa fa-trash-o"></i>
                         </button>
@@ -260,9 +226,6 @@
                           placeholder="Qualification"
                           [ngClass]="{'is-invalid': qual.invalid && qual.touched}"
                         />
-                        <div *ngIf="qual.invalid && qual.touched" class="invalid-feedback">
-                          <div *ngIf="qual.errors?.['required']">Qualification is required.</div>
-                        </div>
                         <button *ngIf="i>0" (click)="removeQualification(i)" type="button" class="btn btn-danger btn-sm">
                           <i class="fa fa-trash-o"></i>
                         </button>
@@ -284,9 +247,6 @@
                           placeholder="Responsibility"
                           [ngClass]="{'is-invalid': responsibility.invalid && responsibility.touched}"
                         />
-                        <div *ngIf="responsibility.invalid && responsibility.touched" class="invalid-feedback">
-                          <div *ngIf="responsibility.errors?.['required']">Responsibility is required.</div>
-                        </div>
                         <button *ngIf="i>0" (click)="removeResponsibility(i)" type="button" class="btn btn-danger btn-sm">
                           <i class="fa fa-trash-o"></i>
                         </button>
@@ -308,9 +268,6 @@
                         placeholder="Email"
                         [ngClass]="{'is-invalid': jobForm.get('contact_info.email')?.invalid && jobForm.get('contact_info.email')?.touched}"
                       />
-                      <div *ngIf="jobForm.get('contact_info.email')?.invalid && jobForm.get('contact_info.email')?.touched" class="invalid-feedback">
-                        <div *ngIf="jobForm.get('contact_info.email')?.errors?.['required']">Email is required.</div>
-                      </div>
 
                       <label for="phone" class="mb-2">Contact Number</label>
                       <input
@@ -320,9 +277,6 @@
                         placeholder="Phone"
                         [ngClass]="{'is-invalid': jobForm.get('contact_info.phone')?.invalid && jobForm.get('contact_info.phone')?.touched}"
                       />
-                      <div *ngIf="jobForm.get('contact_info.phone')?.invalid && jobForm.get('contact_info.phone')?.touched" class="invalid-feedback">
-                        <div *ngIf="jobForm.get('contact_info.phone')?.errors?.['required']">Contact Number is required.</div>
-                      </div>
 
                       <label for="linkedin" class="mb-2">LinkedIn</label>
                       <input
@@ -332,9 +286,6 @@
                         placeholder="LinkedIn"
                         [ngClass]="{'is-invalid': jobForm.get('contact_info.linkedin')?.invalid && jobForm.get('contact_info.linkedin')?.touched}"
                       />
-                      <div *ngIf="jobForm.get('contact_info.linkedin')?.invalid && jobForm.get('contact_info.linkedin')?.touched" class="invalid-feedback">
-                        <div *ngIf="jobForm.get('contact_info.linkedin')?.errors?.['required']">LinkedIn is required.</div>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -351,9 +302,6 @@
                           placeholder="Keyword"
                           [ngClass]="{'is-invalid': keyword.invalid && keyword.touched}"
                         />
-                        <div *ngIf="keyword.invalid && keyword.touched" class="invalid-feedback">
-                          <div *ngIf="keyword.errors?.['required']">Keyword is required.</div>
-                        </div>
                         <button *ngIf="i>0" (click)="removeKeyword(i)" type="button" class="btn btn-danger btn-sm">
                           <i class="fa fa-trash-o"></i>
                         </button>
@@ -375,9 +323,6 @@
                           placeholder="Reason"
                           [ngClass]="{'is-invalid': reason.invalid && reason.touched}"
                         />
-                        <div *ngIf="reason.invalid && reason.touched" class="invalid-feedback">
-                          <div *ngIf="reason.errors?.['required']">Reason is required.</div>
-                        </div>
                         <button *ngIf="i>0" (click)="removeWhyWorkHere(i)" type="button" class="btn btn-danger btn-sm">
                           <i class="fa fa-trash-o"></i>
                         </button>
@@ -397,9 +342,6 @@
                       placeholder="Extra"
                       [ngClass]="{'is-invalid': jobForm.get('extra')?.invalid && jobForm.get('extra')?.touched}"
                     ></textarea>
-                    <div *ngIf="jobForm.get('extra')?.invalid && jobForm.get('extra')?.touched" class="invalid-feedback">
-                      <div *ngIf="jobForm.get('extra')?.errors?.['required']">Extra information is required.</div>
-                    </div>
                   </div>
                 </div>
 
@@ -412,7 +354,6 @@
                     </div>
                   </div>
                 </div>
-
 
                 <div class="col-12" *ngIf="jobForm.invalid && jobForm.touched">
                   <div class="alert alert-danger mt-3" role="alert">

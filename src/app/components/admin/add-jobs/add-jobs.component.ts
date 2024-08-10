@@ -23,24 +23,24 @@ export class AddJobsComponent implements OnInit {
     this.jobForm = this.fb.group({
       designation: ['', Validators.required],
       company: ['', Validators.required],
-      company_website: ['', [Validators.required, Validators.pattern('https?://.+')]],
-      company_description: ['', Validators.required],
-      location: ['', Validators.required],
-      salary: ['', Validators.required],
-      job_type: ['', Validators.required],
-      experience: ['', Validators.required],
-      job_description_text: ['', Validators.required],
-      date_of_posting: ['', Validators.required],
-      last_date_to_apply: ['', Validators.required],
-      work_mode: ['', Validators.required],
+      company_website: ['', [Validators.pattern('https?://.+')]], // Remove Validators.required
+      company_description: [''], // Remove Validators.required
+      location: [''], // Remove Validators.required
+      salary: [''], // Remove Validators.required
+      job_type: [''], // Remove Validators.required
+      experience: [''], // Remove Validators.required
+      job_description_text: [''], // Remove Validators.required
+      date_of_posting: [''], // Remove Validators.required
+      last_date_to_apply: [''], // Remove Validators.required
+      work_mode: [''], // Remove Validators.required
       active: [true, Validators.required],
       skills: this.fb.array([]),
       qualification: this.fb.array([]),
       responsibilities: this.fb.array([]),
       contact_info: this.fb.group({
-        email: ['', Validators.required],
-        phone: ['', Validators.required],
-        linkedin: ['', Validators.required]
+        email: [''], // Remove Validators.required
+        phone: [''], // Remove Validators.required
+        linkedin: [''] // Remove Validators.required
       }),
       keywords: this.fb.array([]),
       why_work_here: this.fb.array([]),
@@ -69,7 +69,7 @@ export class AddJobsComponent implements OnInit {
   }
 
   addSkill() {
-    this.skills.push(this.fb.control('', Validators.required));
+    this.skills.push(this.fb.control(''));
   }
 
   removeSkill(index: number) {
@@ -77,7 +77,7 @@ export class AddJobsComponent implements OnInit {
   }
 
   addQualification() {
-    this.qualification.push(this.fb.control('', Validators.required));
+    this.qualification.push(this.fb.control(''));
   }
 
   removeQualification(index: number) {
@@ -85,7 +85,7 @@ export class AddJobsComponent implements OnInit {
   }
 
   addResponsibility() {
-    this.responsibilities.push(this.fb.control('', Validators.required));
+    this.responsibilities.push(this.fb.control(''));
   }
 
   removeResponsibility(index: number) {
@@ -93,7 +93,7 @@ export class AddJobsComponent implements OnInit {
   }
 
   addKeyword() {
-    this.keywords.push(this.fb.control('', Validators.required));
+    this.keywords.push(this.fb.control(''));
   }
 
   removeKeyword(index: number) {
@@ -101,7 +101,7 @@ export class AddJobsComponent implements OnInit {
   }
 
   addWhyWorkHere() {
-    this.whyWorkHere.push(this.fb.control('', Validators.required));
+    this.whyWorkHere.push(this.fb.control(''));
   }
 
   removeWhyWorkHere(index: number) {
@@ -169,11 +169,11 @@ export class AddJobsComponent implements OnInit {
     this.clearFormArray(this.keywords);
     this.clearFormArray(this.whyWorkHere);
 
-    rawData.skills.forEach((skill: string) => this.skills.push(this.fb.control(skill, Validators.required)));
-    rawData.qualification.forEach((qual: string) => this.qualification.push(this.fb.control(qual, Validators.required)));
-    rawData.responsibilities.forEach((responsibility: string) => this.responsibilities.push(this.fb.control(responsibility, Validators.required)));
-    rawData.keywords.forEach((keyword: string) => this.keywords.push(this.fb.control(keyword, Validators.required)));
-    rawData.why_work_here.forEach((reason: string) => this.whyWorkHere.push(this.fb.control(reason, Validators.required)));
+    rawData.skills.forEach((skill: string) => this.skills.push(this.fb.control(skill)));
+    rawData.qualification.forEach((qual: string) => this.qualification.push(this.fb.control(qual)));
+    rawData.responsibilities.forEach((responsibility: string) => this.responsibilities.push(this.fb.control(responsibility)));
+    rawData.keywords.forEach((keyword: string) => this.keywords.push(this.fb.control(keyword)));
+    rawData.why_work_here.forEach((reason: string) => this.whyWorkHere.push(this.fb.control(reason)));
   }
 
   clearFormArray(formArray: FormArray) {
@@ -214,6 +214,7 @@ export class AddJobsComponent implements OnInit {
       this.jobForm.markAllAsTouched(); // Mark all fields as touched to trigger validation
     }
   }
+
   resetForm(): void {
     this.jobForm.reset({
       designation: '',
