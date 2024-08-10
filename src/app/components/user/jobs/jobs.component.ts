@@ -16,14 +16,23 @@ export class JobsComponent implements OnInit{
   }
   jobPostList:any = [];
 
+  jobPage = 1;
+  jobCount = 0;
+  jobPageCount = 0;
+  showCount = 12;
   ngOnInit(): void {
-      this.getJobs();
+    const filter = {
+      page: this.jobPage,
+      pageSize: this.showCount
+    }
+    this.getJobs(filter)
   }
 
-  getJobs=()=>{
-    this.authService.getUserJobPost().subscribe({
+  getJobs=(filter:any)=>{
+    this.authService.getUserJobPost(filter).subscribe({
       next: (resp:any) => {
         this.jobPostList = resp.results;
+        this.jobPageCount = resp.total_pages;
         console.log(resp);
       },
       error: (HttpResponse: HttpErrorResponse) => {
@@ -31,6 +40,27 @@ export class JobsComponent implements OnInit{
 
       }
     });
+  }
+  filter = {
+    page: this.jobPage,
+    pageSize: this.showCount
+  }
+  changePage(op:any){
+    console.log(op);
+    if(op== '+'){
+      this.jobPage++;
+      this.filter.page = this.jobPage;
+      this.getJobs(this.filter);
+    } else if(op == '-'){
+      this.jobPage--;
+      this.filter.page = this.jobPage;
+      this.getJobs(this.filter);
+    } else{
+      console.log('here');
+      this.jobPage = op;
+      this.filter.page = this.jobPage;
+      this.getJobs(this.filter);
+    }
   }
 
   viewJob = (job:any) => {

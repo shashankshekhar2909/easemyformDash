@@ -70,29 +70,25 @@
       </div>
       <div class="col-12">
         <!-- pagination -->
-        <!-- <nav aria-label="Page navigation example">
+        <nav aria-label="Page navigation example">
           <ul class="pagination ezy__portfolio12_p1q7ACOz-pagination justify-content-center flex-wrap mt-5">
             <li class="page-item me-2 mt-2 mt-sm-0">
-              <a class="page-link ezy__portfolio12_p1q7ACOz-arrow" href="#" aria-label="Previous">
+              <a class="page-link ezy__portfolio12_p1q7ACOz-arrow" (click)="changePage('-')" aria-label="Previous">
                 <i class="fa fa-angle-left"></i>
                 <span class="sr-only">Previous</span>
               </a>
             </li>
-            <li class="page-item mx-2 mt-2 mt-sm-0"><a class="page-link" href="#">1</a></li>
-            <li class="page-item mx-2 mt-2 mt-sm-0"><a class="page-link" href="#">2</a></li>
-            <li class="page-item mx-2 mt-2 mt-sm-0"><a class="page-link" href="#">3</a></li>
-            <li class="page-item mx-2 mt-2 mt-sm-0"><a class="page-link" href="#">4</a></li>
-            <li class="page-item mx-2 mt-2 mt-sm-0"><a class="page-link" href="#">5</a></li>
-            <li class="page-item mx-2 mt-2 mt-sm-0"><a class="page-link" href="#">...</a></li>
-            <li class="page-item mx-2 mt-2 mt-sm-0"><a class="page-link" href="#">11</a></li>
+            <ng-container *ngFor="let number of [].constructor(jobPageCount); let i = index">
+              <li class="page-item mx-2 mt-2 mt-sm-0" [ngClass]="{'active': jobPage === (i+1)}"><a class="page-link" [ngClass]="{'active': jobPage === (i+1)}" (click)="changePage(i+1)">{{i+1}}</a></li>
+            </ng-container>
             <li class="page-item ms-2 mt-2 mt-sm-0">
-              <a class="page-link ezy__portfolio12_p1q7ACOz-arrow" href="#" aria-label="Next">
+              <a class="page-link ezy__portfolio12_p1q7ACOz-arrow" (click)="changePage('+')" aria-label="Next">
                 <i class="fa fa-angle-right"></i>
                 <span class="sr-only">Next</span>
               </a>
             </li>
           </ul>
-        </nav> -->
+        </nav>
       </div>
     </div>
   </div>
