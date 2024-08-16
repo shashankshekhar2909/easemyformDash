@@ -59,7 +59,7 @@ export class ViewJobComponent implements OnInit {
     console.log(id);
     console.log(this.jobPostList[id]);
     const inputElement = document.createElement('textarea');
-    this.jobLink = 'https://easemyform.com/job/'+this.jobPostList[id]._id;
+    this.jobLink = 'https://easemyform.com/job?_id='+this.jobPostList[id]._id;
     inputElement.value = this.jobLink;
     document.body.appendChild(inputElement);
     inputElement.select();
