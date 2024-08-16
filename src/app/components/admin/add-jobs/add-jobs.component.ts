@@ -245,4 +245,7 @@ export class AddJobsComponent implements OnInit {
     this.clearFormArray(this.keywords);
     this.clearFormArray(this.whyWorkHere);
   }
+
+  // job_image_url
+  // job_description_file
 }

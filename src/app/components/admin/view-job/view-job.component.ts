@@ -54,6 +54,20 @@ export class ViewJobComponent implements OnInit {
 
   }
 
+  jobLink = '';
+  copyLink(id:any){
+    console.log(id);
+    console.log(this.jobPostList[id]);
+    const inputElement = document.createElement('textarea');
+    this.jobLink = 'https://easemyform.com/job/'+this.jobPostList[id]._id;
+    inputElement.value = this.jobLink;
+    document.body.appendChild(inputElement);
+    inputElement.select();
+    document.execCommand('copy');
+    document.body.removeChild(inputElement);
+    this.alertService.showAlert('success', 'Link copied succesfully');
+  }
+
   selectJob(id: number): void {
     this.selectedJob = this.jobPostList[id];
     const queryParams: any = {

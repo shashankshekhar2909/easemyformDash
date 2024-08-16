@@ -21,8 +21,8 @@ export class AuthService {
       'Content-Type': 'application/json',
     });
   }
-    // private baseUrl = 'api';
-  private baseUrl = environment.baseUrl;
+    private baseUrl = 'api';
+  // private baseUrl = environment.baseUrl;
 
 
   login(userForm: { email: string; password: string }): Observable<any> {
@@ -157,9 +157,9 @@ export class AuthService {
       if (filters.page !== undefined && filters.page !== null) {
         params.append('page', filters.page.toString());
       }
-      if (filters.page !== undefined && filters.page !== null) {
-        params.append('id', filters.page.toString());
-      }
+      // if (filters.page !== undefined && filters.page !== null) {
+      //   params.append('id', filters.page.toString());
+      // }
 
       if (filters.pageSize !== undefined && filters.pageSize !== null) {
         params.append('size', filters.pageSize.toString());

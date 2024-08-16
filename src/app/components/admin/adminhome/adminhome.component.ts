@@ -19,7 +19,7 @@ export class AdminhomeComponent implements OnInit{
 
   ngOnInit(): void {
     this.getJobs(this.page, this.pageSize);
-    // this.getUsers();
+    this.getUsers();
   }
   getJobs=(page:any, pageSize:any)=>{
     const filters = {

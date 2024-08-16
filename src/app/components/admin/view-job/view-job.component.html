@@ -34,6 +34,9 @@
               <ng-container *ngIf="!job.active" ><i class="fa fa-eye"></i></ng-container>
             </button>
             <button class="btn btn-secondary" (click)="selectJob(i)">View</button>
+            <button class="btn btn-primary" (click)="copyLink(i)">
+              <ng-container><i class="fa fa-clone" aria-hidden="true"></i></ng-container>
+            </button>
           </td>
         </tr>
         <tr *ngIf="jobPostList.length === 0">
