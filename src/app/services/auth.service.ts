@@ -21,8 +21,8 @@ export class AuthService {
       'Content-Type': 'application/json',
     });
   }
-    // private baseUrl = 'api';
-  private baseUrl = environment.baseUrl;
+    private baseUrl = 'api';
+  // private baseUrl = environment.baseUrl;
 
 
   login(userForm: { email: string; password: string }): Observable<any> {
@@ -125,6 +125,14 @@ export class AuthService {
   updateJob = (jobData:any) => {
     console.log(jobData);
     return this.http.put(`${this.baseUrl}/job/job-feeds`, jobData);
+  }
+
+  deleteJobPost = (jobId: string): Observable<any> => {
+    let params = new HttpParams();
+    const jobData = {
+      _id: jobId
+    }
+    return this.http.delete(`${this.baseUrl}/job/job-feeds`,{body: jobData});
   }
 
 

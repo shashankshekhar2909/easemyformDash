@@ -95,4 +95,22 @@ export class ViewJobComponent implements OnInit {
       });
     }
   }
+
+  deleteJob(id: number): void {
+    this.selectedJob = this.jobPostList[id];
+    const jobId = this.selectedJob._id;
+    if (jobId) {
+      this.authService.deleteJobPost(jobId).subscribe({
+        next: (resp: any) => {
+          this.alertService.showAlert('success', 'Job post deleted.');
+          this.getJobs(this.page, this.pageSize); // Refresh the job list after deletion
+        },
+        error: (HttpResponse: HttpErrorResponse) => {
+          this.alertService.showAlert('danger', HttpResponse.error.message);
+        }
+      });
+    }
+  }
+
+
 }

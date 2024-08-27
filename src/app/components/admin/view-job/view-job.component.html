@@ -37,6 +37,9 @@
             <button class="btn btn-primary" (click)="copyLink(i)">
               <ng-container><i class="fa fa-clone" aria-hidden="true"></i></ng-container>
             </button>
+            <button class="btn btn-danger" (click)="deleteJob(i)">
+              <ng-container><i class="fa fa-trash" aria-hidden="true"></i></ng-container>
+            </button>
           </td>
         </tr>
         <tr *ngIf="jobPostList.length === 0">
