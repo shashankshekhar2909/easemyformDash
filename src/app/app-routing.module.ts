@@ -30,23 +30,23 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent, title:'Sign Up' },
   {
     path: 'admin', component: AdmindashboardComponent, children: [
-      { path: '', component: AdminhomeComponent, title:'Administrator Dashboard'},  // Placeholder for admin routes
-      { path: 'add-job-post', component: AddJobsComponent, title:'Add Jobs'},
-      { path: 'view-jobs', component: ViewJobComponent, title:'View Jobs'},
-      { path: 'view-users', component: UserListComponent, title:'View Users'},
-      { path: 'change-password-admin', component: AdminChangePasswordComponent, title:'Change Password'},
-      { path: 'view-user-details', component: AdminUserViewComponent, title:'User Details'},
+      { path: '', component: AdminhomeComponent, title:'Administrator Dashboard', canActivate: [AdminGuard],},
+      { path: 'add-job-post', component: AddJobsComponent, title:'Add Jobs', canActivate: [AdminGuard],},
+      { path: 'view-jobs', component: ViewJobComponent, title:'View Jobs', canActivate: [AdminGuard],},
+      { path: 'view-users', component: UserListComponent, title:'View Users', canActivate: [AdminGuard],},
+      { path: 'change-password-admin', component: AdminChangePasswordComponent, title:'Change Password', canActivate: [AdminGuard],},
+      { path: 'view-user-details', component: AdminUserViewComponent, title:'User Details', canActivate: [AdminGuard],},
     ],
   },
   {
     path: 'user', component: UserdashboardComponent, children: [
-      { path: '', component: UserhomeComponent,canActivate: [UserGuard], title:'User Dashboard' },  // Placeholder for user routes
-      { path: 'view-profile', component: UserProfileComponent,canActivate: [UserGuard], title:'User Profile' },  // Placeholder for admin routes
-      { path: 'view-cv', component: UserCVComponent,canActivate: [UserGuard], title:'User CV' },
-      { path: 'user-fill-cv-form', component: UpdateCVComponent,canActivate: [UserGuard], title:'User CV Update' },
-      { path: 'jobs', component: JobsComponent,canActivate: [UserGuard] , title:'View Jobs'},
-      { path: 'change-password-user', component: UserChangePasswordComponent,canActivate: [UserGuard] , title:'Change Password'},
-      { path: 'jobDetails', component: JobComponent,canActivate: [UserGuard], title:'Job Details' }
+      { path: '', component: UserhomeComponent, canActivate: [UserGuard], title:'User Dashboard' },
+      { path: 'view-profile', component: UserProfileComponent, canActivate: [UserGuard], title:'User Profile' },
+      { path: 'view-cv', component: UserCVComponent, canActivate: [UserGuard], title:'User CV' },
+      { path: 'user-fill-cv-form', component: UpdateCVComponent, canActivate: [UserGuard], title:'User CV Update' },
+      { path: 'jobs', component: JobsComponent, canActivate: [UserGuard], title:'View Jobs'},
+      { path: 'change-password-user', component: UserChangePasswordComponent, canActivate: [UserGuard], title:'Change Password'},
+      { path: 'jobDetails', component: JobComponent, canActivate: [UserGuard], title:'Job Details' }
     ],
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' }

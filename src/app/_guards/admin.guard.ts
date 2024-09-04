@@ -16,11 +16,13 @@ export class AdminGuard implements CanActivate {
     return this.authService.userProfile()
     .pipe(
       map(response => {
+        console.log('AdminGuard response:', response);
+
         const userInfo = response.result[0];
-        if (!userInfo.is_staff) {
+        if (userInfo.is_staff) {
           return true;
         } else {
-          this.router.navigate(['/admin']);
+          this.router.navigate(['/user']);
           return false;
         }
       }),

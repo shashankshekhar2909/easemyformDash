@@ -16,11 +16,12 @@ export class UserGuard implements CanActivate {
     return this.authService.userProfile()
     .pipe(
       map(response => {
+        console.log('UserGuard response:', response);
         const userInfo = response.result[0];
         if (!userInfo.is_staff) {
           return true;
         } else {
-          this.router.navigate(['/user']);
+          this.router.navigate(['/admin']);
           return false;
         }
       }),
