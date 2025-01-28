@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
-import { HttpClientXsrfModule, provideHttpClient, HTTP_INTERCEPTORS, HttpClientModule, withFetch } from '@angular/common/http';
+import { provideHttpClient, HTTP_INTERCEPTORS, withFetch, provideHttpClient, withInterceptorsFromDi, withXsrfConfiguration } from '@angular/common/http';
 import { HttpConfigInterceptor } from './_interceptors/http-config.interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -39,59 +39,52 @@ import { ResetPasswordTokenComponent } from './components/auth/reset-password-to
 import { AdminChangePasswordComponent } from './components/admin/admin-change-password/admin-change-password.component';
 import { UserChangePasswordComponent } from './components/user/user-change-password/user-change-password.component';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    SignupComponent,
-    AdmindashboardComponent,
-    AdminheaderComponent,
-    AdminhomeComponent,
-    UserhomeComponent,
-    UserdashboardComponent,
-    UserheaderComponent,
-    AddJobsComponent,
-    UserProfileComponent,
-    UserCVComponent,
-    JobsComponent,
-    JobComponent,
-    UpdateCVComponent,
-    PostSliderComponent,
-    AlertComponent,
-    UserListComponent,
-    AdminUserViewComponent,
-    FooterComponent,
-    ViewJobComponent,
-    ResetPasswordComponent,
-    ResetPasswordTokenComponent,
-    AdminChangePasswordComponent,
-    UserChangePasswordComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    MenubarModule,
-    BadgeModule,
-    AvatarModule,
-    InputTextModule,
-    RippleModule,
-    HttpClientXsrfModule.withOptions({
-      cookieName: 'csrftoken',
-      headerName:'X-CSRFToken'
-    }),
-  ],
-  providers: [
-    provideHttpClient(withFetch()),
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpConfigInterceptor,
-      multi: true,
-    },
-    provideClientHydration()
-  ],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        LoginComponent,
+        SignupComponent,
+        AdmindashboardComponent,
+        AdminheaderComponent,
+        AdminhomeComponent,
+        UserhomeComponent,
+        UserdashboardComponent,
+        UserheaderComponent,
+        AddJobsComponent,
+        UserProfileComponent,
+        UserCVComponent,
+        JobsComponent,
+        JobComponent,
+        UpdateCVComponent,
+        PostSliderComponent,
+        AlertComponent,
+        UserListComponent,
+        AdminUserViewComponent,
+        FooterComponent,
+        ViewJobComponent,
+        ResetPasswordComponent,
+        ResetPasswordTokenComponent,
+        AdminChangePasswordComponent,
+        UserChangePasswordComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
+        MenubarModule,
+        BadgeModule,
+        AvatarModule,
+        InputTextModule,
+        RippleModule], providers: [
+        provideHttpClient(withFetch()),
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: HttpConfigInterceptor,
+            multi: true,
+        },
+        provideClientHydration(),
+        provideHttpClient(withInterceptorsFromDi(), withXsrfConfiguration({
+            cookieName: 'csrftoken',
+            headerName: 'X-CSRFToken'
+        }))
+    ] })
 export class AppModule { }
