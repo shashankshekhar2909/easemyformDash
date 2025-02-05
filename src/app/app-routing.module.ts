@@ -22,6 +22,8 @@ import { ResetPasswordComponent } from './components/auth/reset-password/reset-p
 import { ResetPasswordTokenComponent } from './components/auth/reset-password-token/reset-password-token.component';
 import { AdminChangePasswordComponent } from './components/admin/admin-change-password/admin-change-password.component';
 import { UserChangePasswordComponent } from './components/user/user-change-password/user-change-password.component';
+import { CoverPageComponent } from './components/user/cover-page/cover-page.component';
+import { AdminCoverPageComponent } from './components/admin/admin-cover-page/admin-cover-page.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, title:'Log In' },
@@ -36,6 +38,7 @@ const routes: Routes = [
       { path: 'view-users', component: UserListComponent, title:'View Users', canActivate: [AdminGuard],},
       { path: 'change-password-admin', component: AdminChangePasswordComponent, title:'Change Password', canActivate: [AdminGuard],},
       { path: 'view-user-details', component: AdminUserViewComponent, title:'User Details', canActivate: [AdminGuard],},
+      { path: 'admin-cover-page', component: AdminCoverPageComponent, title:'Cover Page', canActivate: [AdminGuard],},
     ],
   },
   {
@@ -46,7 +49,8 @@ const routes: Routes = [
       { path: 'user-fill-cv-form', component: UpdateCVComponent, canActivate: [UserGuard], title:'User CV Update' },
       { path: 'jobs', component: JobsComponent, canActivate: [UserGuard], title:'View Jobs'},
       { path: 'change-password-user', component: UserChangePasswordComponent, canActivate: [UserGuard], title:'Change Password'},
-      { path: 'jobDetails', component: JobComponent, canActivate: [UserGuard], title:'Job Details' }
+      { path: 'jobDetails', component: JobComponent, canActivate: [UserGuard], title:'Job Details' },
+      { path: 'cover-page', component: CoverPageComponent, canActivate: [UserGuard], title:'Cover Page' }
     ],
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' }

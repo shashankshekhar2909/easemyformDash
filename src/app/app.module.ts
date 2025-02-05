@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -38,6 +39,9 @@ import { ResetPasswordComponent } from './components/auth/reset-password/reset-p
 import { ResetPasswordTokenComponent } from './components/auth/reset-password-token/reset-password-token.component';
 import { AdminChangePasswordComponent } from './components/admin/admin-change-password/admin-change-password.component';
 import { UserChangePasswordComponent } from './components/user/user-change-password/user-change-password.component';
+import { CoverPageComponent } from './components/user/cover-page/cover-page.component';
+import { AdminCoverPageComponent } from './components/admin/admin-cover-page/admin-cover-page.component';
+import { UserDetailsComponent } from './components/admin/user-details/user-details.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +69,10 @@ import { UserChangePasswordComponent } from './components/user/user-change-passw
     ResetPasswordComponent,
     ResetPasswordTokenComponent,
     AdminChangePasswordComponent,
-    UserChangePasswordComponent
+    UserChangePasswordComponent,
+    CoverPageComponent,
+    AdminCoverPageComponent,
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -82,6 +89,7 @@ import { UserChangePasswordComponent } from './components/user/user-change-passw
       cookieName: 'csrftoken',
       headerName:'X-CSRFToken'
     }),
+    FormsModule,
   ],
   providers: [
     provideHttpClient(withFetch()),

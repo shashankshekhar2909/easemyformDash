@@ -11,7 +11,8 @@ const ENDPOINTS: any = {
   },
   cv:{
     postCV:'/cv/cv-form',
-    getCV:'/cv/cv-form-filtered'
+    getCV:'/cv/cv-form-filtered',
+    coverPage:'/api/cover_letter'
   }
 };
 

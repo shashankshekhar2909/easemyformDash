@@ -1,0 +1,132 @@
+<section class="ezy__signup1_PQS26JGS d-flex align-items-center">
+  <div class="container">
+    <div class="row py-4 justify-content-center">
+      <div class="col-lg-12">
+        <div class="card ezy__signup1_PQS26JGS-form-card">
+          <div class="card-body p-md-5">
+            <h2 class="ezy__signup1_PQS26JGS-heading mb-4 mb-md-5">Cover Letter Generator</h2>
+
+            <div class="row">
+              <!-- Left Column - Input Section -->
+              <div class="col-lg-5">
+                <!-- Resume Upload Section -->
+                <div class="form-group mb-4">
+                  <label class="mb-2">Resume Upload</label>
+                  <p class="text-muted small mb-3">Upload your resume (PDF, DOC, DOCX only)</p>
+
+                  <div class="dropzone-container" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)"
+                    (drop)="onDrop($event)">
+                    <label [for]="'dropzone-file'" [class.border-primary]="isDragging"
+                      class="dropzone-area form-control">
+                      <div class="text-center py-4">
+                        <i class="fa fa-cloud-upload fa-2x mb-3 text-muted"></i>
+                        <p class="mb-2"><strong>Click to upload</strong> or drag and drop</p>
+                        <p class="text-muted small">PDF, DOC, or DOCX (MAX. 5MB)</p>
+
+                        <div class="badge-container mt-3">
+                          <span class="badge bg-light text-dark me-2">PDF</span>
+                          <span class="badge bg-light text-dark me-2">DOC</span>
+                          <span class="badge bg-light text-dark">DOCX</span>
+                        </div>
+                      </div>
+                      <input id="dropzone-file" style="display: none;" type="file" class="hidden"
+                        accept=".pdf,.doc,.docx" (change)="onFileSelected($event)" />
+                    </label>
+                  </div>
+
+                  <!-- Current Resume Display -->
+                  <div *ngIf="resume" class="mt-3">
+                    <div class="card bg-light">
+                      <div class="card-body d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                          <i class="fa-regular fa-file-pdf text-danger me-3"
+                            *ngIf="resume.type === 'application/pdf'"></i>
+                          <i class="fa-regular fa-file-word text-primary me-3"
+                            *ngIf="resume.type === 'application/msword' || resume.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'"></i>
+                          <div>
+                            <p class="mb-0 fw-medium">{{resume.name}}</p>
+                            <small class="text-muted">{{formatFileSize(resume.size)}}</small>
+                          </div>
+                        </div>
+                        <div>
+                          <button (click)="downloadFile()" class="btn btn-link text-primary p-1">
+                            <i class="fa fa-download"></i>
+                          </button>
+                          <button (click)="removeFile()" class="btn btn-link text-danger p-1">
+                            <i class="fa fa-trash"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Messages -->
+                  <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+                    {{errorMessage}}
+                  </div>
+                  <div *ngIf="successMessage" class="alert alert-success mt-3">
+                    {{successMessage}}
+                  </div>
+                </div>
+
+                <!-- Job Description Section -->
+                <div class="form-group mb-4">
+                  <label for="job-description" class="mb-2">Job Description</label>
+                  <textarea [(ngModel)]="jobDescription" #jobDescriptionField="ngModel" name="jobDescription"
+                    class="form-control" rows="10" placeholder="Paste the job description here"
+                    id="job-description"></textarea>
+                </div>
+
+                <div class="text-end">
+                  <button (click)="generateCoverLetter()" class="btn ezy__signup1_PQS26JGS-btn-submit"
+                    [disabled]="loadingCoverLetter">
+                    Generate Cover Letter
+                  </button>
+                </div>
+              </div>
+
+              <!-- Right Column - Cover Letter Preview -->
+              <div class="col-lg-7">
+                <div class="form-group mb-4">
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <label class="mb-0">Cover Letter Preview</label>
+                    <button *ngIf="coverLetterResponse" (click)="downloadCoverLetter()"
+                      class="btn btn-outline-primary btn-sm">
+                      <i class="fa-regular fa-file-pdf me-2"></i>
+                      Download PDF
+                    </button>
+                  </div>
+
+                  <div class="preview-container p-4 bg-light rounded">
+                    <div *ngIf="coverLetter" class="preview-content">
+                      <div style="white-space: pre-line; font-family: Arial, sans-serif; line-height: 1.6;" [innerHTML]="coverLetter.cover_letter_content" class="text-justify"></div>
+                    </div>
+                    <div *ngIf="!coverLetter" class="text-center text-muted py-5">
+                      Generate a cover letter to see the preview here
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Loading Overlay -->
+<div class="modal fade show" *ngIf="!loadingCoverLetter" tabindex="-1" role="dialog"
+  style="display: block; background: rgba(0,0,0,0.5);">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body text-center py-4">
+        <div class="spinner-border mb-3" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="mb-0">Generating your cover letter...</p>
+      </div>
+    </div>
+  </div>
+</div>

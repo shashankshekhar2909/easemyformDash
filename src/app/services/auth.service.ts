@@ -21,8 +21,8 @@ export class AuthService {
       'Content-Type': 'application/json',
     });
   }
-  // private baseUrl = 'api';
-  private baseUrl = environment.baseUrl;
+  private baseUrl = 'api';
+  // private baseUrl = environment.baseUrl;
 
 
   login(userForm: { email: string; password: string }): Observable<any> {
@@ -250,6 +250,10 @@ export class AuthService {
     }
     // const endPoint = this.baseUrl + this.globals.urlJoin('jobs', 'jobFeeds');
     return this.http.get(`${this.baseUrl}/user/?${params.toString()}`);
+  }
+
+  getCoverPage = (data:any) => {
+    return this.http.post(`${this.baseUrl}/cover_letter`, data);
   }
 
 }
