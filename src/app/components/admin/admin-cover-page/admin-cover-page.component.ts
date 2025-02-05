@@ -24,6 +24,10 @@ export class AdminCoverPageComponent implements OnInit {
   successMessage: string | null = null;
   maxFileSize = 5 * 1024 * 1024; // 5MB in bytes
   form: FormGroup;
+  isJobDragging = false;
+  jobFile: File | null = null;
+  jobErrorMessage = '';
+  jobSuccessMessage = '';
 
   constructor(private fb: FormBuilder, private authService: AuthService) {
     this.form = this.fb.group({
@@ -157,8 +161,11 @@ export class AdminCoverPageComponent implements OnInit {
       console.log('Generating cover letter...');
       this.loadingCoverLetter = true;
       const formData = new FormData();
-      // formData.append('job_desc_file', 'user_cv');
-      formData.append('job_desc_text', this.jobDescription);
+      if(this.jobFile) {
+        formData.append('job_desc_file', this.jobFile as Blob);
+      } else {
+        formData.append('job_desc_text', this.jobDescription);
+      }
       formData.append('resume', this.resume.file as Blob);
       this.authService.getCoverPage(formData).subscribe({
         next: (res:any) => {
@@ -181,5 +188,75 @@ export class AdminCoverPageComponent implements OnInit {
     if (this.coverLetterResponse) {
       window.open(this.coverLetterResponse.pdf_path, '_blank');
     }
+  }
+
+  onDragOverJob(event: DragEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.isJobDragging = true;
+  }
+
+  onDragLeaveJob(event: DragEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.isJobDragging = false;
+  }
+
+  onDropJob(event: DragEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.isJobDragging = false;
+
+    const files = event.dataTransfer?.files;
+    if (files && files.length > 0) {
+      this.handleJobFile(files[0]);
+    }
+  }
+
+  onJobFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.handleJobFile(file);
+    }
+  }
+
+  handleJobFile(file: File) {
+    // Reset messages
+    this.jobErrorMessage = '';
+    this.jobSuccessMessage = '';
+
+    // Check file type
+    const validTypes = ['text/plain', 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+    if (!validTypes.includes(file.type)) {
+      this.jobErrorMessage = 'Invalid file type. Please upload a TXT, PDF, DOC, or DOCX file.';
+      return;
+    }
+
+    // Check file size (5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      this.jobErrorMessage = 'File is too large. Maximum size is 5MB.';
+      return;
+    }
+
+    this.jobFile = file;
+    this.jobSuccessMessage = 'File uploaded successfully!';
+    this.jobDescription = ''; // Clear the textarea when file is uploaded
+
+    // Here you would typically process the file
+    // For example, read text files:
+    if (file.type === 'text/plain') {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.jobDescription = e.target?.result as string;
+      };
+      reader.readAsText(file);
+    }
+    // For PDF/DOC/DOCX you would need additional processing libraries
+  }
+
+  removeJobFile() {
+    this.jobFile = null;
+    this.jobDescription = '';
+    this.jobSuccessMessage = '';
   }
 }
