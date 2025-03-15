@@ -12,6 +12,7 @@ import { AlertService } from '../../../services/alert.service';
 })
 export class AddJobsComponent implements OnInit {
   jobForm: FormGroup;
+  rawJobForm: FormGroup;
   jobId: string | null = null;
 
   constructor(
@@ -20,6 +21,9 @@ export class AddJobsComponent implements OnInit {
     private route: ActivatedRoute,
     private alertService: AlertService
   ) {
+    this.rawJobForm = this.fb.group({
+      job_raw_text: ['', Validators.required]
+    });
     this.jobForm = this.fb.group({
       designation: ['', Validators.required],
       company: ['', Validators.required],
@@ -183,19 +187,20 @@ export class AddJobsComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.jobForm.valid) {
-      this.authService.postJob(this.jobForm.value).subscribe({
-        next: (resp: any) => {
-          this.alertService.showAlert('success', 'Job post Created.');
-        },
-        error: (HttpResponse: HttpErrorResponse) => {
-          this.alertService.showAlert('danger', HttpResponse.error.message);
-        }
-      });
-    } else {
-      console.error('Form is invalid');
-      this.jobForm.markAllAsTouched(); // Mark all fields as touched to trigger validation
-    }
+    console.log(this.jobForm.value);
+    // if (this.jobForm.valid) {
+    //   this.authService.postJob(this.jobForm.value).subscribe({
+    //     next: (resp: any) => {
+    //       this.alertService.showAlert('success', 'Job post Created.');
+    //     },
+    //     error: (HttpResponse: HttpErrorResponse) => {
+    //       this.alertService.showAlert('danger', HttpResponse.error.message);
+    //     }
+    //   });
+    // } else {
+    //   console.error('Form is invalid');
+    //   this.jobForm.markAllAsTouched(); // Mark all fields as touched to trigger validation
+    // }
   }
 
   update(): void {
@@ -245,7 +250,31 @@ export class AddJobsComponent implements OnInit {
     this.clearFormArray(this.keywords);
     this.clearFormArray(this.whyWorkHere);
   }
+  jobPosting = false;
+  jobPost:any = null;
+  rawJobFormSubmit() {
+    console.log(this.rawJobForm.value);
+    this.jobPosting = true;
+    this.authService.postJob(this.rawJobForm.value).subscribe({
+      next: (resp: any) => {
+        console.log(resp);
+        this.alertService.showAlert('success', 'Job post Created.');
+        this.jobPost = resp;
+        this.jobPosting = false;
+      },
+      error: (HttpResponse: HttpErrorResponse) => {
+        this.alertService.showAlert('danger', HttpResponse.error.message);
+        this.jobPosting = false;
+      }
+    });
+  }
 
-  // job_image_url
-  // job_description_file
+  copyToClipboard(text: string) {
+    this.alertService.showAlert('success', 'Copied to clipboard');
+    navigator.clipboard.writeText(text);
+  }
+
+  closeJobPost() {
+    this.jobPost = null;
+  }
 }
